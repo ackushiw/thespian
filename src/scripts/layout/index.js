@@ -35,26 +35,31 @@ module.exports = function(namespace) {
       }).state('app.profile', {
         url: 'app',
         views: {
-          topnav: {
+          'topnav': {
             template: require('./views/default-topnav.html')
           },
-          sidenav: {
+          'sidenav': {
             template: require('./views/default-sidenav.html')
           },
-          main: {
+          'main': {
             template: require('./views/default-main.html'),
             controller: fullname + '.mainView',
             controllerAs: 'mainViewCtrl'
           },
-          expanded: {
+          'expanded': {
             template: require('./views/default-expanded.html')
           },
-          action: {
+          'action': {
             template: require('./views/default-action.html')
           }
         }
-      }).state('home.profile.stats', {
-        url: '/stats'
+      }).state('app.profile.stats', {
+        url: '/stats',
+        views: {
+          'expanded@': {
+            template: require('./views/profile/stats.html')
+          }
+        }
       });
     }
   ]);

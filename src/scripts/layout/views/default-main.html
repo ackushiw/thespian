@@ -42,7 +42,7 @@
               <md-list>
                 <md-item ng-repeat="item in mainViewCtrl.profileMenuList">
                   <md-item-content>
-                    <md-button aria-label="menu button" flex layout="row" layout-align="start center" class="md-primary button-list">
+                    <md-button aria-label="menu button" flex layout="row" layout-align="start center" class="md-primary button-list" ui-sref="{{item.link}}" ui-sref-active="active, md-accent">
                       <md-icon md-font-icon="mdi mdi-lg {{item.icon}}" flex="10"></md-icon>{{item.title}}
                       <span flex></span>
                     </md-button>

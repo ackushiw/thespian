@@ -17,39 +17,39 @@ module.exports = function(app) {
     vm.message = 'Hello World';
     var activate = function() {
       vm.profileMenuList = [{
-        title: 'Alexander',
-        link: '#',
+        title: 'Stats',
+        link: 'app.profile.stats',
         priority: '1',
         icon: 'mdi-account',
         type: 'header'
       }, {
         title: 'Resume',
-        link: '#',
+        link: 'app.profile.resume',
         priority: '2',
         icon: 'mdi-file-document-box',
         type: 'default'
       }, {
         title: 'Headshot',
-        link: '#',
+        link: 'app.profile.pictures',
         priority: '2',
         icon: 'mdi-file-image-box',
         type: 'default'
       }, {
         title: 'Reel',
-        link: '#',
+        link: 'app.profile.videos',
         priority: '2',
         icon: 'mdi-filmstrip',
         type: 'default'
       }, {
         title: 'News',
-        link: '#',
+        link: 'app.profile.news',
         priority: '2',
         icon: 'mdi-newspaper',
         type: 'default'
 
       }, {
         title: 'Companies',
-        link: '#',
+        link: 'app.profile.groups',
         priority: '2',
         icon: 'mdi-google-circles-communities',
         type: 'default'
