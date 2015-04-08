@@ -1,7 +1,230 @@
 <fa-modifier>
   <fa-view>
     <fa-modifier>
-      <fa-surface>stats page</fa-surface>
+      <fa-surface class="full-height">
+        <md-toolbar>
+          <div class="md-toolbar-tools"></div>
+        </md-toolbar>
+        <md-content layout-fill class="md-padding">
+
+          <md-card layout="column" flex>
+            <md-content class="md-padding no-overflow">
+              <md-input-container>
+                <label>First Name</label>
+                <input type="text" ng-model="">
+              </md-input-container>
+              <md-input-container>
+                <label>Last Name</label>
+                <input type="text" ng-model="">
+              </md-input-container>
+
+              <section class="row" layout-align="start start">
+
+                <div layout="row" layout-margin>
+                  <h2 flex hide-sm>
+                    <md-input-container flex>
+                      <label>Name</label>
+                      <input class="flex" aria-label="Name" ng-model="$storage.profileData.actorName" flex>
+
+                    </md-input-container>
+                  </h2>
+                  <h3 flex hide-gt-sm>
+                    <md-input-container flex>
+                      <label>Name</label>
+                      <input class="flex" aria-label="Name" ng-model="$storage.profileData.actorName" flex>
+
+                    </md-input-container>
+                  </h3>
+                </div>
+
+              </section>
+              <md-divider hide></md-divider>
+
+              <section layout="column">
+                <span layout="row" layout-align="space-around center" layout-margin>
+                  <md-button aria-label="expand" class="circular text-display" ng-click="stats.gender != stats.gender"><i class="mdi mdi-chevron-right" ng-class="{rotate: profilePage.expanded == 'gender'}"></i>
+                  </md-button>
+                  <h3 flex class="text-display">Gender</h3>
+                  <h3 flex>{{$storage.profileData.gender}}</h3>
+                  <span flex hide-sm hide-md></span>
+                </span>
+                <section layout="row" ng-if="stats.gender">
+                  <span style="width:50px"></span>
+
+                  <md-radio-group ng-model="$storage.profileData.gender" layout="row">
+                    <md-radio-button value="male" aria-label="male">Male</md-radio-button>
+                    <md-radio-button value="female" aria-label="female">Female</md-radio-button>
+                    <md-radio-button value="other" aria-label="female">Other</md-radio-button>
+                  </md-radio-group>
+                  <br>
+                  <md-divider></md-divider>
+                </section>
+              </section>
+
+              <section layout="column">
+                <span layout="row" layout-align="space-between center" layout-margin>
+                  <md-button aria-label="expand" class="circular text-display" ng-click="profilePage.toggleEdit('age')"><i class="mdi mdi-chevron-right" ng-class="{rotate: profilePage.expanded == 'age'}"></i>
+                  </md-button>
+                  <h3 flex class="text-display">Age Range</h3>
+                  <h3 flex>{{$storage.profileData.minAge + ' to ' + $storage.profileData.maxAge}}</h3>
+                  <span flex hide-sm hide-md></span>
+                </span>
+                <section layout="row" layout-sm="column" ng-if="profilePage.expanded == 'age'">
+                  <section layout="column" ng-if="$storage.profileData" flex>
+                    <div style="width:100%;">
+
+                      <slider ng-model="$storage.profileData.minAge" ng-model-range="$storage.profileData.maxAge" floor="0" ceiling="100" step="1" buffer="5" precision="1" stretch="3">
+                      </slider>
+                    </div>
+                    <br>
+                  </section>
+                  <br>
+                  <br>
+                  <md-divider></md-divider>
+
+                </section>
+
+              </section>
+
+              <section layout="column">
+                <span layout="row" layout-align="space-around center" layout-margin>
+                  <md-button aria-label="expand" class="circular text-display" ng-click="profilePage.toggleEdit('eyes')"><i class="mdi mdi-chevron-right" ng-class="{rotate: profilePage.expanded == 'eyes'}"></i>
+                  </md-button>
+                  <h3 flex class="text-display">Eyes</h3>
+                  <h3 flex>{{$storage.profileData.eyesDetails}}</h3>
+                  <span flex hide-sm hide-md></span>
+                </span>
+                <div layout="row" flex ng-if="profilePage.expanded == 'eyes'" layout-align="start end">
+                  <span style="width:50px"></span>
+                  <md-input-container>
+                    <label>Eye Color</label>
+                    <input aria-label="eyes" ng-model="$storage.profileData.eyesDetails">
+                  </md-input-container>
+                  <h3 class="text-display"> tags: </h3>
+                  <tags-input ng-model="$storage.profileData.eyeTags" flex></tags-input>
+                  <md-radio-group ng-model="$storage.profileData.eyeBasic" layout="row" layout-align="start end" hide>
+                    <md-radio-button value="brown" aria-label="brown">Brown</md-radio-button>
+                    <md-radio-button value="blue" aria-label="blue">Blue</md-radio-button>
+                    <md-radio-button value="green" aria-label="green">Green</md-radio-button>
+                    <md-radio-button value="hazel" aria-label="hazel">Hazel</md-radio-button>
+                  </md-radio-group>
+                  <br>
+                  <md-divider></md-divider>
+                </div>
+              </section>
+
+              <section layout="column">
+                <span layout="row" layout-align="space-around center" layout-margin>
+                  <md-button aria-label="expand" class="circular text-display" ng-click="profilePage.toggleEdit('hair')"><i class="mdi mdi-chevron-right" ng-class="{rotate: profilePage.expanded == 'hair'}"></i>
+                  </md-button>
+                  <h3 flex class="text-display">Hair</h3>
+                  <h3 flex>{{$storage.profileData.hairColor}}</h3>
+                  <span flex hide-sm hide-md></span>
+                </span>
+                <div layout="row" flex ng-if="profilePage.expanded == 'hair'" layout-align="start end">
+                  <md-input-container>
+                    <label>Hair Color</label>
+                    <input aria-label="hair" ng-model="$storage.profileData.hairColor">
+                  </md-input-container>
+                  <span style="width:50px"></span>
+                  <h3 class="text-display">tags:</h3>
+                  <tags-input ng-model="$storage.profileData.hairTags" flex></tags-input>
+                  <md-radio-group ng-model="$storage.profileData.hairLength" layout="row" layout-align="start end" hide>
+                    <md-radio-button value="shaved" aria-label="shaved">Shaved</md-radio-button>
+                    <md-radio-button value="short" aria-label="short">Short</md-radio-button>
+                    <md-radio-button value="medium" aria-label="medium">Medium</md-radio-button>
+                    <md-radio-button value="long" aria-label="long">Long</md-radio-button>
+                  </md-radio-group>
+                </div>
+              </section>
+
+              <section layout="column" hide>
+                <span layout="row" layout-align="space-around center" layout-margin>
+                  <md-button aria-label="expand" class="circular text-display" ng-click="profilePage.toggleEdit('vocals')"><i class="mdi mdi-chevron-right" ng-class="{rotate: profilePage.expanded == 'vocals'}"></i>
+                  </md-button>
+                  <h3 flex class="text-display">Voice</h3>
+                  <h3 flex>{{$storage.profileData.maleVocals || $storage.profileData.femaleVocals}}</h3>
+                  <span flex hide-sm hide-md></span>
+                </span>
+                <section layout="row" layout-sm="column" ng-if="profilePage.expanded == 'vocals'">
+                  <h3>Voice</h3>
+                  <div layout="column" flex>
+                    <md-input-container>
+                      <label>Voice</label>
+                      <input aria-label="voice-tone" label="Tone" ng-model="$storage.profileData.voiceTone">
+                    </md-input-container>
+
+                  </div>
+                  <div layout="column" flex>
+
+                    <div ng-switch on="$storage.profileData.gender">
+                      <div ng-switch-when="male">
+                        <h3>Vocal Range: {{$storage.profileData.maleVocals.tenor}}</h3>
+                        <multi-select input-model="profilePage.maleVocals" output-model="$storage.profileData.maleVocals" button-label="range" default-label="Please Select" item-label="range" tick-property="ticked" helper-elements="none" on-item-click="showForm(selectedResumeSection)">
+                        </multi-select>
+                        <div hide>
+                          <md-checkbox ng-model="$storage.profileData.maleVocals.contertenor" aria-label="Checkbox 1">
+                            Checkbox 1: {{ data.cb1 }}
+                          </md-checkbox>
+
+                          <md-checkbox ng-model="$storage.profileData.maleVocals.tenor" aria-label="Checkbox 2" ng-true-value="'tenor'" ng-false-value="null" class="md-warn">
+                            Tenor (md-warn): {{ data.cb2 }}
+                          </md-checkbox>
+                          <md-checkbox aria-label="Disabled checkbox" ng-model="$storage.profileData.maleVocals.baritone">
+                            Checkbox: Disabled
+                          </md-checkbox>
+                          <md-checkbox aria-label="Disabled checked checkbox" ng-model="$storage.profileData.maleVocals.bass">
+                            Checkbox: Disabled, Checked
+                          </md-checkbox>
+                          <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="$storage.profileData.maleVocals" class="md-primary">
+                            Checkbox (md-primary): No Ink
+                          </md-checkbox>
+                        </div>
+                      </div>
+                      <div ng-switch-when="female">
+                        <h3>Vocal Range: {{$storage.profileData.femaleVocals}}</h3>
+
+                      </div>
+
+                    </div>
+                  </div>
+                  <br>
+                  <md-divider></md-divider>
+                </section>
+              </section>
+
+              <section layout="column">
+                <span layout="row" layout-align="space-around center" layout-margin>
+                  <md-button aria-label="expand" class="circular text-display" ng-click="profilePage.toggleEdit('unions')"><i class="mdi mdi-chevron-right" ng-class="{rotate: profilePage.expanded == 'unions'}"></i>
+                  </md-button>
+                  <h3 flex class="text-display">Union Membership</h3>
+                  <h3 flex>
+                    <span>{{$storage.profileData.unions.non}}</span>
+                    <span>{{$storage.profileData.unions.equity}}</span>
+                    <span>{{$storage.profileData.unions.sag}}</span>
+                  </h3>
+                  <span flex hide-sm hide-md></span>
+                </span>
+                <section layout="row" ng-if="profilePage.expanded == 'unions'">
+                  <span style="width:50px"></span>
+                  <md-checkbox ng-model="$storage.profileData.unions.non" aria-label="Non-union" ng-true-value="'Non-Union'" ng-false-value="null">
+                    Non-union {{ $storage.profileData.unions.non }}
+                  </md-checkbox>
+
+                  <md-checkbox ng-model="$storage.profileData.unions.equity" aria-label="Checkbox 2" ng-true-value="'Equity'" ng-false-value="null">
+                    Equity {{ $storage.profileData.unions.equity }}
+                  </md-checkbox>
+                  <md-checkbox ng-disabled aria-label="Disabled checkbox" ng-model="$storage.profileData.unions.sag" ng-true-value="'SAG'" ng-false-value="null">
+                    SAG {{$storage.profileData.unions.sag}}
+                  </md-checkbox>
+
+                </section>
+              </section>
+            </md-content>
+          </md-card>
+
+        </md-content>
+      </fa-surface>
     </fa-modifier>
   </fa-view>
 </fa-modifier>

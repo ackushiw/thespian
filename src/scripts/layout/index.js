@@ -21,9 +21,15 @@ module.exports = function(namespace) {
 
   app.config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
-      $urlRouterProvider.otherwise('/');
-      $stateProvider.state('app', {
+      $urlRouterProvider.otherwise('/app');
+      $stateProvider.state('landing', {
+        url: '/welcome',
+        template: require('./views/home.html'),
+        controller: fullname + '.landing',
+        controllerAs: 'landingCtrl'
+      }).state('app', {
         url: '/',
+        abstract: true,
         template: '<responsive></responsive>', //responsive has the following child ui-views
         //[topnav],
         //[sidenav],

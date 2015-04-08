@@ -1,1 +1,51 @@
-<responsive></responsive>
+<fa-app class="full-screen">
+  <fa-modifier fa-translate="[0,0,10]">
+    <fa-modifier fa-translate="landingCtrl.titleTimeline.translate(landingCtrl.titlePos.translate.get())" fa-align="landingCtrl.titleTimeline.align(landingCtrl.titlePos.align.get())" fa-origin="landingCtrl.titleTimeline.origin(landingCtrl.titlePos.origin.get())" fa-size="landingCtrl.titleTimeline.size(landingCtrl.titlePos.size.get())">
+      <fa-surface fa-pipe-to="landingCtrl.scrollEventHandler">
+        <h1>Thespus</h1>
+      </fa-surface>
+    </fa-modifier>
+    <fa-modifier fa-translate="landingCtrl.loginTimeline.translate(landingCtrl.loginPos.translate.get())" fa-align="landingCtrl.loginTimeline.align(landingCtrl.loginPos.align.get())" fa-origin="landingCtrl.loginTimeline.origin(landingCtrl.loginPos.origin.get())" fa-size="landingCtrl.loginTimeline.size(landingCtrl.loginPos.size.get())">
+      <fa-surface fa-pipe-to="landingCtrl.scrollEventHandler">
+        <md-card>
+          <md-content class="md-padding" layout="column">
+            <h3>login using Google</h3>
+            <md-button flex aria-label="login" ng-click="landingCtrl.test()" class="md-raised md-warn">Login
+              <md-icon md-font-icon="mdi mdi-google-plus"></md-icon>
+            </md-button>
+          </md-content>
+        </md-card>
+      </fa-surface>
+    </fa-modifier>
+    <fa-scroll-view id="scrollview" fa-pipe-from="landingCtrl.scrollEventHandler">
+      <fa-modifier>
+        <fa-view>
+          <fa-modifier>
+            <fa-surface fa-background-color="'gold'" fa-pipe-to="landingCtrl.scrollEventHandler"><pre>test: {{landingCtrl.scroller._inProgress}}</pre>
+            </fa-surface>
+          </fa-modifier>
+          <fa-modifier fa-align="[0.5, 1]" fa-translate="[0,0,0]" fa-origin="[0.5, 1]" fa-size="[100, 100]">
+            <fa-surface>
+              <md-icon md-font-icon="mdi mdi-chevron-down" style="font-size: 7em"></md-icon>
+            </fa-surface>
+          </fa-modifier>
+        </fa-view>
+      </fa-modifier>
+      <fa-modifier>
+        <fa-view>
+          <fa-modifier>
+            <fa-surface fa-background-color="'red'" fa-pipe-to="landingCtrl.scrollEventHandler">test2 </fa-surface>
+          </fa-modifier>
+        </fa-view>
+      </fa-modifier>
+    </fa-scroll-view>
+  </fa-modifier>
+  <fa-modifier class="background view" fa-translate="[0,0,1]">
+    <div>
+      <fa-surface fa-background-color="'#268bd2'" fa-opacity="responsiveCtrl.opacityTest">
+        <h1>height: {{responsiveCtrl.height}}</h1>
+        <h1>width: {{responsiveCtrl.width}}</h1>
+      </fa-surface>
+    </div>
+  </fa-modifier>
+</fa-app>
