@@ -1,0 +1,82 @@
+//imports
+//famous
+.full-screen {
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.full-height,
+.full-height .fa-surface {
+  height: 100%;
+}
+.full-width,
+.full-width .fa-surface {
+  width: 100%;
+}
+.lg-content {
+  padding: 60px 16px 16px;
+}
+//fonts
+$default-font: 'Cutive', Serif;
+$mono-type: 'Cutive Mono', 'Courier New', Courier, monospace;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  font-family: $default-font;
+}
+.mono {
+  font-family: $mono-type;
+}
+body,
+p {
+  font-family: $mono-type;
+}
+button.md-button {
+  text-transform: capitalize;
+}
+//icons
+.mdi-lg {
+  font-size: 1.5em;
+}
+//Main section
+.button-list {
+  padding: 16px 0;
+}
+/*! suit-flex-embed v1.4.0 | MIT License | github.com/suitcss */
+.FlexEmbed {
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+.FlexEmbed:before {
+  content: "";
+  display: block;
+  width: 100%;
+}
+.FlexEmbed--3by1:before {
+  padding-bottom: 33.33333%;
+}
+.FlexEmbed--2by1:before {
+  padding-bottom: 50%;
+}
+.FlexEmbed--16by9:before {
+  padding-bottom: 56.25%;
+}
+.FlexEmbed--4by3:before {
+  padding-bottom: 75%;
+}
+.CoverImage {
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto 1em;
+  //max-height: 600px;
+  max-width: 100%;
+  min-height: 100%;
+}

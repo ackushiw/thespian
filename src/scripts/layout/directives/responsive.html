@@ -1,0 +1,85 @@
+<fa-app class="full-screen">
+  <!-- Nav section Layout -->
+  <fa-modifier class="nav-view" fa-translate="responsiveCtrl.topnavTranslate.get()" fa-size="responsiveCtrl.topnavSize.get()" fa-align="responsiveCtrl.topnavAlign.get()">
+    <div>
+      <div ui-view="topnav" class="full-height full-width">
+        <fa-modifier fa-size="[responsiveCtrl.width, 64]">
+          <fa-surface fa-background-color="'grey'">
+
+          </fa-surface>
+        </fa-modifier>
+
+      </div>
+
+    </div>
+  </fa-modifier>
+
+  <fa-modifier class="view" fa-translate="responsiveCtrl.sidenavTranslate.get()" fa-size="responsiveCtrl.sidenavSize.get()">
+    <div>
+      <div ui-view="sidenav">
+
+        <!-- <fa-surface fa-background-color="'green'" class="full-height">
+          <div class="md-whiteframe-z2 full-height" md-swipe-left="responsiveCtrl.sidenavClose($event)" md-swipe-right="responsiveCtrl.expandSidenav($event)">
+            <md-toolbar>
+              <div class="md-toolbar-tools">
+                <md-button aria-label="button" ng-click="responsiveCtrl.test($event)">
+                  <md-icon md-font-icon="mdi mdi-android"></md-icon>
+                </md-button>
+
+                <span flex></span>
+                <md-button aria-label="button" ng-click="responsiveCtrl.sidenavClose($event)">
+                  <md-icon md-font-icon="mdi mdi-arrow-left lg"></md-icon>
+                </md-button>
+              </div>
+            </md-toolbar>
+            <md-content class="md-padding full-height" layout-fill flex>
+              <p>screen sm: {{smScreen}}</p>
+              <p>screen md: {{mdScreen}}</p>
+              <p>screen lg: {{lgScreen}}</p>
+              <p>screen gt-lg: {{gtLgScreen}}</p>
+              <p>screen gt-sm: {{gtSmScreen}}</p>
+              <p>screen gt-md: {{gtMdScreen}}</p>
+              <div>
+                This is directive : responsive
+                <h1>height: {{responsiveCtrl.height}}</h1>
+
+                <h1>width: {{responsiveCtrl.width}}</h1>
+
+              </div>
+            </md-content>
+          </div>
+
+        </fa-surface> -->
+      </div>
+
+    </div>
+  </fa-modifier>
+
+  <fa-modifier class="main-content" fa-translate="responsiveCtrl.mainContentTranslate.get()" fa-size="responsiveCtrl.mainContentSize.get()" fa-align="responsiveCtrl.mainContentAlign.get()">
+    <div ui-view="main">
+      <fa-surface fa-background-color="'gold'"></fa-surface>
+    </div>
+  </fa-modifier>
+
+  <fa-modifier class="main-content" fa-translate="responsiveCtrl.contentViewTranslate.get()" fa-size="responsiveCtrl.contentViewSize.get()" fa-align="responsiveCtrl.contentViewAlign.get()">
+    <div ui-view="expanded">
+      <fa-surface fa-background-color="'blue'">
+
+      </fa-surface>
+    </div>
+  </fa-modifier>
+
+  <fa-modifier class="view" fa-align="responsiveCtrl.actionButtonAlign.get()" fa-translate="responsiveCtrl.actionButtonTranslate.get()" fa-size="responsiveCtrl.actionButtonSize.get()">
+    <div ui-view="action">
+      <fa-surface fa-background-color="'#6c71c4'" fa-opacity="responsiveCtrl.opacityTest"></fa-surface>
+    </div>
+  </fa-modifier>
+  <fa-modifier class="background view">
+    <div>
+      <fa-surface fa-background-color="'#268bd2'" fa-opacity="responsiveCtrl.opacityTest">
+        <h1>height: {{responsiveCtrl.height}}</h1>
+        <h1>width: {{responsiveCtrl.width}}</h1>
+      </fa-surface>
+    </div>
+  </fa-modifier>
+</fa-app>

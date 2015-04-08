@@ -1,0 +1,11 @@
+{
+  "generator-angular-famous-ionic": {
+    "appname": "thespus",
+    "clientFolder": "src",
+    "ionic": false,
+    "famous": true,
+    "ngCordova": true,
+    "fontawesome": false,
+    "bootstrap": false
+  }
+}

@@ -1,0 +1,69 @@
+<fa-modifier>
+  <fa-scroll-view fa-pipe-from="mainViewCtrl.scrollEventHandler">
+    <!-- <fa-view ng-if="!smScreen">
+      <fa-modifier fa-size="[undefined, 200]">
+        <fa-surface fa-pipe-to="mainViewCtrl.scrollEventHandler">test scroll {{mainViewCtrl.message}}</fa-surface>
+      </fa-modifier>
+    </fa-view> -->
+    <fa-modifier>
+      <fa-view>
+        <fa-modifier fa-perspective="100" fa-size="[undefined, 450]">
+          <fa-surface fa-size="[undefined, 450]" class="full-height" fa-pipe-to="mainViewCtrl.scrollEventHandler ">
+            <img hide-sm hide-md hide-lg src="images/headshot1.jpg" alt="headshot" width="480" class="md-whiteframe-z2">
+            <img hide-sm hide-md hide-gt-lg src="images/headshot1.jpg" alt="headshot" width="380" class="md-whiteframe-z2">
+
+            <div hide-gt-md style="height:100%;background: url(images/headshot1.jpg) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; "></div>
+          </fa-surface>
+          <!-- <fa-image-surface fa-size="[undefined, auto] " fa-image-url="images/headshot1.jpg " fa-pipe-to="mainViewCtrl.scrollEventHandler " style="height:auto; "></fa-image-surface> -->
+        </fa-modifier>
+      </fa-view>
+    </fa-modifier>
+    <fa-view>
+      <fa-modifier fa-translate="[0,0,1]">
+        <fa-surface class="full-height " fa-pipe-to="mainViewCtrl.scrollEventHandler ">
+          <md-card layout-fill layout="row " style="background-color:white;" class="md-whiteframe-z2">
+            <md-toolbar>
+              <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <h3>Alexander</h3>
+                <span flex></span>
+                <md-button aria-label="profile nav button">
+                  <md-icon md-font-icon="mdi mdi-email"></md-icon>
+                </md-button>
+                <md-button aria-label="profile nav button">
+                  <md-icon md-font-icon="mdi mdi-share-variant"></md-icon>
+                </md-button>
+                <md-button aria-label="profile nav button">
+                  <md-icon md-font-icon="mdi mdi-settings"></md-icon>
+                </md-button>
+              </div>
+            </md-toolbar>
+
+            <md-content layout-fill layout="column" class="md-padding">
+              <md-list>
+                <md-item ng-repeat="item in mainViewCtrl.profileMenuList">
+                  <md-item-content>
+                    <md-button aria-label="menu button" flex layout="row" layout-align="start center" class="md-primary button-list">
+                      <md-icon md-font-icon="mdi mdi-lg {{item.icon}}" flex="10"></md-icon>{{item.title}}
+                      <span flex></span>
+                    </md-button>
+                  </md-item-content>
+                </md-item>
+              </md-list>
+            </md-content>
+
+          </md-card>
+        </fa-surface>
+      </fa-modifier>
+
+    </fa-view>
+    <!-- <fa-modifier fa-size="[undefined, 100] ">
+      <fa-view>
+        <fa-modifier fa-size="[undefined, 100] ">
+          <fa-surface fa-pipe-to="mainViewCtrl.scrollEventHandler " fa-background-color=" 'red' ">scroll end</fa-surface>
+        </fa-modifier>
+      </fa-view>
+    </fa-modifier> -->
+
+  </fa-scroll-view>
+
+</fa-modifier>
