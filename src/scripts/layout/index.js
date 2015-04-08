@@ -56,8 +56,43 @@ module.exports = function(namespace) {
       }).state('app.profile.stats', {
         url: '/stats',
         views: {
-          'expanded@': {
+          'expanded@app': {
             template: require('./views/profile/stats.html')
+          }
+        }
+      }).state('app.profile.resume', {
+        url: '/resume',
+        views: {
+          'expanded@app': {
+            template: require('./views/profile/resume.html')
+          }
+        }
+      }).state('app.profile.pictures', {
+        url: '/pictures',
+        views: {
+          'expanded@app': {
+            template: require('./views/profile/pictures.html')
+          }
+        }
+      }).state('app.profile.videos', {
+        url: '/reel',
+        views: {
+          'expanded@app': {
+            template: require('./views/profile/reel.html')
+          }
+        }
+      }).state('app.profile.news', {
+        url: '/news',
+        views: {
+          'expanded@app': {
+            template: require('./views/profile/news.html')
+          }
+        }
+      }).state('app.profile.groups', {
+        url: '/companies',
+        views: {
+          'expanded@app': {
+            template: require('./views/profile/groups.html')
           }
         }
       });
