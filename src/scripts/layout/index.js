@@ -5,6 +5,7 @@ require('famous-angular');
 require('ngCordova');
 require('angular-material');
 require('ng-resize');
+require('angularfire');
 
 var modulename = 'layout';
 
@@ -13,10 +14,11 @@ module.exports = function(namespace) {
   var fullname = namespace + '.' + modulename;
 
   var angular = require('angular');
-  var app = angular.module(fullname, ['ui.router', 'famous.angular', 'ngCordova', 'ngMaterial', 'ngResize']);
+  var app = angular.module(fullname, ['ui.router', 'famous.angular', 'ngCordova', 'ngMaterial', 'ngResize', 'firebase']);
   // inject:folders start
   require('./controllers')(app);
   require('./directives')(app);
+  require('./services')(app);
   // inject:folders end
 
   app.config(['$stateProvider', '$urlRouterProvider',
@@ -37,7 +39,13 @@ module.exports = function(namespace) {
         //[expanded] -- this is the view that gets shown on large tablets and desktops, you can also use it to show child views on mobile,
         //[action] -- this is the action button
         controller: fullname + '.main',
-        controllerAs: 'layoutCtrl'
+        controllerAs: 'layoutCtrl',
+        resolve: {
+          'currentAuth': [fullname + '.auth', function(Auth) {
+            console.log('require auth: ', Auth);
+            return Auth.$requireAuth();
+          }]
+        }
       }).state('app.profile', {
         url: 'app',
         views: {
@@ -104,6 +112,8 @@ module.exports = function(namespace) {
       });
     }
   ]);
+
+  app.constant('FBURL', 'https://thespus.firebaseio.com');
 
   return app;
 };

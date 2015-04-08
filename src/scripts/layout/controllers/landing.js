@@ -4,10 +4,13 @@ var controllername = 'landing';
 module.exports = function(app) {
   /*jshint validthis: true */
 
-  var deps = ['$famous', '$timeline'];
+  var deps = ['$rootScope', '$famous', '$timeline', '$firebaseAuth', 'FBURL', '$state'];
 
-  function controller($famous, $timeline) {
+  function controller($rootScope, $famous, $timeline, $firebaseAuth, FBURL, $state) {
     var vm = this;
+    //firebaseAuth
+    var ref = new Firebase(FBURL);
+    $rootScope.fireAuth = $firebaseAuth(ref);
     //famous
     var EventHandler = $famous['famous/core/EventHandler'];
     var EventMapper = $famous['famous/events/EventMapper'];
@@ -78,7 +81,13 @@ module.exports = function(app) {
       });
 
       vm.test = function() {
-        console.log('event', vm.scroller);
+        console.log('event sign in');
+        $rootScope.fireAuth.$authWithOAuthPopup('google').then(function(authData) {
+          console.log('logged in as: ', authData.uid);
+          $state.go('app.profile');
+        }).catch(function(error) {
+          console.error('Authentication failed: ', error);
+        })
 
       };
 

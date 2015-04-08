@@ -4,10 +4,15 @@ var controllername = 'mainView';
 module.exports = function(app) {
   /*jshint validthis: true */
 
-  var deps = ['$famous', '$mdMedia'];
+  var deps = ['$famous', '$mdMedia', '$firebaseObject', 'FBURL', 'currentAuth'];
 
-  function controller($famous, $mdMedia) {
+  function controller($famous, $mdMedia, $firebaseObject, FBURL, currentAuth) {
     var vm = this;
+    //firebase
+    var UID = currentAuth.uid;
+    console.log('uid: ' + UID);
+    var googleData = new Firebase(FBURL + '/userDir/' + UID);
+    var userData = new Firebase(FBURL + '/actorsProfiles/' + UID);
     //famous
     var EventHandler = $famous['famous/core/EventHandler'];
     var Engine = $famous['famous/core/Engine'];
@@ -16,6 +21,8 @@ module.exports = function(app) {
     vm.scrollEventHandler = new EventHandler();
     vm.message = 'Hello World';
     var activate = function() {
+      vm.googleProfile = $firebaseObject(googleData);
+      vm.userProfile = $firebaseObject(userData);
       vm.profileMenuList = [{
         title: 'Stats',
         link: 'app.profile.stats',

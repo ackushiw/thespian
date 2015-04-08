@@ -102,7 +102,9 @@
     "ngCordovaMocks": "./bower_components/ngCordova/dist/ng-cordova-mocks.js",
     "angular-material": "./bower_components/angular-material/angular-material.js",
     "angular-aria": "./bower_components/angular-aria/angular-aria.js",
-    "ng-resize": "./bower_components/ng-resize/ngresize.min.js"
+    "ng-resize": "./bower_components/ng-resize/ngresize.min.js",
+    "angularfire": "./bower_components/angularfire/dist/angularfire.min.js",
+    "firebase": "./bower_components/firebase/firebase.js"
   },
   "browserify": {
     "transform": [
@@ -164,6 +166,12 @@
     "ng-resize": {
       "depends": [
         "angular"
+      ]
+    },
+    "angularfire": {
+      "depends": [
+        "angular",
+        "firebase"
       ]
     }
   }

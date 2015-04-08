@@ -24,7 +24,7 @@
           <md-card layout-fill layout="row " style="background-color:white;" class="md-whiteframe-z2">
             <md-toolbar>
               <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-                <h3>Alexander</h3>
+                <h3>{{mainViewCtrl.userProfile.actorName || mainViewCtrl.googleProfile.given_name + ' ' + mainViewCtrl.googleProfile.family_name}}</h3>
                 <span flex></span>
                 <md-button aria-label="profile nav button">
                   <md-icon md-font-icon="mdi mdi-email"></md-icon>

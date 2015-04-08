@@ -89,7 +89,7 @@
               </md-item>
 
               <md-item>
-                <md-button aria-label="sidenav button" ui-sref="app.poweroff" ui-sref-active="active md-accent" flex class="md-warn" layout="row" layout-align="space-between center">
+                <md-button aria-label="sidenav button" ng-click="fireAuth.$unauth()" ui-sref="landing" flex class="md-warn" layout="row" layout-align="space-between center">
                   <md-icon md-font-icon="mdi mdi-power mdi-lg" style="margin-right: 16px;"></md-icon>Log out
                   <span flex></span>
                 </md-button>

@@ -18,7 +18,8 @@
     "ngCordova": "0.1.9-alpha",
     "mdi": "~0.9.72-alpha",
     "angular-material": "~0.8.3",
-    "ng-resize": "~1.1.0"
+    "ng-resize": "~1.1.0",
+    "angularfire": "~1.0.0"
   },
   "resolutions": {
     "angular": "1.3.6",
