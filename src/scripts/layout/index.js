@@ -14,7 +14,8 @@ module.exports = function(namespace) {
   var fullname = namespace + '.' + modulename;
 
   var angular = require('angular');
-  var app = angular.module(fullname, ['ui.router', 'famous.angular', 'ngCordova', 'ngMaterial', 'ngResize', 'firebase']);
+  var profileModule = require('../profile')(namespace);
+  var app = angular.module(fullname, ['ui.router', 'famous.angular', 'ngCordova', 'ngMaterial', 'ngResize', 'firebase', profileModule.name]);
   // inject:folders start
   require('./controllers')(app);
   require('./directives')(app);
@@ -41,9 +42,14 @@ module.exports = function(namespace) {
         controller: fullname + '.main',
         controllerAs: 'layoutCtrl',
         resolve: {
-          'currentAuth': [fullname + '.auth', function(Auth) {
-            console.log('require auth: ', Auth);
-            return Auth.$requireAuth();
+          'currentAuth': [fullname + '.auth', '$state', '$log', function(Auth, $state, $log) {
+            return Auth.$requireAuth().then(function(data) {
+              $log.log('Security check passed: ', data);
+              return data;
+            }).catch(function(error) {
+              $log.error('Error: ', error);
+              $state.go('landing');
+            });
           }]
         }
       }).state('app.profile', {
@@ -71,7 +77,15 @@ module.exports = function(namespace) {
         url: '/stats',
         views: {
           'expanded@app': {
-            template: require('./views/profile/stats.html')
+            template: require('./views/profile/stats.html'),
+            controller: profileModule.name + '.stats',
+            controllerAs: 'statsCtrl',
+            onExit: ['$firebaseObject', 'FBURL', 'cuurentAuth', function($firebaseObject, FBURL, currentAuth) {
+              console.log('onExit function');
+              var ref = new Firebase(FBURL + '/actorsProfiles/' + currentAuth.uid);
+              obj = $firebaseObj(ref);
+              obj.$priority = obj.actorName;
+            }]
           }
         }
       }).state('app.profile.resume', {

@@ -206,7 +206,7 @@ module.exports = function(app) {
           duration: 300,
           curve: Easing.outExpo
         });
-        vm.topnavAlign.set([0, 0], {
+        vm.topnavAlign.set([0, -0.7], {
           duration: 300,
           curve: Easing.outExpo
         });
@@ -283,7 +283,7 @@ module.exports = function(app) {
           duration: 300,
           curve: Easing.outExpo
         });
-        vm.topnavAlign.set([0, 0], {
+        vm.topnavAlign.set([0, -0.7], {
           duration: 300,
           curve: Easing.outExpo
         });
