@@ -37,7 +37,7 @@ body,
 p {
   font-family: $mono-type;
 }
-button.md-button {
+a.md-button {
   text-transform: capitalize;
 }
 .capitalize {
@@ -46,6 +46,15 @@ button.md-button {
 //icons
 .mdi-lg {
   font-size: 1.5em;
+}
+.md-button.center {
+  span.mdi {
+    vertical-align: top;
+  }
+}
+.md-button.block {
+  width: 100%;
+  text-align: start;
 }
 //Main section
 .button-list {

@@ -181,183 +181,183 @@ module.exports = function(app) {
     //activate functions
     var activate = function() {
 
-      $rootScope.$watch(function() {
-        if(vm.windowInnerWidth != $window.innerWidth) {
-          $log.log('no width set');
-
-          $rootScope.smScreen = $mdMedia('sm');
-          $rootScope.gtSmScreen = $mdMedia('gt-sm');
-          $rootScope.mdScreen = $mdMedia('md');
-          $rootScope.gtMdScreen = $mdMedia('gt-md');
-          $rootScope.lgScreen = $mdMedia('lg');
-          $rootScope.gtLgScreen = $mdMedia('gt-lg');
-
-          //**mobile
-          if($mdMedia('sm')) {
-            $log.log('sm');
-
-            //sidenav
-            vm.sidenavTranslate.set([sidenavMobileSizeNegative, 0, 299], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            vm.sidenavSize.set([sidenavMobileSize, undefined], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            //main content
-            vm.mainContentTranslate.set([0, 0, 270], {
-              duration: 800,
-              curve: Easing.outExpo
-            });
-            vm.mainContentSize.set([$window.innerWidth, undefined], {
-              duration: 800,
-              curve: Easing.outExpo
-            });
-            vm.mainContentAlign.set([0, 0], {
-              duration: 800,
-              curve: Easing.outExpo
-            });
-            //content view
-            vm.contentViewTranslate.set([0, 0, 270], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            vm.contentViewSize.set([$window.innerWidth, undefined], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            vm.contentViewAlign.set([1, 0], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-
-          } else if($mdMedia('md')) {
-            $log.log('md');
-            //sidenav
-            vm.sidenavTranslate.set([0, 0, 299], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            vm.sidenavSize.set([64, undefined], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            //main content
-            vm.mainContentTranslate.set([64, 0, 270], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            vm.mainContentSize.set([300, undefined], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            vm.mainContentAlign.set([0, 0], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            //content view
-            vm.contentViewTranslate.set([364, 0, 270], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            var tabletViewSize = $window.innerWidth
-            vm.contentViewSize.set([$window.innerWidth - 364, undefined], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            vm.contentViewAlign.set([0, 0], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-
-          } else if($mdMedia('lg')) {
-            $log.log('lg');
-            //sidenav
-            vm.sidenavTranslate.set([0, 0, 299], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            vm.sidenavSize.set([100, undefined], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            //main content
-            vm.mainContentTranslate.set([100, 0, 270], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            vm.mainContentSize.set([400, undefined], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            //content view
-            vm.contentViewTranslate.set([500, 0, 270], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            vm.contentViewSize.set([$window.innerWidth - 500, undefined], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            vm.contentViewAlign.set([0, 0], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-
-          }
-          if($mdMedia('gt-sm')) {
-            $log.log('gt-sm');
-          }
-
-          if($mdMedia('gt-md')) {
-
-            $log.log('Greater than md');
-
-          }
-
-          if($mdMedia('gt-lg')) {
-            $log.log('gt-lg');
-            //sidenav
-            vm.sidenavTranslate.set([0, 0, 299], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            vm.sidenavSize.set([320, undefined], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            //main content
-            vm.mainContentTranslate.set([320, 0, 270], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            vm.mainContentSize.set([500, undefined], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            //content view
-            vm.contentViewTranslate.set([820, 0, 270], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            vm.contentViewSize.set([$window.innerWidth - 820, undefined], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-            vm.contentViewAlign.set([0, 0], {
-              duration: 300,
-              curve: Easing.outExpo
-            });
-          }
-          vm.windowInnerWidth = $window.innerWidth;
-          $log.log('width set', vm.windowInnerWidth);
-        } else {
-          $log.log('width same', vm.windowInnerWidth);
-
-        }
-
-      });
+      // $rootScope.$watch(function() {
+      //   if(vm.windowInnerWidth != $window.innerWidth) {
+      //     $log.log('no width set');
+      //
+      //     $rootScope.smScreen = $mdMedia('sm');
+      //     $rootScope.gtSmScreen = $mdMedia('gt-sm');
+      //     $rootScope.mdScreen = $mdMedia('md');
+      //     $rootScope.gtMdScreen = $mdMedia('gt-md');
+      //     $rootScope.lgScreen = $mdMedia('lg');
+      //     $rootScope.gtLgScreen = $mdMedia('gt-lg');
+      //
+      //     //**mobile
+      //     if($mdMedia('sm')) {
+      //       $log.log('sm');
+      //
+      //       //sidenav
+      //       vm.sidenavTranslate.set([sidenavMobileSizeNegative, 0, 299], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.sidenavSize.set([sidenavMobileSize, undefined], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       //main content
+      //       vm.mainContentTranslate.set([0, 0, 270], {
+      //         duration: 800,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.mainContentSize.set([$window.innerWidth, undefined], {
+      //         duration: 800,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.mainContentAlign.set([0, 0], {
+      //         duration: 800,
+      //         curve: Easing.outExpo
+      //       });
+      //       //content view
+      //       vm.contentViewTranslate.set([0, 0, 270], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.contentViewSize.set([$window.innerWidth, undefined], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.contentViewAlign.set([1, 0], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //
+      //     } else if($mdMedia('md')) {
+      //       $log.log('md');
+      //       //sidenav
+      //       vm.sidenavTranslate.set([0, 0, 299], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.sidenavSize.set([64, undefined], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       //main content
+      //       vm.mainContentTranslate.set([64, 0, 270], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.mainContentSize.set([300, undefined], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.mainContentAlign.set([0, 0], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       //content view
+      //       vm.contentViewTranslate.set([364, 0, 270], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       var tabletViewSize = $window.innerWidth
+      //       vm.contentViewSize.set([$window.innerWidth - 364, undefined], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.contentViewAlign.set([0, 0], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //
+      //     } else if($mdMedia('lg')) {
+      //       $log.log('lg');
+      //       //sidenav
+      //       vm.sidenavTranslate.set([0, 0, 299], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.sidenavSize.set([100, undefined], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       //main content
+      //       vm.mainContentTranslate.set([100, 0, 270], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.mainContentSize.set([400, undefined], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       //content view
+      //       vm.contentViewTranslate.set([500, 0, 270], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.contentViewSize.set([$window.innerWidth - 500, undefined], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.contentViewAlign.set([0, 0], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //
+      //     }
+      //     if($mdMedia('gt-sm')) {
+      //       $log.log('gt-sm');
+      //     }
+      //
+      //     if($mdMedia('gt-md')) {
+      //
+      //       $log.log('Greater than md');
+      //
+      //     }
+      //
+      //     if($mdMedia('gt-lg')) {
+      //       $log.log('gt-lg');
+      //       //sidenav
+      //       vm.sidenavTranslate.set([0, 0, 299], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.sidenavSize.set([320, undefined], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       //main content
+      //       vm.mainContentTranslate.set([320, 0, 270], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.mainContentSize.set([500, undefined], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       //content view
+      //       vm.contentViewTranslate.set([820, 0, 270], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.contentViewSize.set([$window.innerWidth - 820, undefined], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //       vm.contentViewAlign.set([0, 0], {
+      //         duration: 300,
+      //         curve: Easing.outExpo
+      //       });
+      //     }
+      //     vm.windowInnerWidth = $window.innerWidth;
+      //     $log.log('width set', vm.windowInnerWidth);
+      //   } else {
+      //     $log.log('width same', vm.windowInnerWidth);
+      //
+      //   }
+      //
+      // });
 
     };
     activate();

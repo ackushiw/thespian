@@ -5,8 +5,8 @@ var directivename = 'responsive';
 module.exports = function(app) {
 
   // controller
-  var controllerDeps = ['$scope', '$window', '$famous', '$timeline', 'resize', '$log'];
-  var controller = function($scope, $window, $famous, $timeline, resize, $log) {
+  var controllerDeps = ['$window', '$famous', '$timeline', 'resize', '$log'];
+  var controller = function($window, $famous, $timeline, resize, $log) {
     //famous
     var Transitionable = $famous['famous/transitions/Transitionable'];
     var Easing = $famous['famous/transitions/Easing'];
@@ -102,7 +102,7 @@ module.exports = function(app) {
           duration: 300,
           curve: Easing.outExpo
         });
-        vm.contentViewAlign.set([1, 0], {
+        vm.contentViewAlign.set([1, 1], {
           duration: 300,
           curve: Easing.outExpo
         });
@@ -168,16 +168,15 @@ module.exports = function(app) {
           curve: Easing.outExpo
         });
         //content view
-        vm.contentViewTranslate.set([364, 0, 250], {
+        vm.contentViewTranslate.set([0, 0, 250], {
           duration: 300,
           curve: Easing.outExpo
         });
-
         vm.contentViewSize.set([vm.width, undefined], {
           duration: 300,
           curve: Easing.outExpo
         });
-        vm.contentViewAlign.set([-1, 0], {
+        vm.contentViewAlign.set([0, 1], {
           duration: 300,
           curve: Easing.outExpo
         });

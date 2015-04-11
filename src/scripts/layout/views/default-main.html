@@ -10,8 +10,8 @@
         <fa-modifier fa-perspective="100" fa-size="[undefined, 450]">
           <fa-surface fa-size="[undefined, 450]" class="full-height" fa-pipe-to="mainViewCtrl.scrollEventHandler ">
             <div class="md-whiteframe-z2">
-              <img hide-sm hide-md hide-lg src="images/headshot1.jpg" alt="headshot" width="480">
-              <img hide-sm hide-md hide-gt-lg src="images/headshot1.jpg" alt="headshot" width="380">
+              <img hide-sm hide-md hide-lg ng-src="{{mainViewCtrl.googleProfile.picture}}" alt="headshot" width="480">
+              <img hide-sm hide-md hide-gt-lg ng-src="{{mainViewCtrl.googleProfile.picture}}" alt="headshot" width="380">
             </div>
             <div hide-gt-md style="height:100%;background: url(images/headshot1.jpg) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;"></div>
           </fa-surface>
@@ -27,25 +27,26 @@
               <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
                 <h3>{{mainViewCtrl.userProfile.actorName || mainViewCtrl.googleProfile.given_name + ' ' + mainViewCtrl.googleProfile.family_name}}</h3>
                 <span flex></span>
-                <md-button aria-label="profile nav button">
+                <md-button aria-label="profile nav button" class="md-icon-button center">
                   <md-icon md-font-icon="mdi mdi-email"></md-icon>
                 </md-button>
-                <md-button aria-label="profile nav button">
+                <md-button aria-label="profile nav button" class="md-icon-button center">
                   <md-icon md-font-icon="mdi mdi-share-variant"></md-icon>
                 </md-button>
-                <md-button aria-label="profile nav button">
+                <md-button aria-label="profile nav button" class="md-icon-button center">
                   <md-icon md-font-icon="mdi mdi-settings"></md-icon>
                 </md-button>
               </div>
             </md-toolbar>
 
             <md-content layout-fill layout="column" class="md-padding">
-              <md-list>
-                <md-item ng-repeat="item in mainViewCtrl.profileMenuList">
-                  <md-item-content>
-                    <md-button aria-label="menu button" flex layout="row" layout-align="start center" class="md-primary button-list" ui-sref="{{item.link}}" ui-sref-active="active, md-accent">
-                      <md-icon md-font-icon="mdi mdi-lg {{item.icon}}" flex="10"></md-icon>{{item.title}}
-                      <span flex></span>
+              <pre hide>{{mainViewCtrl.googleProfile}}</pre>
+              <md-list layout="column" layout-align="start start">
+                <md-item ng-repeat="item in mainViewCtrl.profileMenuList" layout-fill>
+                  <md-item-content layout="row" layout-align="start center">
+                    <md-button aria-label="menu button" layout-fill class="md-primary center block" ui-sref="{{item.link}}" ui-sref-active="active, md-accent">
+                      <md-icon md-font-icon="mdi mdi-lg {{item.icon}}"></md-icon>
+                      <span flex>{{item.title}}</span>
                     </md-button>
                   </md-item-content>
                 </md-item>
