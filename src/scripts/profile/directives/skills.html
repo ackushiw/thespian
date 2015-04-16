@@ -1,14 +1,21 @@
-<div layout-fill>
-  <div layouy="row" layout-align="start center" ng-repeat="skill in skillsCtrl.array" style="float:left">
-    <strong>{{skill.title}}</strong>
-    <md-button aria-label="delete" class="md-icon-button circular" ng-click="skillsCtrl.remove(skill)">
+<div class="tag-form" layout-fill>
+
+  <div class="chip" ng-class="{delete: hover}" layouy="row" layout-align="start start" ng-repeat="skill in skillsCtrl.array">
+    <md-button aria-label="go to skill" class="text" ui-sref="#">{{skill.title}}</md-button>
+
+    <md-button aria-label="delete" class="md-icon-button circular" ng-class="{'md-warn': hover}" ng-click="skillsCtrl.remove(skill)" ng-mouseenter="hover=true" ng-mouseleave="hover=false">
       <md-icon md-font-icon="mdi mdi-close" layout="row" layout-align="center center"></md-icon>
     </md-button>
   </div>
-  <input type="text" flex ng-model="skillsCtrl.newSkill" list="tags" ng-change="skillsCtrl.updateQuery(skillsCtrl.newSkill)" ng-keydown="$event.which === 13 && skillsCtrl.add(skillsCtrl.newSkill)" placeholder="Add Skill"></input>
-  <md-button aria-label="add skill" ng-click="skillsCtrl.add(skillsCtrl.newSkill)">add</md-button>
-  <datalist id="tags" ng-if="skillsCtrl.newSkill">
-    <option value="{{value.title}}" ng-repeat="value in skillsCtrl.queryList"></option>
-  </datalist>
+  <div class="input" layout="row">
+    <input type="text" flex ng-model="skillsCtrl.newSkill" list="tags" ng-change="skillsCtrl.updateQuery(skillsCtrl.newSkill)" ng-keydown="$event.which === 13 && skillsCtrl.add(skillsCtrl.newSkill)" placeholder="Add Skill"></input>
+
+    <md-button aria-label="add skill" class="add" ng-class="{'md-accent md-raised': skillsCtrl.newSkill}" ng-click="skillsCtrl.add(skillsCtrl.newSkill)" ng-disabled="!skillsCtrl.newSkill">add</md-button>
+    <datalist id="tags" ng-if="skillsCtrl.newSkill">
+      <option value="{{value.title}}" ng-repeat="value in skillsCtrl.queryList"></option>
+    </datalist>
+
+  </div>
+
 </div>
 <br style="width:100%">

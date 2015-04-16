@@ -18,6 +18,11 @@
 .lg-content {
   padding: 60px 16px 16px;
 }
+//colors
+$accent-color: pink;
+$text-display: rgba(0,0,0,0.54);
+$text-black: rgba(0,0,0,0.87);
+$text-white: white;
 //fonts
 $default-font: 'Cutive', Serif;
 $mono-type: 'Cutive Mono', 'Courier New', Courier, monospace;
@@ -29,6 +34,15 @@ h5,
 h6,
 span {
   font-family: $default-font;
+  &.black {
+    color: $text-black;
+  }
+  &.display {
+    color: $text-display;
+  }
+  &.white {
+    color: $text-white;
+  }
 }
 .mono {
   font-family: $mono-type;
@@ -36,12 +50,19 @@ span {
 body,
 p {
   font-family: $mono-type;
+  color: $text-black;
+  &.white {
+    color: $text-white;
+  }
 }
 a.md-button {
   text-transform: capitalize;
 }
 .capitalize {
   text-transform: capitalize;
+}
+.deemphasize {
+  color: $text-display;
 }
 //icons
 .mdi-lg {
@@ -66,6 +87,50 @@ a.md-button {
 .button-list {
   padding: 16px 0;
 }
+//tags
+.tag-form {
+  padding: 16px;
+  display: inline-block;
+  div.chip {
+    background-color: #eee;
+    border-radius: 16px;
+    float: left;
+    height: 32px;
+    margin: 3px;
+    padding-left: 12px;
+    &.delete {
+      background-color: #ef9a9a;
+    }
+    button.text.md-button.md-default-theme {
+      color: rgba(0,0,0,0.54);
+      font-family: $mono-type;
+      font-size: 12px;
+      padding: 8px;
+      text-transform: capitalize;
+      top: -2px;
+    }
+    button.circular.md-button.md-default-theme {
+      padding: 4px;
+    }
+  }
+  div.input {
+    float: left;
+    input {
+      float: left;
+      height: 32px;
+      margin-right: 3px;
+      border: none;
+      border-bottom: 1px solid #eee;
+      &:focus {
+        border-bottom: 1px solid $accent-color;
+      }
+    }
+    button.add.md-button.md-defasult-theme {
+      padding: 8px;
+    }
+  }
+}
+//material design changes
 //chips
 .md-chips .md-chip .md-chip-remove {
   height: 32px;

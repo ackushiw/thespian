@@ -17,7 +17,10 @@
                 <input type="text" ng-model="userStats.family_name">
               </md-input-container>
 
+              <h3 class="md-display-1 display">Skills</h3>
+
               <skills user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}}></skills>
+              <md-divider></md-divider>
 
               <section class="row" layout-align="start start">
                 <pre hide>{{userStats}}</pre>
