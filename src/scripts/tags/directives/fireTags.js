@@ -1,22 +1,22 @@
 'use strict';
-/*eslint consistent-this:[2,  "skillsCtrl"] */
-var directivename = 'skills';
+/*eslint consistent-this:[2,  "fireTagsCtrl"] */
+var directivename = 'fireTags';
 
 module.exports = function(app) {
 
   // controller
   var controllerDeps = ['$firebaseObject', '$firebaseArray', 'FBURL', '$log'];
   var controller = function($firebaseObject, $firebaseArray, FBURL, $log) {
-    var skillsCtrl = this;
+    var fireTagsCtrl = this;
 
     //firebase
-    var baseUrl = FBURL + '/actorsProfiles/' + skillsCtrl.userId + '/skills';
+    var baseUrl = FBURL + '/actorsProfiles/' + fireTagsCtrl.userId + '/' + fireTagsCtrl.title;
     var baseRef = new Firebase(baseUrl);
-    //firebase skills
-    var skillsLibUrl = FBURL + '/lib-skills';
-    var skillsLibRef = new Firebase(skillsLibUrl);
+    //firebase tag
+    var tagLibUrl = FBURL + '/lib-' + fireTagsCtrl.title;
+    var tagLibRef = new Firebase(tagLibUrl);
     //firebase user
-    var userUrl = FBURL + '/actorsProfiles/' + skillsCtrl.userId;
+    var userUrl = FBURL + '/actorsProfiles/' + fireTagsCtrl.userId;
 
     function firebaseCallback(error) {
       if(error) {
@@ -30,18 +30,18 @@ module.exports = function(app) {
       if(error) {
         $log.error('Error: ', error);
       } else {
-        //Sync user into skills library
-        $log.log(skill + ' user: ' + skillsCtrl.userName);
-        var newSkillInLibraryUrl = skillsLibUrl + '/' + skill;
-        var newSkillSync = new Firebase(newSkillInLibraryUrl);
-        newSkillSync.setWithPriority({
+        //Sync user into tag library
+        $log.log(skill + ' user: ' + fireTagsCtrl.userName);
+        var newTagInLibraryUrl = tagLibUrl + '/' + skill;
+        var newTagSync = new Firebase(newTagInLibraryUrl);
+        newTagSync.setWithPriority({
           title: skill,
           updated: Firebase.ServerValue.TIMESTAMP
         }, skill, firebaseCallback);
-        //add user to skills user index
-        var userIndex = newSkillInLibraryUrl + '/users';
-        newSkillSync.child('users/' + skillsCtrl.userId).set({
-          name: skillsCtrl.userName
+        //add user to tag user index
+        var userIndex = newTagInLibraryUrl + '/users';
+        newTagSync.child('users/' + fireTagsCtrl.userId).set({
+          name: fireTagsCtrl.userName
         }, firebaseCallback);
         //update user
         var userRef = new Firebase(userUrl);
@@ -50,39 +50,39 @@ module.exports = function(app) {
       }
     }
 
-    skillsCtrl.add = function(skill) {
-      var lowercaseSkill = angular.lowercase(skill);
-      baseRef.child(lowercaseSkill).set({
-        title: lowercaseSkill,
+    fireTagsCtrl.add = function(skill) {
+      var lowercaseTag = angular.lowercase(skill);
+      baseRef.child(lowercaseTag).set({
+        title: lowercaseTag,
         added: Firebase.ServerValue.TIMESTAMP
-      }, addComplete(lowercaseSkill));
-      skillsCtrl.newSkill = null;
+      }, addComplete(lowercaseTag));
+      fireTagsCtrl.newTag = null;
     };
-    skillsCtrl.array = $firebaseArray(baseRef);
-    skillsCtrl.newSkill = null;
-    skillsCtrl.queryList = [];
+    fireTagsCtrl.array = $firebaseArray(baseRef);
+    fireTagsCtrl.newTag = null;
+    fireTagsCtrl.queryList = [];
 
-    skillsCtrl.remove = function(item) {
+    fireTagsCtrl.remove = function(item) {
       var newUrl = baseUrl + '/' + item.$id;
       console.log(item);
       var skillRef = new Firebase(newUrl);
       var skillObj = $firebaseObject(skillRef);
       skillObj.$remove().then(function(value) {
         $log.log(value);
-        var libSkillsUserUrl = skillsLibUrl + '/' + item.$id + '/users/' + skillsCtrl.userId;
-        var libSkillsUserRef = new Firebase(libSkillsUserUrl);
-        libSkillsUserRef.remove(firebaseCallback);
+        var libTagsUserUrl = tagLibUrl + '/' + item.$id + '/users/' + fireTagsCtrl.userId;
+        var libTagsUserRef = new Firebase(libTagsUserUrl);
+        libTagsUserRef.remove(firebaseCallback);
       }).catch(function(err) {
         $log.error('Error: ', err);
       });
     };
 
-    skillsCtrl.updateQuery = function(query) {
-      var queryFirebase = skillsLibRef.orderByKey().startAt(query).limitToFirst(10);
+    fireTagsCtrl.updateQuery = function(query) {
+      var queryFirebase = tagLibRef.orderByKey().startAt(query).limitToFirst(10);
       var results = $firebaseArray(queryFirebase);
-      skillsCtrl.queryList = results;
+      fireTagsCtrl.queryList = results;
     };
-    skillsCtrl.directivename = directivename;
+    fireTagsCtrl.directivename = directivename;
   };
   controller.$inject = controllerDeps;
 
@@ -100,9 +100,9 @@ module.exports = function(app) {
         location: '@'
       },
       controller: controller,
-      controllerAs: 'skillsCtrl',
+      controllerAs: 'fireTagsCtrl',
       bindToController: true,
-      template: require('./skills.html'),
+      template: require('./fireTags.html'),
       compile: function(tElement, tAttrs) {
         return {
           pre: function(scope, element, attrs) {

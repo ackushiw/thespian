@@ -7,7 +7,16 @@
         </md-toolbar>
         <md-content layout-fill class="md-padding">
           <md-card layout="column" flex>
-            <md-content class="md-padding no-overflow">
+            <md-content class="md-padding">
+
+              <h3 flex>
+                <md-input-container flex>
+                  <label>Name</label>
+                  <input class="flex" type="text" aria-label="Name" ng-model="userStats.actorName" flex>
+
+                </md-input-container>
+              </h3>
+
               <md-input-container hide>
                 <label>First Name</label>
                 <input type="text" ng-model="userStats.first_name">
@@ -19,28 +28,11 @@
 
               <h3 class="md-display-1 display">Skills</h3>
 
-              <skills user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}}></skills>
+              <skills user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} title="skills" location="lib-skills"></skills>
               <md-divider></md-divider>
 
               <section class="row" layout-align="start start">
                 <pre hide>{{userStats}}</pre>
-
-                <div layout="row" layout-margin>
-                  <h2 flex hide-sm>
-                    <md-input-container flex>
-                      <label>Name</label>
-                      <input class="flex" aria-label="Name" ng-model="userStats.actorName" flex>
-
-                    </md-input-container>
-                  </h2>
-                  <h3 flex hide-gt-sm>
-                    <md-input-container flex>
-                      <label>Name</label>
-                      <input class="flex" aria-label="Name" ng-model="userStats.actorName" flex>
-
-                    </md-input-container>
-                  </h3>
-                </div>
 
               </section>
               <md-divider hide></md-divider>
@@ -99,6 +91,7 @@
                   <h3 flex>{{userStats.eyesDetails}}</h3>
                   <span flex hide-sm hide-md></span>
                 </span>
+                <fire-tags title="eyes" user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} location="lib-eyes"></fire-tags>
                 <div layout="row" flex ng-if="profilePage.expanded == 'eyes'" layout-align="start end">
                   <span style="width:50px"></span>
                   <md-input-container>
