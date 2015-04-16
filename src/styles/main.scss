@@ -56,9 +56,21 @@ a.md-button {
   width: 100%;
   text-align: start;
 }
+.circular {
+  border-radius: 50%;
+}
+.md-button.md-default-theme.circular {
+  border-radius: 50%;
+}
 //Main section
 .button-list {
   padding: 16px 0;
+}
+//chips
+.md-chips .md-chip .md-chip-remove {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
 }
 /*! suit-flex-embed v1.4.0 | MIT License | github.com/suitcss */
 .FlexEmbed {

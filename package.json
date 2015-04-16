@@ -98,13 +98,16 @@
     "angular-sanitize": "./bower_components/angular-sanitize/angular-sanitize.js",
     "famous": "./bower_components/famous/dist/famous-global.js",
     "famous-angular": "./bower_components/famous-angular/dist/famous-angular.js",
+    "famous-object": "./bower_components/famous-object/famous-object.js",
     "ngCordova": "./bower_components/ngCordova/dist/ng-cordova.js",
     "ngCordovaMocks": "./bower_components/ngCordova/dist/ng-cordova-mocks.js",
     "angular-material": "./bower_components/angular-material/angular-material.js",
     "angular-aria": "./bower_components/angular-aria/angular-aria.js",
     "ng-resize": "./bower_components/ng-resize/ngresize.min.js",
     "angularfire": "./bower_components/angularfire/dist/angularfire.min.js",
-    "firebase": "./bower_components/firebase/firebase.js"
+    "firebase": "./bower_components/firebase/firebase.js",
+    "firebase-util": "./bower_components/firebase-util/dist/firebase-util.min.js",
+    "firebase-index": "./bower_components/FirebaseIndex/FirebaseIndex.js"
   },
   "browserify": {
     "transform": [
@@ -144,6 +147,11 @@
         "angular-ui-router"
       ]
     },
+    "famous-object": {
+      "depends": [
+        "famous-angular"
+      ]
+    },
     "ngCordova": {
       "exports": "ngCordova",
       "depends": [
@@ -171,6 +179,16 @@
     "angularfire": {
       "depends": [
         "angular",
+        "firebase"
+      ]
+    },
+    "firebase-util": {
+      "depends": [
+        "firebase"
+      ]
+    },
+    "firebase-index": {
+      "depends": [
         "firebase"
       ]
     }

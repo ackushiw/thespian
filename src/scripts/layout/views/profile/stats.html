@@ -8,40 +8,16 @@
         <md-content layout-fill class="md-padding">
           <md-card layout="column" flex>
             <md-content class="md-padding no-overflow">
-              <md-input-container>
+              <md-input-container hide>
                 <label>First Name</label>
                 <input type="text" ng-model="userStats.first_name">
               </md-input-container>
-              <md-input-container>
+              <md-input-container hide>
                 <label>Last Name</label>
                 <input type="text" ng-model="userStats.family_name">
               </md-input-container>
 
-              <md-input-container>
-                <label>Min Age</label>
-                <input type="datetime-local" ng-model="userStats.min_age">
-              </md-input-container>
-              <md-input-container>
-                <label>Max Age</label>
-                <input type="number" ng-model="userStats.max_age">
-              </md-input-container>
-
-              <md-chips ng-model="userStats.skills">
-                <md-chip-template>
-                  <strong>{{$chip.text}}</strong>
-
-                </md-chip-template>
-              </md-chips>
-              <md-chips ng-model="statsCtrl.skills" md-on-append="statsCtrl.newSkill($chip)">
-                <md-chip-template>
-                  <strong>{{$chip.text}}</strong>
-                </md-chip-template>
-                <input type="text" placeholder="Add Skill">
-              </md-chips>
-              <md-input-container>
-                <label>Test</label>
-                <input type="text" ng-model="statsCtrl.skillsInput" ng-keydown="$event.which === 13 && statsCtrl.action(statsCtrl.skillsInput)">
-              </md-input-container>
+              <skills user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}}></skills>
 
               <section class="row" layout-align="start start">
                 <pre hide>{{userStats}}</pre>

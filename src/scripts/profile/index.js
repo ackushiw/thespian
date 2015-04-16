@@ -15,6 +15,7 @@ module.exports = function(namespace) {
   var app = angular.module(fullname, ['famous.angular', 'ngCordova', 'ngMaterial', 'firebase']);
   // inject:folders start
   require('./controllers')(app);
+  require('./directives')(app);
   require('./services')(app);
   // inject:folders end
 

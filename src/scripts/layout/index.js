@@ -6,6 +6,7 @@ require('ngCordova');
 require('angular-material');
 require('ng-resize');
 require('angularfire');
+require('firebase-index');
 
 var modulename = 'layout';
 

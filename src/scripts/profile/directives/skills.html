@@ -1,0 +1,14 @@
+<div layout-fill>
+  <div layouy="row" layout-align="start center" ng-repeat="skill in skillsCtrl.array" style="float:left">
+    <strong>{{skill.title}}</strong>
+    <md-button aria-label="delete" class="md-icon-button circular" ng-click="skillsCtrl.remove(skill)">
+      <md-icon md-font-icon="mdi mdi-close" layout="row" layout-align="center center"></md-icon>
+    </md-button>
+  </div>
+  <input type="text" flex ng-model="skillsCtrl.newSkill" list="tags" ng-change="skillsCtrl.updateQuery(skillsCtrl.newSkill)" ng-keydown="$event.which === 13 && skillsCtrl.add(skillsCtrl.newSkill)" placeholder="Add Skill"></input>
+  <md-button aria-label="add skill" ng-click="skillsCtrl.add(skillsCtrl.newSkill)">add</md-button>
+  <datalist id="tags" ng-if="skillsCtrl.newSkill">
+    <option value="{{value.title}}" ng-repeat="value in skillsCtrl.queryList"></option>
+  </datalist>
+</div>
+<br style="width:100%">
