@@ -133,6 +133,14 @@ a.md-button {
     }
   }
 }
+.nav-list {
+  button.md-button.md-default-theme {
+    md-icon {
+      margin-left: 16px;
+      margin-right: 32px;
+    }
+  }
+}
 .stats-view {
   h4.display {
     margin-botton: 0;

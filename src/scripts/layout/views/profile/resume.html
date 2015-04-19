@@ -1,24 +1,42 @@
 <fa-modifier>
   <fa-view>
-    <fa-modifier>
+    <fa-modifier fa-translate="[0,0,1]" fa-size="[undefined, 64]">
       <fa-surface class="full-height">
         <md-toolbar>
-          <div class="md-toolbar-tools" layout="row">Resume</div>
+          <div class="md-toolbar-tools" layout="row">
+            <md-button aria-label="back" ui-sref="^" ng-click="responsiveCtrl.closeDetailsView()" hide-gt-md class="md-icon-button">
+              <md-icon md-font-icon="" class="mdi mdi-arrow-left mdi-lg"></md-icon>
+            </md-button>Resume</div>
         </md-toolbar>
-        <md-content class="md-padding" layout-fill flex>
-          <md-card>
-            <md-content class="md-padding">
-              <h3>Theater</h3>
-              <h3>Film</h3>
-              <h3>TV</h3>
-              <h3>Radio & Voice-over</h3>
-              <h3>Training</h3>
-              <h3>Skills</h3>
-              <fire-tags user-id="{{resumeCtrl.user}}" user-name={{resumeStats.actorName}} title="skills" location="lib-skills"></fire-tags>
-            </md-content>
-          </md-card>
-        </md-content>
       </fa-surface>
     </fa-modifier>
-  </fa-view>
+    <fa-modifier>
+      <fa-scroll-view>
+        <fa-modifier>
+          <fa-view>
+            <fa-modifier>
+              <fa-surface class="full-height">
+                <md-content class="md-padding" layout-fill flex>
+                  <md-card>
+                    <md-content class="md-padding">
+                      <h5 class="md-display-1 display" style="margin-bottom: 0;">Theater</h5>
+                      <h5 class="md-display-1 display" style="margin-bottom: 0;">Film</h5>
+                      <h5 class="md-display-1 display" style="margin-bottom: 0;">TV</h5>
+                      <h5 class="md-display-1 display" style="margin-bottom: 0;">Radio & Voice-over</h5>
+                      <h5 class="md-display-1 display" style="margin-bottom: 0;">Training</h5>
+                      <h5 class="md-display-1 display" style="margin-bottom: 0;">Skills</h5>
+                      <fire-tags user-id="{{resumeCtrl.user}}" user-name={{resumeStats.actorName}} title="skills" location="lib-skills"></fire-tags>
+                    </md-content>
+                  </md-card>
+                </md-content>
+
+              </fa-surface>
+            </fa-modifier>
+          </fa-view>
+        </fa-modifier>
+      </fa-scroll-view>
+    </fa-modifier>
+</fa-modifier>
+</fa-view>
+
 </fa-modifier>

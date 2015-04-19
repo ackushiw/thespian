@@ -1,12 +1,12 @@
-<fa-modifier>
+<fa-modifier fa-translate="[0,0,1]">
   <fa-view>
     <fa-modifier>
       <fa-modifier fa-translate="[0,0,1]" fa-size="[undefined, 64]">
         <fa-surface>
           <md-toolbar>
             <div class="md-toolbar-tools">
-              <md-button aria-label="back" ng-click="responsiveCtrl.closeDetailsView()" hide-gt-md class="md-icon-button">
-                <md-icon md-font-icon="" class="mdi mdi-arrow-left mdi-lg"></md-icon>
+              <md-button aria-label="back" ui-sref="^" ng-click="responsiveCtrl.closeDetailsView()" hide-gt-md class="md-icon-button">
+                <md-icon md-font-icon class="mdi mdi-arrow-left mdi-lg"></md-icon>
               </md-button>
             </div>
           </md-toolbar>
@@ -17,7 +17,7 @@
           <fa-view>
             <fa-surface class="full-height" fa-size="statsCtrl.contentSize.get()" fa-pipe-to="statsCtrl.scrollEventHandler">
 
-              <md-content class="md-padding stats-view" get-dimensions action="statsCtrl.updateSize(height, width)" layout-fill>
+              <md-content class="md-padding stats-view" get-dimensions action="statsCtrl.updateSize(height, width)" layout-fill style="z-index:1;">
                 <md-card layout="column" flex>
                   <md-content class="md-padding">
                     <br>
@@ -118,6 +118,11 @@
 
               </md-content>
             </fa-surface>
+          </fa-view>
+        </fa-modifier>
+        <fa-modifier fa-size="[undefined, 64]">
+          <fa-view>
+            <fa-surface></fa-surface>
           </fa-view>
         </fa-modifier>
 

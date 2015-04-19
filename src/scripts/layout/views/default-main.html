@@ -40,8 +40,8 @@
             </md-toolbar>
 
             <md-content layout-fill layout="column" class="md-padding">
-              <pre hide>{{mainViewCtrl.googleProfile}}</pre>
-              <md-list layout="column" layout-align="start start">
+
+              <md-list class="nav-list" layout="column" layout-align="start start">
                 <md-item ng-repeat="item in mainViewCtrl.profileMenuList" layout-fill>
                   <md-item-content layout="row" layout-align="start center">
                     <md-button aria-label="menu button" class="md-primary center block" layout-fill ng-click="responsiveCtrl.focusDetailsView(item)" ui-sref="{{item.link}}" ui-sref-active="active, md-accent">

@@ -26,24 +26,26 @@
 
           <fa-modifier>
             <fa-surface fa-pipe-to="sidenavCtrl.scrollEventHandler">
-              <md-content class="md-padding" get-dimensions action="sidenavCtrl.updateSize(height, width)">
-                <md-list layout="column">
+              <md-content class="sidenav-content" get-dimensions action="sidenavCtrl.updateSize(height, width)">
+                <md-list class="nav-list" layout="column">
                   <md-item>
                     <md-button aria-label="sidenav button" ui-sref="app.profile" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                      <md-icon md-font-icon="mdi mdi-account mdi-lg" style="margin-right: 16px;"></md-icon>
-                      <span hide-lg>Profile</span>
+                      <md-icon md-font-icon="mdi mdi-account mdi-lg"></md-icon>
+                      <span ng-show="responsiveCtrl.sidenavOpen">Profile</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
                     <md-button aria-label="sidenav button" ui-sref="app.messages" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                      <md-icon md-font-icon="mdi mdi-email mdi-lg" style="margin-right: 16px;"></md-icon>Messages
+                      <md-icon md-font-icon="mdi mdi-email mdi-lg"></md-icon>
+                      <span ng-show="responsiveCtrl.sidenavOpen">Messages</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
                     <md-button aria-label="sidenav button" ui-sref="app.projects" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button">
-                      <md-icon md-font-icon="mdi mdi-briefcase mdi-lg" style="margin-right: 16px;"></md-icon>Projects
+                      <md-icon md-font-icon="mdi mdi-briefcase mdi-lg"></md-icon>
+                      <span ng-show="responsiveCtrl.sidenavOpen">Projects</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
@@ -53,37 +55,43 @@
                   </md-subheader>
                   <md-item>
                     <md-button aria-label="sidenav button" ui-sref="app.now" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                      <md-icon md-font-icon="mdi mdi-flash mdi-lg" style="margin-right: 16px;"></md-icon>Now
+                      <md-icon md-font-icon="mdi mdi-flash mdi-lg"></md-icon>
+                      <span ng-show="responsiveCtrl.sidenavOpen">Now</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
                     <md-button aria-label="sidenav button" ui-sref="app.actors" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                      <md-icon md-font-icon="mdi mdi-account-multiple mdi-lg" style="margin-right: 16px;"></md-icon>Actors
+                      <md-icon md-font-icon="mdi mdi-account-multiple mdi-lg"></md-icon>
+                      <span ng-show="responsiveCtrl.sidenavOpen">Actors</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
                     <md-button aria-label="sidenav button" ui-sref="app.groups" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                      <md-icon md-font-icon="mdi mdi-earth mdi-lg" style="margin-right: 16px;"></md-icon>Companies
+                      <md-icon md-font-icon="mdi mdi-earth mdi-lg"></md-icon>
+                      <span ng-show="responsiveCtrl.sidenavOpen">Companies</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
                     <md-button aria-label="sidenav button" ui-sref="app.shows" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                      <md-icon md-font-icon="mdi mdi-eye mdi-lg" style="margin-right: 16px;"></md-icon>Shows
+                      <md-icon md-font-icon="mdi mdi-eye mdi-lg"></md-icon>
+                      <span ng-show="responsiveCtrl.sidenavOpen">Shows</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
                     <md-button aria-label="sidenav button" ui-sref="app.test" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                      <md-icon md-font-icon="mdi mdi-drawing-box mdi-lg" style="margin-right: 16px;"></md-icon>test
+                      <md-icon md-font-icon="mdi mdi-drawing-box mdi-lg"></md-icon>
+                      <span ng-show="responsiveCtrl.sidenavOpen">test</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
                     <md-button aria-label="sidenav button" ui-sref="app.test" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                      <md-icon md-font-icon="mdi mdi-bank mdi-lg" style="margin-right: 16px;"></md-icon>test
+                      <md-icon md-font-icon="mdi mdi-bank mdi-lg"></md-icon>
+                      <span ng-show="responsiveCtrl.sidenavOpen">test</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
@@ -92,20 +100,23 @@
                   </md-subheader>
                   <md-item>
                     <md-button aria-label="sidenav button" ui-sref="app.support" ui-sref-active="active md-accent" flex class="deemphasize center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                      <md-icon md-font-icon="mdi mdi-auto-fix mdi-lg" style="margin-right: 16px;"></md-icon>Support
+                      <md-icon md-font-icon="mdi mdi-auto-fix mdi-lg"></md-icon>
+                      <span ng-show="responsiveCtrl.sidenavOpen">Support</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
                     <md-button aria-label="sidenav button" ui-sref="app.settings" ui-sref-active="active md-accent" flex class="deemphasize center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                      <md-icon md-font-icon="mdi mdi-settings mdi-lg" style="margin-right: 16px;"></md-icon>Settings
+                      <md-icon md-font-icon="mdi mdi-settings mdi-lg"></md-icon>
+                      <span ng-show="responsiveCtrl.sidenavOpen">Settings</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
 
                   <md-item>
                     <md-button aria-label="log out" class="capitalize block sidemenu-button deemphasize" ng-class="{'md-warn': logoutHover}" ng-click="fireAuth.$unauth()" ui-sref="landing" flex class="md-warn" layout="row" layout-align="space-between center" ng-mouseenter="logoutHover = true" ng-mouseleave="logoutHover = false">
-                      <md-icon md-font-icon="mdi mdi-power mdi-lg" style="margin-right: 16px;"></md-icon>Log out
+                      <md-icon md-font-icon="mdi mdi-power mdi-lg"></md-icon>
+                      <span ng-show="responsiveCtrl.sidenavOpen">Log out</span>
                       <span flex></span>
                     </md-button>
                   </md-item>

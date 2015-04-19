@@ -41,7 +41,7 @@ module.exports = function(namespace) {
         //[expanded] -- this is the view that gets shown on large tablets and desktops, you can also use it to show child views on mobile,
         //[action] -- this is the action button
         controller: fullname + '.main',
-        controllerAs: 'layoutCtrl',
+        controllerAs: 'appCtrl',
         resolve: {
           'currentAuth': [fullname + '.auth', '$state', '$log', function(Auth, $state, $log) {
             return Auth.$requireAuth().then(function(data) {
@@ -82,15 +82,15 @@ module.exports = function(namespace) {
           'expanded@app': {
             template: require('./views/profile/stats.html'),
             controller: profileModule.name + '.stats',
-            controllerAs: 'statsCtrl',
-            onExit: ['$firebaseObject', 'FBURL', 'cuurentAuth', function($firebaseObject, FBURL, currentAuth) {
-              console.log('onExit function');
-              var ref = new Firebase(FBURL + '/actorsProfiles/' + currentAuth.uid);
-              obj = $firebaseObj(ref);
-              obj.$priority = obj.actorName;
-            }]
+            controllerAs: 'statsCtrl'
           }
-        }
+        },
+        onExit: ['currentAuth', function(currentAuth) {
+          console.log('onExit function');
+          // var ref = new Firebase(FBURL + '/actorsProfiles/' + currentAuth.uid);
+          // obj = $firebaseObj(ref);
+          // obj.$priority = obj.actorName;
+        }]
       }).state('app.profile.resume', {
         url: '/resume',
         views: {
@@ -98,8 +98,25 @@ module.exports = function(namespace) {
             template: require('./views/profile/resume.html'),
             controller: profileModule.name + '.resume',
             controllerAs: 'resumeCtrl'
+          },
+          'action@app': {
+            template: '<fa-modifier fa-translate="[0,0,500]">' +
+              '<fa-surface>' +
+              '<md-button aria-label="action button" ng-click="resumeCtrl.add($event)" class="md-fab md-icon-button center">' +
+              '<md-icon md-font-icon="mdi mdi-lg mdi-plus" flex></md-icon>' +
+              '</md-button>' +
+              '</fa-surface>' +
+              '</fa-modifier>',
+            controller: profileModule.name + '.resume',
+            controllerAs: 'resumeCtrl'
           }
-        }
+        },
+        onEnter: ['currentAuth', '$log', function(currentAuth, $log) {
+          $log.log('enter function resume');
+        }],
+        onExit: ['$log', function($log) {
+          $log.log('exit resume');
+        }]
       }).state('app.profile.pictures', {
         url: '/pictures',
         views: {

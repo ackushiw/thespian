@@ -129,11 +129,11 @@ module.exports = function(app) {
           });
         }
         //action button
-        vm.actionButtonTranslate.set([-68, -68, 600], {
+        vm.actionButtonTranslate.set([-68, -68, 650], {
           duration: 300,
           curve: Easing.outExpo
         });
-        vm.actionButtonSize.set([100, 100], {
+        vm.actionButtonSize.set([56, 56], {
           duration: 300,
           curve: Easing.outExpo
         });
@@ -214,7 +214,7 @@ module.exports = function(app) {
           duration: 300,
           curve: Easing.outExpo
         });
-        vm.actionButtonSize.set([100, 100], {
+        vm.actionButtonSize.set([56, 56], {
           duration: 300,
           curve: Easing.outExpo
         });
@@ -279,7 +279,7 @@ module.exports = function(app) {
           duration: 300,
           curve: Easing.outExpo
         });
-        vm.actionButtonSize.set([100, 100], {
+        vm.actionButtonSize.set([56, 56], {
           duration: 300,
           curve: Easing.outExpo
         });
@@ -301,6 +301,7 @@ module.exports = function(app) {
 
       if(vm.width >= 1200) {
         vm.sidenavState = true;
+        vm.sidenavOpen = true;
         $log.log('gt-lg');
         //top nav
         vm.topnavTranslate.set([240, 0, 300], {
@@ -356,7 +357,7 @@ module.exports = function(app) {
           duration: 300,
           curve: Easing.outExpo
         });
-        vm.actionButtonSize.set([100, 100], {
+        vm.actionButtonSize.set([56, 56], {
           duration: 300,
           curve: Easing.outExpo
         });
@@ -381,6 +382,7 @@ module.exports = function(app) {
     function expandSidenav(state) {
       $log.log('menu expand');
       vm.sidenavState = true;
+      vm.sidenavOpen = true;
       if(vm.width < 600) {
 
         vm.sidenavTranslate.set([0, 0, 700], {
@@ -450,14 +452,15 @@ module.exports = function(app) {
 
     function sidenavClose() {
       vm.sidenavState = false;
+      vm.sidenavOpen = false;
       $log.log('mobile sidenav close button');
       if(vm.width < 600) {
         vm.sidenavTranslate.set([vm.sidenavMobileSizeNegative, 0, 299], {
-          duration: 500,
+          duration: 300,
           curve: Easing.outQuad
         });
         vm.sidenavSize.set([vm.sidenavMobileSize, undefined], {
-          duration: 500,
+          duration: 300,
           curve: Easing.outQuad
         });
       } else {
@@ -616,9 +619,6 @@ module.exports = function(app) {
   var directive = function() {
     return {
       restrict: 'AE',
-      scope: {
-        title: '@' // '@' reads attribute value, '=' provides 2-way binding, '&" works with functions
-      },
       controller: controller,
       controllerAs: 'responsiveCtrl',
       bindToController: true,

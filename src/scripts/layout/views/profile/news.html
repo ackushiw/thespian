@@ -1,7 +1,16 @@
 <fa-modifier>
   <fa-view>
     <fa-modifier>
-      <fa-surface>news page</fa-surface>
+      <fa-surface>
+        <md-toolbar>
+          <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+            <md-button aria-label="back" ui-sref="^" ng-click="responsiveCtrl.closeDetailsView()" hide-gt-md class="md-icon-button">
+              <md-icon md-font-icon="" class="mdi mdi-arrow-left mdi-lg"></md-icon>
+            </md-button>
+            News page
+          </div>
+        </md-toolbar>
+      </fa-surface>
     </fa-modifier>
   </fa-view>
 </fa-modifier>
