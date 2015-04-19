@@ -54,6 +54,7 @@ module.exports = function(app) {
       var lowercaseTag = angular.lowercase(skill);
       baseRef.child(lowercaseTag).set({
         title: lowercaseTag,
+        type: fireTagsCtrl.title,
         added: Firebase.ServerValue.TIMESTAMP
       }, addComplete(lowercaseTag));
       fireTagsCtrl.newTag = null;

@@ -96,6 +96,8 @@
     "angular-ui-router": "./bower_components/angular-ui-router/release/angular-ui-router.js",
     "angular-animate": "./bower_components/angular-animate/angular-animate.js",
     "angular-sanitize": "./bower_components/angular-sanitize/angular-sanitize.js",
+    "angular-lodash": "./bower_components/angular-lodash/angular-lodash.js",
+    "lodash": "./bower_components/lodash/dist/lodash.compat.js",
     "famous": "./bower_components/famous/dist/famous-global.js",
     "famous-angular": "./bower_components/famous-angular/dist/famous-angular.js",
     "famous-object": "./bower_components/famous-object/famous-object.js",
@@ -132,6 +134,12 @@
     "angular-ui-router": {
       "depends": [
         "angular"
+      ]
+    },
+    "angular-lodash": {
+      "depends": [
+        "angular",
+        "lodash"
       ]
     },
     "famous": {

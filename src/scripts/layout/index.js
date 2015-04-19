@@ -93,7 +93,9 @@ module.exports = function(namespace) {
         url: '/resume',
         views: {
           'expanded@app': {
-            template: require('./views/profile/resume.html')
+            template: require('./views/profile/resume.html'),
+            controller: profileModule.name + '.resume',
+            controllerAs: 'resumeCtrl'
           }
         }
       }).state('app.profile.pictures', {

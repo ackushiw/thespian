@@ -22,10 +22,10 @@
     "angularfire": "~1.0.0",
     "FirebaseIndex": "https://github.com/Zenovations/FirebaseIndex.git#gh-pages",
     "firebase-util": "~0.2.3",
-    "famous-object": "https://github.com/jamalneufeld/famous-object.git"
+    "famous-object": "https://github.com/jamalneufeld/famous-object.git",
+    "angular-lodash": "~0.1.2"
   },
   "resolutions": {
-    "angular": "1.3.x",
-    "FirebaseIndex": "gh-pages"
+    "angular": "1.3.x"
   }
 }

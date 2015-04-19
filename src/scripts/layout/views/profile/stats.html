@@ -1,228 +1,123 @@
 <fa-modifier>
   <fa-view>
     <fa-modifier>
-      <fa-surface class="full-height">
-        <md-toolbar>
-          <div class="md-toolbar-tools"></div>
-        </md-toolbar>
-        <md-content layout-fill class="md-padding">
-          <md-card layout="column" flex>
-            <md-content class="md-padding">
+      <fa-modifier fa-translate="[0,0,1]" fa-size="[undefined, 64]">
+        <fa-surface>
+          <md-toolbar>
+            <div class="md-toolbar-tools"></div>
+          </md-toolbar>
+        </fa-surface>
+      </fa-modifier>
+      <fa-scroll-view fa-pipe-from="statsCtrl.scrollEventHandler">
+        <fa-modifier fa-size="statsCtrl.contentSize.get()">
+          <fa-view>
+            <fa-surface class="full-height" fa-size="statsCtrl.contentSize.get()" fa-pipe-to="statsCtrl.scrollEventHandler">
 
-              <h3 flex>
-                <md-input-container flex>
-                  <label>Name</label>
-                  <input class="flex" type="text" aria-label="Name" ng-model="userStats.actorName" flex>
-
-                </md-input-container>
-              </h3>
-
-              <md-input-container hide>
-                <label>First Name</label>
-                <input type="text" ng-model="userStats.first_name">
-              </md-input-container>
-              <md-input-container hide>
-                <label>Last Name</label>
-                <input type="text" ng-model="userStats.family_name">
-              </md-input-container>
-
-              <h3 class="md-display-1 display">Skills</h3>
-
-              <skills user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} title="skills" location="lib-skills"></skills>
-              <md-divider></md-divider>
-
-              <section class="row" layout-align="start start">
-                <pre hide>{{userStats}}</pre>
-
-              </section>
-              <md-divider hide></md-divider>
-
-              <section layout="column">
-                <span layout="row" layout-align="space-around center" layout-margin>
-                  <md-button aria-label="expand" class="circular text-display" ng-click="stats.gender != stats.gender"><i class="mdi mdi-chevron-right" ng-class="{rotate: profilePage.expanded == 'gender'}"></i>
-                  </md-button>
-                  <h3 flex class="text-display">Gender</h3>
-                  <h3 flex>{{userStats.gender}}</h3>
-                  <span flex hide-sm hide-md></span>
-                </span>
-                <section layout="row" ng-if="!stats.gender">
-                  <span style="width:50px"></span>
-
-                  <md-radio-group ng-model="userStats.gender" layout="row">
-                    <md-radio-button value="male" aria-label="male">Male</md-radio-button>
-                    <md-radio-button value="female" aria-label="female">Female</md-radio-button>
-                    <md-radio-button value="other" aria-label="female">Other</md-radio-button>
-                  </md-radio-group>
-                  <br>
-                  <md-divider></md-divider>
-                </section>
-              </section>
-
-              <section layout="column">
-                <span layout="row" layout-align="space-between center" layout-margin>
-                  <md-button aria-label="expand" class="circular text-display" ng-click="profilePage.toggleEdit('age')"><i class="mdi mdi-chevron-right" ng-class="{rotate: profilePage.expanded == 'age'}"></i>
-                  </md-button>
-                  <h3 flex class="text-display">Age Range</h3>
-                  <h3 flex>{{userStats.minAge + ' to ' + userStats.maxAge}}</h3>
-                  <span flex hide-sm hide-md></span>
-                </span>
-                <section layout="row" layout-sm="column">
-                  <section layout="column" ng-if="userStats" flex>
-                    <div style="width:100%;">
-
-                      <slider ng-model="userStats.minAge" ng-model-range="userStats.maxAge" floor="0" ceiling="100" step="1" buffer="5" precision="1" stretch="3">
-                      </slider>
-                    </div>
+              <md-content class="md-padding stats-view" get-dimensions action="statsCtrl.updateSize(height, width)" layout-fill>
+                <md-card layout="column" flex>
+                  <md-content class="md-padding">
                     <br>
-                  </section>
-                  <br>
-                  <br>
-                  <md-divider></md-divider>
 
-                </section>
+                    <section id="name">
+                      <h4 style="margin-bottom:0;" flex>
+                        <md-input-container flex>
+                          <label class="md-display-1 display" style="height:24px;overflow:visible; padding-top: 5px;">Name</label>
+                          <input class="flex" type="text" aria-label="Name" ng-model="userStats.actorName" flex>
 
-              </section>
+                        </md-input-container>
+                      </h4>
+                    </section>
 
-              <section layout="column">
-                <span layout="row" layout-align="space-around center" layout-margin>
-                  <md-button aria-label="expand" class="circular text-display"><i class="mdi mdi-chevron-right" ng-class="{rotate: profilePage.expanded == 'eyes'}"></i>
-                  </md-button>
-                  <h3 flex class="text-display">Eyes</h3>
-                  <h3 flex>{{userStats.eyesDetails}}</h3>
-                  <span flex hide-sm hide-md></span>
-                </span>
-                <fire-tags title="eyes" user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} location="lib-eyes"></fire-tags>
-                <div layout="row" flex ng-if="profilePage.expanded == 'eyes'" layout-align="start end">
-                  <span style="width:50px"></span>
-                  <md-input-container>
-                    <label>Eye Color</label>
-                    <input aria-label="eyes" ng-model="userStats.eyesDetails">
-                  </md-input-container>
-                  <h3 class="text-display"> tags: </h3>
-                  <tags-input ng-model="userStats.eyeTags" flex></tags-input>
-                  <md-radio-group ng-model="userStats.eyeBasic" layout="row" layout-align="start end" hide>
-                    <md-radio-button value="brown" aria-label="brown">Brown</md-radio-button>
-                    <md-radio-button value="blue" aria-label="blue">Blue</md-radio-button>
-                    <md-radio-button value="green" aria-label="green">Green</md-radio-button>
-                    <md-radio-button value="hazel" aria-label="hazel">Hazel</md-radio-button>
-                  </md-radio-group>
-                  <br>
-                  <md-divider></md-divider>
-                </div>
-              </section>
+                    <div layout="{{statsCtrl.contentLayout}}" layout-sm="column" layout-align="space-between start">
+                      <span layout="row" layout-align="space-between top" layout-fill layout-margin>
 
-              <section layout="column">
-                <span layout="row" layout-align="space-around center" layout-margin>
-                  <md-button aria-label="expand" class="circular text-display" ng-click="profilePage.toggleEdit('hair')"><i class="mdi mdi-chevron-right" ng-class="{rotate: profilePage.expanded == 'hair'}"></i>
-                  </md-button>
-                  <h3 flex class="text-display">Hair</h3>
-                  <h3 flex>{{userStats.hairColor}}</h3>
-                  <span flex hide-sm hide-md></span>
-                </span>
-                <div layout="row" flex ng-if="profilePage.expanded == 'hair'" layout-align="start end">
-                  <md-input-container>
-                    <label>Hair Color</label>
-                    <input aria-label="hair" ng-model="userStats.hairColor">
-                  </md-input-container>
-                  <span style="width:50px"></span>
-                  <h3 class="text-display">tags:</h3>
-                  <tags-input ng-model="userStats.hairTags" flex></tags-input>
-                  <md-radio-group ng-model="userStats.hairLength" layout="row" layout-align="start end" hide>
-                    <md-radio-button value="shaved" aria-label="shaved">Shaved</md-radio-button>
-                    <md-radio-button value="short" aria-label="short">Short</md-radio-button>
-                    <md-radio-button value="medium" aria-label="medium">Medium</md-radio-button>
-                    <md-radio-button value="long" aria-label="long">Long</md-radio-button>
-                  </md-radio-group>
-                </div>
-              </section>
+                        <h5 style="margin-bottom:0;" flex class="md-display-1 display">Gender</h5>
 
-              <section layout="column" hide>
-                <span layout="row" layout-align="space-around center" layout-margin>
-                  <md-button aria-label="expand" class="circular text-display" ng-click="profilePage.toggleEdit('vocals')"><i class="mdi mdi-chevron-right" ng-class="{rotate: profilePage.expanded == 'vocals'}"></i>
-                  </md-button>
-                  <h3 flex class="text-display">Voice</h3>
-                  <h3 flex>{{userStats.maleVocals || userStats.femaleVocals}}</h3>
-                  <span flex hide-sm hide-md></span>
-                </span>
-                <section layout="row" layout-sm="column" ng-if="profilePage.expanded == 'vocals'">
-                  <h3>Voice</h3>
-                  <div layout="column" flex>
-                    <md-input-container>
-                      <label>Voice</label>
-                      <input aria-label="voice-tone" label="Tone" ng-model="userStats.voiceTone">
-                    </md-input-container>
+                        <md-select placeholder="Gender" ng-model="userStats.gender" style="margin-top:0;">
+                          <md-option value="male">Male</md-option>
+                          <md-option value="female">Female</md-option>
+                          <md-option value="other">Other</md-option>
+                        </md-select>
 
-                  </div>
-                  <div layout="column" flex>
+                        <span flex="5" hide-sm hide-md></span>
+                      </span>
 
-                    <div ng-switch on="userStats.gender">
-                      <div ng-switch-when="male">
-                        <h3>Vocal Range: {{userStats.maleVocals.tenor}}</h3>
-                        <multi-select input-model="profilePage.maleVocals" output-model="userStats.maleVocals" button-label="range" default-label="Please Select" item-label="range" tick-property="ticked" helper-elements="none" on-item-click="showForm(selectedResumeSection)">
-                        </multi-select>
-                        <div hide>
-                          <md-checkbox ng-model="userStats.maleVocals.contertenor" aria-label="Checkbox 1">
-                            Checkbox 1: {{ data.cb1 }}
-                          </md-checkbox>
+                      <span layout="row" layout-align="space-between start" layout-fill layout-margin>
 
-                          <md-checkbox ng-model="userStats.maleVocals.tenor" aria-label="Checkbox 2" ng-true-value="'tenor'" ng-false-value="null" class="md-warn">
-                            Tenor (md-warn): {{ data.cb2 }}
-                          </md-checkbox>
-                          <md-checkbox aria-label="Disabled checkbox" ng-model="userStats.maleVocals.baritone">
-                            Checkbox: Disabled
-                          </md-checkbox>
-                          <md-checkbox aria-label="Disabled checked checkbox" ng-model="userStats.maleVocals.bass">
-                            Checkbox: Disabled, Checked
-                          </md-checkbox>
-                          <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="userStats.maleVocals" class="md-primary">
-                            Checkbox (md-primary): No Ink
-                          </md-checkbox>
-                        </div>
-                      </div>
-                      <div ng-switch-when="female">
-                        <h3>Vocal Range: {{userStats.femaleVocals}}</h3>
+                        <h5 style="margin-bottom:0;" flex class="md-display-1 display">Age Range</h5>
 
-                      </div>
-
+                        <md-input-container>
+                          <input id="ageMin" min="0" max="{{userStats.ageMax}}" ng-model="userStats.ageMin" type="number" ng-change="statsCtrl.ageRange(userStats.ageMin,userStats.ageMax)">
+                        </md-input-container>
+                        <h5 style="margin-bottom:0;" flex="5">to</h5>
+                        <md-input-container>
+                          <input id="ageMax" min="{{userStats.ageMin + 1}}" max="100" ng-model="userStats.ageMax" type="number" ng-change="statsCtrl.ageRange(userStats.ageMin,userStats.ageMax)">
+                        </md-input-container>
+                        <span flex="5" hide-sm hide-md></span>
+                      </span>
                     </div>
-                  </div>
-                  <br>
-                  <md-divider></md-divider>
-                </section>
-              </section>
 
-              <section layout="column">
-                <span layout="row" layout-align="space-around center" layout-margin>
-                  <md-button aria-label="expand" class="circular text-display" ng-click="profilePage.toggleEdit('unions')"><i class="mdi mdi-chevron-right" ng-class="{rotate: profilePage.expanded == 'unions'}"></i>
-                  </md-button>
-                  <h3 flex class="text-display">Union Membership</h3>
-                  <h3 flex>
-                    <span>{{userStats.unions.non}}</span>
-                    <span>{{userStats.unions.equity}}</span>
-                    <span>{{userStats.unions.sag}}</span>
-                  </h3>
-                  <span flex hide-sm hide-md></span>
-                </span>
-                <section layout="row" ng-if="profilePage.expanded == 'unions'">
-                  <span style="width:50px"></span>
-                  <md-checkbox ng-model="userStats.unions.non" aria-label="Non-union" ng-true-value="'Non-Union'" ng-false-value="null">
-                    Non-union {{ userStats.unions.non }}
-                  </md-checkbox>
+                    <div layout="{{statsCtrl.contentLayout}}" layout-sm="column" layout-align="space-between start" layout-margin>
 
-                  <md-checkbox ng-model="userStats.unions.equity" aria-label="Checkbox 2" ng-true-value="'Equity'" ng-false-value="null">
-                    Equity {{ userStats.unions.equity }}
-                  </md-checkbox>
-                  <md-checkbox ng-disabled aria-label="Disabled checkbox" ng-model="userStats.unions.sag" ng-true-value="'SAG'" ng-false-value="null">
-                    SAG {{userStats.unions.sag}}
-                  </md-checkbox>
+                      <section layout="column" layout-fill>
+                        <h4 style="margin-bottom:0;" flex class="md-display-1 display">
+                          <md-input-container>
+                            <label>Eyes</label>
+                            <input aria-label="eyes" ng-model="userStats.eyesDetails">
+                          </md-input-container>
+                        </h4>
+                        <fire-tags title="eyes" user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} location="lib-eyes"></fire-tags>
+                      </section>
 
-                </section>
-              </section>
-            </md-content>
-          </md-card>
+                      <section layout="column" layout-fill>
+                        <h4 style="margin-bottom:0;" flex class="md-display-1 display">
+                          <md-input-container>
+                            <label>Hair</label>
+                            <input aria-label="hair color" ng-model="userStats.hairColor">
+                          </md-input-container>
+                        </h4>
 
-        </md-content>
-      </fa-surface>
+                        <fire-tags user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} title="hair" location="lib-hair"></fire-tags>
+                      </section>
+                    </div>
+
+                    <section layout="column" layout-margin>
+
+                      <h4 style="margin-bottom:0; margin-left:0;" flex class="md-display-1 display">
+                        <md-input-container>
+                          <label>Voice</label>
+                          <input aria-label="hair color" ng-model="userStats.voiceType">
+                        </md-input-container>
+                      </h4>
+                      <fire-tags user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} title="voice" location="lib-voice"></fire-tags>
+
+                    </section>
+
+                    <section layout="column">
+                      <span layout="row" layout-align="space-around center" layout-margin>
+                        <h5 style="margin-bottom:0;" flex class="md-display-1 display">Union Membership</h5>
+                        <md-divider></md-divider>
+                      </span>
+                      <fire-tags user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} title="unions" location="lib-unions"></fire-tags>
+
+                    </section>
+                    <section layout="column">
+                      <span layout="row" layout-align="space-around center" layout-margin>
+                        <h5 style="margin-bottom:0;" class="md-display-1 display" flex>Skills</h5>
+                      </span>
+
+                      <fire-tags user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} title="skills" location="lib-skills"></fire-tags>
+
+                    </section>
+                  </md-content>
+                </md-card>
+
+              </md-content>
+            </fa-surface>
+          </fa-view>
+        </fa-modifier>
+
+      </fa-scroll-view>
     </fa-modifier>
   </fa-view>
 </fa-modifier>

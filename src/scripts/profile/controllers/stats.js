@@ -4,11 +4,30 @@ var controllername = 'stats';
 module.exports = function(app) {
   /*jshint validthis: true */
 
-  var deps = ['$scope', '$firebaseObject', '$firebaseArray', 'FBURL', 'currentAuth'];
+  var deps = ['$scope', '$famous', '$firebaseObject', '$firebaseArray', 'FBURL', 'currentAuth'];
 
-  function controller($scope, $firebaseObject, $firebaseArray, FBURL, currentAuth) {
+  function controller($scope, $famous, $firebaseObject, $firebaseArray, FBURL, currentAuth) {
     var vm = this;
+    var _ = require('lodash');
     vm.user = currentAuth.uid;
+    //famous
+    var EventHandler = $famous['famous/core/EventHandler'];
+    var Transitionable = $famous['famous/transitions/Transitionable'];
+    vm.scrollEventHandler = new EventHandler();
+    vm.contentLayout = "row";
+    vm.updateSize = function(height, width) {
+      vm.contentSize = new Transitionable([undefined, height]);
+      console.log('action height', height);
+      console.log('action width', width);
+      vm.contentSize.set([undefined, height]);
+
+      if(width < 600) {
+        vm.contentLayout = "column";
+      } else {
+        vm.contentLayout = "row";
+      }
+
+    };
     //firebase
     var googleRef = new Firebase(FBURL + '/userDir/' + currentAuth.uid);
     var userRef = new Firebase(FBURL + '/actorsProfiles/' + currentAuth.uid);
@@ -17,50 +36,22 @@ module.exports = function(app) {
     //firebase index
     var file = require('firebase-index'); // make this into a factory service
     var skillsIndex = new file.FirebaseIndex(skillsRef, tagsRef);
-    console.log(skillsIndex);
 
     var userObj = $firebaseObject(userRef);
-    console.log(userObj);
-    $scope.test = ['Apple', 'Banana', 'Orange'];
-    $scope.vegObjs = [{
-      'name': 'Broccoli',
-      'type': 'Brassica'
-    }, {
-      'name': 'Cabbage',
-      'type': 'Brassica'
-    }, {
-      'name': 'Carrot',
-      'type': 'Umbelliferous'
-    }];
-    $scope.newVeg = function(chip) {
-      return {
-        name: chip,
-        type: 'unknown'
-      };
-    };
 
     var activate = function() {
       userObj.$bindTo($scope, 'userStats').then(function() {
 
       });
 
+      vm.ageRangeOptions = _.range(0, 101);
+
+      vm.ageRange = function(lowAge, highAge) {
+        console.log('test', _.range(lowAge, highAge + 1, 1));
+        $scope.userStats.ageRange = _.range(lowAge, highAge + 1);
+      };
+
       vm.skills = $firebaseArray(skillsRef);
-      vm.newSkill = function(chip) {
-        console.log(chip);
-        skillsIndex.add(
-          chip
-        );
-      };
-
-      vm.action = function(chip) {
-        console.log(chip);
-        vm.skills.$add({
-          title: chip,
-          category: 'skill'
-        });
-
-        vm.skillsInput = null;
-      };
 
       function skillsSearch(query) {
         var filteredSkills = skillsRef.orderByKey().equalTo(query);
