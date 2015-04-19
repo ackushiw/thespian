@@ -5,5 +5,6 @@ module.exports = function(app) {
     require('./landing')(app);
     require('./main')(app);
     require('./mainView')(app);
+    require('./sidenav')(app);
     // inject:end
 };

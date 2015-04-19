@@ -21,7 +21,7 @@ module.exports = function(app) {
       console.log('action width', width);
       vm.contentSize.set([undefined, height]);
 
-      if(width < 600) {
+      if(width < 640) {
         vm.contentLayout = "column";
       } else {
         vm.contentLayout = "row";
@@ -65,16 +65,6 @@ module.exports = function(app) {
 
       }
       vm.query = skillsSearch;
-
-      vm.test = function(chip, index) {
-        console.log('test', chip);
-        console.log('index', index);
-        vm.skills.$remove(chip.$id).then(function(ref) {
-          console.log('skill removed', ref);
-        }).catch(function(error) {
-          console.error('Error', error);
-        });
-      }
 
     };
     activate();

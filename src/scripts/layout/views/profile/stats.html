@@ -4,7 +4,11 @@
       <fa-modifier fa-translate="[0,0,1]" fa-size="[undefined, 64]">
         <fa-surface>
           <md-toolbar>
-            <div class="md-toolbar-tools"></div>
+            <div class="md-toolbar-tools">
+              <md-button aria-label="back" ng-click="responsiveCtrl.closeDetailsView()" hide-gt-md class="md-icon-button">
+                <md-icon md-font-icon="" class="mdi mdi-arrow-left mdi-lg"></md-icon>
+              </md-button>
+            </div>
           </md-toolbar>
         </fa-surface>
       </fa-modifier>

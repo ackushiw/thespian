@@ -1,7 +1,20 @@
 <fa-modifier>
-  <menu-button></menu-button>
-  <fa-modifier fa-size="[responsiveCtrl.width, 64]" fa-opacity="[.1]">
-    <fa-surface fa-size="[responsiveCtrl.width, 64]" fa-background-color="'black'"></fa-surface>
+  <fa-modifier fa-translate="[0,0,1]" fa-size="[responsiveCtrl.width, 36]" fa-opacity="[1]">
+    <fa-surface class="full-height">
+      <div layout="row" layout-align="space-between start" layout-fill>
+        <md-button aria-label="menu" hide-gt-sm class="md-icon-button white" ng-click="responsiveCtrl.expandSidenav()">
+          <md-icon md-font-icon class="mdi mdi-menu mdi-lg"></md-icon>
+        </md-button>
+        <md-button aria-label="search" hide-gt-md class="md-icon-button white">
+          <md-icon md-font-icon class="mdi mdi-magnify mdi-lg"></md-icon>
+        </md-button>
+      </div>
+    </fa-surface>
+  </fa-modifier>
+  <fa-modifier fa-size="[responsiveCtrl.width, 36]" fa-opacity="[.1]">
+    <fa-surface fa-size="[responsiveCtrl.width, 36]" fa-background-color="'black'">
+
+    </fa-surface>
   </fa-modifier>
 
 </fa-modifier>

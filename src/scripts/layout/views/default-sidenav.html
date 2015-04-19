@@ -1,105 +1,126 @@
 <fa-modifier>
-  <fa-modifier fa-translate="[0,0,0]">
-    <fa-surface>
-      <md-toolbar>
-        <div class="md-toolbar-tools">Thespus</div>
-      </md-toolbar>
-    </fa-surface>
+  <fa-modifier fa-translate="[0,0,1]">
+    <div hide-sm hide-gt-lg>
+      <fa-modifier fa-translate="[8,8,2]">
+        <menu-button action="responsiveCtrl.toggleSidenav(responsiveCtrl.sidenavOpen)" state="responsiveCtrl.sidenavOpen"></menu-button>
+      </fa-modifier>
+    </div>
+    <fa-modifier fa-translate="[0,0,0]" fa-size="[undefined, 64]">
+      <fa-surface>
+        <md-toolbar>
+          <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+
+            <span>Thespus</span>
+            <md-button aria-label="close" ng-click="responsiveCtrl.closeSidenav()" class="md-icon-button" hide-gt-sm>
+              <md-icon md-font-icon="" class="mdi mdi-arrow-left mdi-lg"></md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+      </fa-surface>
+    </fa-modifier>
   </fa-modifier>
   <fa-modifier fa-translate="[0,68,0]">
-    <fa-scroll-view>
+    <fa-scroll-view fa-pipe-from="sidenavCtrl.scrollEventHandler">
+      <fa-modifier fa-size="sidenavCtrl.contentSize.get()">
+        <fa-view>
 
-      <fa-modifier>
-        <fa-surface>
-          <md-content class="md-padding">
-            <md-list layout="column">
-              <md-item>
-                <md-button aria-label="sidenav button" ui-sref="app.profile" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                  <md-icon md-font-icon="mdi mdi-account mdi-lg" style="margin-right: 16px;"></md-icon>
-                  <span hide-lg>Profile</span>
-                  <span flex></span>
-                </md-button>
-              </md-item>
-              <md-item>
-                <md-button aria-label="sidenav button" ui-sref="app.messages" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                  <md-icon md-font-icon="mdi mdi-email mdi-lg" style="margin-right: 16px;"></md-icon>Messages
-                  <span flex></span>
-                </md-button>
-              </md-item>
-              <md-item>
-                <md-button aria-label="sidenav button" ui-sref="app.projects" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button">
-                  <md-icon md-font-icon="mdi mdi-briefcase mdi-lg" style="margin-right: 16px;"></md-icon>Projects
-                  <span flex></span>
-                </md-button>
-              </md-item>
+          <fa-modifier>
+            <fa-surface fa-pipe-to="sidenavCtrl.scrollEventHandler">
+              <md-content class="md-padding" get-dimensions action="sidenavCtrl.updateSize(height, width)">
+                <md-list layout="column">
+                  <md-item>
+                    <md-button aria-label="sidenav button" ui-sref="app.profile" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                      <md-icon md-font-icon="mdi mdi-account mdi-lg" style="margin-right: 16px;"></md-icon>
+                      <span hide-lg>Profile</span>
+                      <span flex></span>
+                    </md-button>
+                  </md-item>
+                  <md-item>
+                    <md-button aria-label="sidenav button" ui-sref="app.messages" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                      <md-icon md-font-icon="mdi mdi-email mdi-lg" style="margin-right: 16px;"></md-icon>Messages
+                      <span flex></span>
+                    </md-button>
+                  </md-item>
+                  <md-item>
+                    <md-button aria-label="sidenav button" ui-sref="app.projects" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button">
+                      <md-icon md-font-icon="mdi mdi-briefcase mdi-lg" style="margin-right: 16px;"></md-icon>Projects
+                      <span flex></span>
+                    </md-button>
+                  </md-item>
 
-              <md-subheader layout="row" layout-align="start center">
-                <span class="subheader mono">Discover</span>
-              </md-subheader>
-              <md-item>
-                <md-button aria-label="sidenav button" ui-sref="app.now" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                  <md-icon md-font-icon="mdi mdi-flash mdi-lg" style="margin-right: 16px;"></md-icon>Now
-                  <span flex></span>
-                </md-button>
-              </md-item>
-              <md-item>
-                <md-button aria-label="sidenav button" ui-sref="app.actors" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                  <md-icon md-font-icon="mdi mdi-account-multiple mdi-lg" style="margin-right: 16px;"></md-icon>Actors
-                  <span flex></span>
-                </md-button>
-              </md-item>
-              <md-item>
-                <md-button aria-label="sidenav button" ui-sref="app.groups" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                  <md-icon md-font-icon="mdi mdi-earth mdi-lg" style="margin-right: 16px;"></md-icon>Companies
-                  <span flex></span>
-                </md-button>
-              </md-item>
-              <md-item>
-                <md-button aria-label="sidenav button" ui-sref="app.shows" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                  <md-icon md-font-icon="mdi mdi-eye mdi-lg" style="margin-right: 16px;"></md-icon>Shows
-                  <span flex></span>
-                </md-button>
-              </md-item>
-              <md-item>
-                <md-button aria-label="sidenav button" ui-sref="app.test" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                  <md-icon md-font-icon="mdi mdi-drawing-box mdi-lg" style="margin-right: 16px;"></md-icon>test
-                  <span flex></span>
-                </md-button>
-              </md-item>
-              <md-item>
-                <md-button aria-label="sidenav button" ui-sref="app.test" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                  <md-icon md-font-icon="mdi mdi-bank mdi-lg" style="margin-right: 16px;"></md-icon>test
-                  <span flex></span>
-                </md-button>
-              </md-item>
-              <md-subheader>
-                <span class="subheader mono">More</span>
-              </md-subheader>
-              <md-item>
-                <md-button aria-label="sidenav button" ui-sref="app.support" ui-sref-active="active md-accent" flex class="deemphasize center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                  <md-icon md-font-icon="mdi mdi-auto-fix mdi-lg" style="margin-right: 16px;"></md-icon>Support
-                  <span flex></span>
-                </md-button>
-              </md-item>
-              <md-item>
-                <md-button aria-label="sidenav button" ui-sref="app.settings" ui-sref-active="active md-accent" flex class="deemphasize center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
-                  <md-icon md-font-icon="mdi mdi-settings mdi-lg" style="margin-right: 16px;"></md-icon>Settings
-                  <span flex></span>
-                </md-button>
-              </md-item>
+                  <md-subheader layout="row" layout-align="start center">
+                    <span class="subheader mono">Discover</span>
+                  </md-subheader>
+                  <md-item>
+                    <md-button aria-label="sidenav button" ui-sref="app.now" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                      <md-icon md-font-icon="mdi mdi-flash mdi-lg" style="margin-right: 16px;"></md-icon>Now
+                      <span flex></span>
+                    </md-button>
+                  </md-item>
+                  <md-item>
+                    <md-button aria-label="sidenav button" ui-sref="app.actors" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                      <md-icon md-font-icon="mdi mdi-account-multiple mdi-lg" style="margin-right: 16px;"></md-icon>Actors
+                      <span flex></span>
+                    </md-button>
+                  </md-item>
+                  <md-item>
+                    <md-button aria-label="sidenav button" ui-sref="app.groups" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                      <md-icon md-font-icon="mdi mdi-earth mdi-lg" style="margin-right: 16px;"></md-icon>Companies
+                      <span flex></span>
+                    </md-button>
+                  </md-item>
+                  <md-item>
+                    <md-button aria-label="sidenav button" ui-sref="app.shows" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                      <md-icon md-font-icon="mdi mdi-eye mdi-lg" style="margin-right: 16px;"></md-icon>Shows
+                      <span flex></span>
+                    </md-button>
+                  </md-item>
+                  <md-item>
+                    <md-button aria-label="sidenav button" ui-sref="app.test" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                      <md-icon md-font-icon="mdi mdi-drawing-box mdi-lg" style="margin-right: 16px;"></md-icon>test
+                      <span flex></span>
+                    </md-button>
+                  </md-item>
+                  <md-item>
+                    <md-button aria-label="sidenav button" ui-sref="app.test" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                      <md-icon md-font-icon="mdi mdi-bank mdi-lg" style="margin-right: 16px;"></md-icon>test
+                      <span flex></span>
+                    </md-button>
+                  </md-item>
+                  <md-subheader>
+                    <span class="subheader mono">More</span>
+                  </md-subheader>
+                  <md-item>
+                    <md-button aria-label="sidenav button" ui-sref="app.support" ui-sref-active="active md-accent" flex class="deemphasize center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                      <md-icon md-font-icon="mdi mdi-auto-fix mdi-lg" style="margin-right: 16px;"></md-icon>Support
+                      <span flex></span>
+                    </md-button>
+                  </md-item>
+                  <md-item>
+                    <md-button aria-label="sidenav button" ui-sref="app.settings" ui-sref-active="active md-accent" flex class="deemphasize center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                      <md-icon md-font-icon="mdi mdi-settings mdi-lg" style="margin-right: 16px;"></md-icon>Settings
+                      <span flex></span>
+                    </md-button>
+                  </md-item>
 
-              <md-item>
-                <md-button aria-label="log out" class="capitalize block sidemenu-button deemphasize" ng-class="{'md-warn': logoutHover}" ng-click="fireAuth.$unauth()" ui-sref="landing" flex class="md-warn" layout="row" layout-align="space-between center" ng-mouseenter="logoutHover = true" ng-mouseleave="logoutHover = false">
-                  <md-icon md-font-icon="mdi mdi-power mdi-lg" style="margin-right: 16px;"></md-icon>Log out
-                  <span flex></span>
-                </md-button>
-              </md-item>
-            </md-list>
-          </md-content>
-        </fa-surface>
+                  <md-item>
+                    <md-button aria-label="log out" class="capitalize block sidemenu-button deemphasize" ng-class="{'md-warn': logoutHover}" ng-click="fireAuth.$unauth()" ui-sref="landing" flex class="md-warn" layout="row" layout-align="space-between center" ng-mouseenter="logoutHover = true" ng-mouseleave="logoutHover = false">
+                      <md-icon md-font-icon="mdi mdi-power mdi-lg" style="margin-right: 16px;"></md-icon>Log out
+                      <span flex></span>
+                    </md-button>
+                  </md-item>
+                </md-list>
+              </md-content>
+            </fa-surface>
+          </fa-modifier>
+        </fa-view>
       </fa-modifier>
-      <fa-modifier>
-        <fa-surface>test</fa-surface>
+      <fa-modifier fa-size="[undefined, 100]">
+        <fa-view>
+          <fa-modifier>
+            <fa-surface></fa-surface>
+          </fa-modifier>
+        </fa-view>
       </fa-modifier>
 
     </fa-scroll-view>

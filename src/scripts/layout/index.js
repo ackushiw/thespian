@@ -60,7 +60,9 @@ module.exports = function(namespace) {
             template: require('./views/default-topnav.html')
           },
           'sidenav': {
-            template: require('./views/default-sidenav.html')
+            template: require('./views/default-sidenav.html'),
+            controller: fullname + '.sidenav',
+            controllerAs: 'sidenavCtrl'
           },
           'main': {
             template: require('./views/default-main.html'),

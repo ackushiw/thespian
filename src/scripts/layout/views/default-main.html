@@ -44,7 +44,7 @@
               <md-list layout="column" layout-align="start start">
                 <md-item ng-repeat="item in mainViewCtrl.profileMenuList" layout-fill>
                   <md-item-content layout="row" layout-align="start center">
-                    <md-button aria-label="menu button" layout-fill class="md-primary center block" ui-sref="{{item.link}}" ui-sref-active="active, md-accent">
+                    <md-button aria-label="menu button" class="md-primary center block" layout-fill ng-click="responsiveCtrl.focusDetailsView(item)" ui-sref="{{item.link}}" ui-sref-active="active, md-accent">
                       <md-icon md-font-icon="mdi mdi-lg {{item.icon}}"></md-icon>
                       <span class="capitalize" flex>{{item.title}}</span>
                     </md-button>
