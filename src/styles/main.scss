@@ -135,9 +135,14 @@ a.md-button {
 }
 .nav-list {
   button.md-button.md-default-theme {
+    padding-right: 16px;
+    height: 48px;
     md-icon {
       margin-left: 16px;
       margin-right: 32px;
+    }
+    h6 {
+      margin: 0;
     }
   }
 }

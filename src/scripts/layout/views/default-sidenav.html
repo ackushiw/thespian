@@ -43,16 +43,22 @@
                     </md-button>
                   </md-item>
                   <md-item>
-                    <md-button aria-label="sidenav button" ui-sref="app.projects" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button">
+                    <md-button aria-label="sidenav button" ui-sref="app.projects" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
                       <md-icon md-font-icon="mdi mdi-briefcase mdi-lg"></md-icon>
                       <span ng-show="responsiveCtrl.sidenavOpen">Projects</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
+                  <md-item>
+                    <md-button aria-label="sidenav button" ui-sref="app.drafts-projects" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                      <md-icon md-font-icon="mdi mdi-pencil-box-outline mdi-lg"></md-icon>
+                      <span ng-show="responsiveCtrl.sidenavOpen">Drafts</span>
+                      <span flex></span>
+                      <h6 ng-if="sidenavCtrl.draftsLength">{{sidenavCtrl.draftsLength}}</h6>
+                    </md-button>
+                  </md-item>
 
-                  <md-subheader layout="row" layout-align="start center">
-                    <span class="subheader mono">Discover</span>
-                  </md-subheader>
+                  <md-divider></md-divider>
                   <md-item>
                     <md-button aria-label="sidenav button" ui-sref="app.now" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
                       <md-icon md-font-icon="mdi mdi-flash mdi-lg"></md-icon>
@@ -95,9 +101,7 @@
                       <span flex></span>
                     </md-button>
                   </md-item>
-                  <md-subheader>
-                    <span class="subheader mono">More</span>
-                  </md-subheader>
+                  <md-divider></md-divider>
                   <md-item>
                     <md-button aria-label="sidenav button" ui-sref="app.support" ui-sref-active="active md-accent" flex class="deemphasize center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
                       <md-icon md-font-icon="mdi mdi-auto-fix mdi-lg"></md-icon>

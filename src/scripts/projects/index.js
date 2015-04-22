@@ -1,0 +1,19 @@
+'use strict';
+
+require('famous-angular');
+require('ngCordova');
+
+var modulename = 'projects';
+
+module.exports = function(namespace) {
+
+  var fullname = namespace + '.' + modulename;
+
+  var angular = require('angular');
+  var app = angular.module(fullname, ['famous.angular', 'ngCordova']);
+  // inject:folders start
+  require('./controllers')(app);
+  // inject:folders end
+
+  return app;
+};

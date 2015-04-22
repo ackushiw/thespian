@@ -4,9 +4,9 @@ var controllername = 'main';
 module.exports = function(app) {
   /*jshint validthis: true */
 
-  var deps = ['$rootScope', '$mdMedia', '$mdDialog', '$famous', '$timeline', '$window', '$log'];
+  var deps = ['$rootScope', '$mdMedia', '$mdDialog', '$famous', '$timeline', 'FBURL', 'currentAuth', '$window', '$log'];
 
-  function controller($rootScope, $mdMedia, $mdDialog, $famous, $timeline, $window, $log) {
+  function controller($rootScope, $mdMedia, $mdDialog, $famous, $timeline, FBURL, currentAuth, $window, $log) {
     var vm = this;
 
     //init
@@ -24,6 +24,7 @@ module.exports = function(app) {
 
     // tests
     vm.message = 'Hello World';
+    console.log('mainCtrl:', currentAuth);
     vm.test = function() {
       $log.log('test button');
     }
@@ -31,6 +32,12 @@ module.exports = function(app) {
     //activate functions
     var activate = function() {
       vm.openResumeWizard = function($event) {
+        //firebase
+        var draftsRef = new Firebase(FBURL + '/drafts-projects/' + currentAuth.uid);
+        var currentProject = draftsRef.push({
+          creator: currentAuth.uid,
+          updated: Firebase.ServerValue.TIMESTAMP
+        });
         $log.log('open app seasame');
         var parentEl = angular.element(document.body);
         $mdDialog.show({
@@ -38,8 +45,11 @@ module.exports = function(app) {
           targetEvent: $event,
           template: require('../views/dialogs/resume-wizard.html'),
           locals: {
+            draftObj: currentProject,
             items: 'test'
-          }
+          },
+          controller: 'main.projects.create',
+          controllerAs: 'projectCreateCtrl'
         });
       };
 
