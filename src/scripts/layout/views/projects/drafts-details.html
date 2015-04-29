@@ -1,0 +1,37 @@
+<fa-modifier>
+  <fa-view>
+    <fa-modifier fa-translate="[0,0,1]" fa-size="[undefined,60]">
+      <fa-surface>
+        <md-toolbar>
+          <div class="md-toolbar-tools" layout="row">
+            <span>{{detailsCtrl.draftObject.title || 'Project Title'}}</span>
+          </div>
+        </md-toolbar>
+      </fa-surface>
+    </fa-modifier>
+    <fa-modifier>
+      <fa-scroll-view>
+        <fa-modifier fa-size="[undefined,60]">
+          <fa-view>
+            <fa-modifier>
+              <fa-surface class="full-height" fa-size="[undefined,60]">
+
+              </fa-surface>
+            </fa-modifier>
+          </fa-view>
+        </fa-modifier>
+        <fa-modifier>
+          <fa-view>
+            <fa-modifier>
+              <fa-surface class="full-height">
+                <md-content class="md-padding" layout-fill>
+                  <create-form id="{{detailsCtrl.params}}" user="{{detailsCtrl.userId}}"></create-form>
+                </md-content>
+              </fa-surface>
+            </fa-modifier>
+          </fa-view>
+        </fa-modifier>
+      </fa-scroll-view>
+    </fa-modifier>
+  </fa-view>
+</fa-modifier>

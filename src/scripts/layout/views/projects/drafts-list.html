@@ -1,0 +1,65 @@
+<fa-modifier>
+  <fa-view>
+    <fa-modifier fa-translate="[0,0,1]" fa-size="[undefined, 60]">
+      <fa-surface>
+        <md-toolbar>
+          <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+            <h3>Drafts</h3>
+            <span flex></span>
+            <input class="search md-whiteframe-z1" type="search" ng-model="draftListCtrl.search" ng-if="draftListCtrl.searchShow" placeholder="search">
+            <md-button aria-label="toggle search" class="md-icon-button" ng-click="draftListCtrl.searchShow = !draftListCtrl.searchShow">
+              <md-icon md-font-icon="mdi mdi-magnify mdi-lg"></md-icon>
+            </md-button>
+
+          </div>
+        </md-toolbar>
+
+      </fa-surface>
+    </fa-modifier>
+    <fa-modifier>
+      <fa-scroll-view fa-pipe-from="draftListCtrl.scrollEvents">
+        <fa-modifier fa-size="[undefined, 68]">
+          <fa-view>
+            <fa-modifier>
+              <fa-surface fa-pipe-to="draftListCtrl.scrollEvents" fa-size="[undefined, 68]">
+                <md-content class="md-padding" layout-fill>
+
+                </md-content>
+
+              </fa-surface>
+            </fa-modifier>
+          </fa-view>
+        </fa-modifier>
+        <fa-modifier ng-repeat="item in draftListCtrl.syncList | orderBy:-'item.updated' | filter:draftListCtrl.search" fa-size="[undefined, 65]">
+          <fa-view>
+            <fa-modifier>
+              <fa-surface fa-pipe-to="draftListCtrl.scrollEvents" fa-size="[undefined, 65]" class="full-height fire-list">
+                <div layout="row" ng-init="showOptions = false">
+                  <md-button aria-label="edit draft" layout-fill layout="row" layout-align="start center" ui-sref="app.drafts.edit({id:item.$id})">
+                    <md-checkbox aria-label="check off draft" ng-model="showOptions"></md-checkbox>
+
+                    <div layout="column" layout-align="start start">
+                      <b class="capitalize"><span>{{item.title}}</span></b>
+                      <p>{{item.description}}</p>
+                    </div>
+
+                  </md-button>
+                  <md-button aria-label="delete" ng-click="draftListCtrl.syncList.$remove(item)">
+                    <md-icon md-font-icon="mdi mdi-delete mdi-lg"></md-icon>
+                  </md-button>
+                </div>
+                <md-divider ng-if="!$last"></md-divider>
+
+              </fa-surface>
+            </fa-modifier>
+          </fa-view>
+        </fa-modifier>
+      </fa-scroll-view>
+    </fa-modifier>
+    <fa-modifier fa-translate="[0,0,-1]">
+      <fa-surface class="full-height" fa-pipe-to="draftListCtrl.scrollEvents">
+        <md-content class="md-whiteframe-z1" layout-fill></md-content>
+      </fa-surface>
+    </fa-modifier>
+  </fa-view>
+</fa-modifier>

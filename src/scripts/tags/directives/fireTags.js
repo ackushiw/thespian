@@ -10,13 +10,13 @@ module.exports = function(app) {
     var fireTagsCtrl = this;
 
     //firebase
-    var baseUrl = FBURL + '/actorsProfiles/' + fireTagsCtrl.userId + '/' + fireTagsCtrl.title;
+    var baseUrl = FBURL + '/' + fireTagsCtrl.index + '/' + fireTagsCtrl.userId + '/' + fireTagsCtrl.title;
     var baseRef = new Firebase(baseUrl);
     //firebase tag
-    var tagLibUrl = FBURL + '/lib-' + fireTagsCtrl.title;
+    var tagLibUrl = FBURL + '/' + fireTagsCtrl.location;
     var tagLibRef = new Firebase(tagLibUrl);
     //firebase user
-    var userUrl = FBURL + '/actorsProfiles/' + fireTagsCtrl.userId;
+    var userUrl = FBURL + '/' + fireTagsCtrl.index + '/' + fireTagsCtrl.userId;
 
     function firebaseCallback(error) {
       if(error) {
@@ -98,7 +98,8 @@ module.exports = function(app) {
         title: '@', // '@' reads attribute value, '=' provides 2-way binding, '&" works with functions
         userId: '@',
         userName: '@',
-        location: '@'
+        location: '@',
+        index: '@'
       },
       controller: controller,
       controllerAs: 'fireTagsCtrl',

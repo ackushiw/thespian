@@ -70,7 +70,7 @@
                             <input aria-label="eyes" ng-model="userStats.eyesDetails">
                           </md-input-container>
                         </h4>
-                        <fire-tags title="eyes" user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} location="lib-eyes"></fire-tags>
+                        <fire-tags title="eyes" user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} location="lib-eyes" index="actorsProfiles"></fire-tags>
                       </section>
 
                       <section layout="column" layout-fill>
@@ -81,7 +81,7 @@
                           </md-input-container>
                         </h4>
 
-                        <fire-tags user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} title="hair" location="lib-hair"></fire-tags>
+                        <fire-tags user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} title="hair" location="lib-hair" index="actorsProfiles"></fire-tags>
                       </section>
                     </div>
 
@@ -93,7 +93,7 @@
                           <input aria-label="hair color" ng-model="userStats.voiceType">
                         </md-input-container>
                       </h4>
-                      <fire-tags user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} title="voice" location="lib-voice"></fire-tags>
+                      <fire-tags user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} title="voice" location="lib-voice" index="actorsProfiles"></fire-tags>
 
                     </section>
 
@@ -102,7 +102,7 @@
                         <h5 style="margin-bottom:0;" flex class="md-display-1 display">Union Membership</h5>
                         <md-divider></md-divider>
                       </span>
-                      <fire-tags user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} title="unions" location="lib-unions"></fire-tags>
+                      <fire-tags user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} title="unions" location="lib-unions" index="actorsProfiles"></fire-tags>
 
                     </section>
                     <section layout="column">
@@ -110,7 +110,7 @@
                         <h5 style="margin-bottom:0;" class="md-display-1 display" flex>Skills</h5>
                       </span>
 
-                      <fire-tags user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} title="skills" location="lib-skills"></fire-tags>
+                      <fire-tags user-id="{{statsCtrl.user}}" user-name={{userStats.actorName}} title="skills" location="lib-skills" index="actorsProfiles"></fire-tags>
 
                     </section>
                   </md-content>

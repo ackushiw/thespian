@@ -1,28 +1,10 @@
 //imports
-//famous
-.full-screen {
-  position: fixed;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-.full-height,
-.full-height .fa-surface {
-  height: 100%;
-}
-.full-width,
-.full-width .fa-surface {
-  width: 100%;
-}
+@import 'famous';
+@import 'colors';
+@import 'fire-list';
 .lg-content {
   padding: 60px 16px 16px;
 }
-//colors
-$accent-color: pink;
-$text-display: rgba(0,0,0,0.54);
-$text-black: rgba(0,0,0,0.87);
-$text-white: white;
 //fonts
 $default-font: 'Cutive', Serif;
 $mono-type: 'Cutive Mono', 'Courier New', Courier, monospace;

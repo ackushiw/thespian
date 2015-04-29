@@ -25,7 +25,7 @@ module.exports = function(namespace) {
 
   app.config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
-      $urlRouterProvider.otherwise('/app');
+      $urlRouterProvider.otherwise('app');
       $stateProvider.state('landing', {
         url: '/welcome',
         template: require('./views/home.html'),
@@ -143,6 +143,63 @@ module.exports = function(namespace) {
         views: {
           'expanded@app': {
             template: require('./views/profile/groups.html')
+          }
+        }
+      }).state('app.messages', { //user messages view
+        url: '/messages'
+      }).state('app.projects', { // user projects view
+        url: 'projects',
+        views: {
+          'topnav': {
+            template: require('./views/default-topnav.html')
+          },
+          'sidenav': {
+            template: require('./views/default-sidenav.html'),
+            controller: fullname + '.sidenav',
+            controllerAs: 'sidenavCtrl'
+          },
+          'main': {
+            template: require('./views/projects/drafts-list.html')
+          },
+          'expanded': {
+            template: require('./views/projects/drafts-details.html')
+          },
+          'action': {
+            template: require('./views/default-action.html')
+          }
+        }
+      }).state('app.drafts', { // user drafts of projects
+        url: 'drafts',
+        views: {
+          'topnav': {
+            template: require('./views/default-topnav.html')
+          },
+          'sidenav': {
+            template: require('./views/default-sidenav.html'),
+            controller: fullname + '.sidenav',
+            controllerAs: 'sidenavCtrl'
+          },
+          'main@app': {
+            template: require('./views/projects/drafts-list.html'),
+            controller: 'main.projects.draftsList',
+            controllerAs: 'draftListCtrl'
+          },
+          'expanded@app': {
+            template: require('./views/projects/drafts-details.html'),
+            controller: 'main.projects.draftsDetail',
+            controllerAs: 'detailsCtrl'
+          },
+          'action': {
+            template: require('./views/default-action.html')
+          }
+        }
+      }).state('app.drafts.edit', {
+        url: '/:id',
+        views: {
+          'expanded@app': {
+            template: require('./views/projects/drafts-details.html'),
+            controller: 'main.projects.draftsDetail',
+            controllerAs: 'detailsCtrl'
           }
         }
       });

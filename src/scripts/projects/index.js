@@ -13,6 +13,7 @@ module.exports = function(namespace) {
   var app = angular.module(fullname, ['famous.angular', 'ngCordova']);
   // inject:folders start
   require('./controllers')(app);
+  require('./directives')(app);
   // inject:folders end
 
   return app;
