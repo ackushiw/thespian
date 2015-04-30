@@ -1,9 +1,9 @@
 <fa-modifier>
-  <fa-scroll-view>
+  <fa-scroll-view fa-pipe-from="expandedCtrl.scrollEventHandler">
     <fa-modifier fa-proportions="[1,.5625]">
       <fa-view>
         <fa-modifier fa-proportions="[1,.5625]">
-          <fa-surface class="full-height">
+          <fa-surface class="full-height" fa-pipe-to="expandedCtrl.scrollEventHandler">
             <div class="CoverImage FlexEmbed FlexEmbed--16by9" style="background-image:url(https://lh6.googleusercontent.com/-TOlHURd5xfw/UgkQcQ-CHlI/AAAAAAAA49o/TsxpOfCWAIk/w1207-h905-no/IMG_20130724_174059.jpg)"></div>
           </fa-surface>
         </fa-modifier>
@@ -13,16 +13,72 @@
     <fa-modifier>
       <fa-view>
         <fa-modifier>
-          <fa-surface class="full-height">
+          <fa-surface class="full-height" fa-pipe-to="expandedCtrl.scrollEventHandler">
             <md-toolbar>
-              <div class="md-toolbar-tools">Stats</div>
+              <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span>Action Center</span>
+                <span>edit header image</span>
+              </div>
             </md-toolbar>
 
-            <md-content layout-fill flex="100" class="md-padding">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi unde modi animi ratione, reprehenderit atque, harum veniam ullam tempore optio perspiciatis quam cum magnam nisi assumenda corporis itaque doloremque repellat.</p>
-              <pre>{{fireAuth}}</pre>
-              <p>have the action button create a new firebase $varible on click... from there add catagories... if not finished add #draft</p>
-              <p>Add trash can</p>
+            <md-content layout-fill layout="column" flex="100" class="md-padding action-page">
+              <div layout="column" layout-md="column" layout-gt-lg="row">
+                <div layout="row" layout-md="column" flex>
+                  <div class="button-container" flex="50">
+                    <md-button aria-label="action page button" layout-fill layout="column" layout-align="space-between center" ui-sref="app.profile.stats" class="md-raised">
+                      <div>
+                        <p>Click here to edit your profile</p>
+                      </div>
+
+                      <div layout="row" layout-align="space-between center">
+                        <md-icon md-font-icon="mdi mdi-account mdi-lg"></md-icon>
+                        <span>Stats</span>
+                      </div>
+                    </md-button>
+                  </div>
+                  <div class="button-container" flex="50">
+                    <md-button aria-label="action page button" layout-fill layout="column" layout-align="space-between center" ui-sref="" class="md-raised">
+                      <p>Click here to create a project</p>
+                      <div layout="row" layout-align="space-between center">
+                        <md-icon md-font-icon="mdi mdi-bell mdi-lg"></md-icon>
+                        <span>title 2</span>
+                      </div>
+                    </md-button>
+                  </div>
+                </div>
+
+              </div>
+              <div layout="row" layout-md="column" flex>
+                <div class="button-container" flex="33">
+                  <md-button aria-label="action page button" layout-fill layout="column" layout-align="space-between center" ui-sref="" class="md-raised">
+                    <span>title</span>
+                    <div layout="row" layout-align="space-between center">
+                      <md-icon md-font-icon="mdi mdi-bell mdi-lg"></md-icon>
+                      <span>title 2</span>
+                    </div>
+                  </md-button>
+                </div>
+                <div class="button-container" flex="33">
+                  <md-button aria-label="action page button" layout-fill layout="column" layout-align="space-between center" ui-sref="" class="md-raised">
+                    <span>title</span>
+                    <div layout="row" layout-align="space-between center">
+                      <md-icon md-font-icon="mdi mdi-bell mdi-lg"></md-icon>
+                      <span>title 2</span>
+                    </div>
+                  </md-button>
+                </div>
+                <div class="button-container" flex="33">
+                  <md-button aria-label="action page button" layout-fill layout="column" layout-align="space-between center" ui-sref="" class="md-raised">
+                    <span>title</span>
+                    <div layout="row" layout-align="space-between center">
+                      <md-icon md-font-icon="mdi mdi-bell mdi-lg"></md-icon>
+                      <span>title 2</span>
+                    </div>
+                  </md-button>
+                </div>
+              </div>
+              </div>
+
             </md-content>
 
           </fa-surface>

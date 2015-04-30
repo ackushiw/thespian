@@ -70,7 +70,9 @@ module.exports = function(namespace) {
             controllerAs: 'mainViewCtrl'
           },
           'expanded': {
-            template: require('./views/default-expanded.html')
+            template: require('./views/default-expanded.html'),
+            controller: fullname + '.expanded',
+            controllerAs: 'expandedCtrl'
           },
           'action': {
             template: require('./views/default-action.html')
