@@ -1,6 +1,6 @@
 <fa-modifier>
   <fa-view>
-    <fa-modifier>
+    <fa-modifier fa-translate="[0,0,1]">
       <fa-surface>
         <md-toolbar>
           <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
@@ -9,10 +9,33 @@
             </md-button>
             <span>Companies</span>
             <span flex> </span>
+            <span>find a group</span>
           </div>
         </md-toolbar>
       </fa-surface>
-      </fa-surface>
     </fa-modifier>
+    <fa-modifier>
+      <fa-scroll-view>
+        <fa-modifier fa-size="[undefined, 60]">
+          <fa-view>
+
+          </fa-view>
+        </fa-modifier>
+        <fa-modifier>
+          <fa-view>
+            <fa-modifier>
+              <fa-surface>
+
+                <p>A list of user's groups</p>
+              </fa-surface>
+            </fa-modifier>
+          </fa-view>
+        </fa-modifier>
+      </fa-scroll-view>
+    </fa-modifier>
+    <fa-modifier fa-translate="[0,0,-1]">
+      <fa-surface fa-background-color="'white'"></fa-surface>
+    </fa-modifier>
+
   </fa-view>
 </fa-modifier>

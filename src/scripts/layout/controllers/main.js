@@ -52,6 +52,27 @@ module.exports = function(app) {
           controllerAs: 'projectCreateCtrl'
         });
       };
+      vm.openGroupWizard = function($event) {
+        $log.log('open group seasame');
+        //firebase
+        var groupsRef = new Firebase(FBURL + '/groups-projects/' + currentAuth.uid);
+        var currentGroup = groupsRef.push({
+          creator: currentAuth.uid,
+          updated: Firebase.ServerValue.TIMESTAMP
+        });
+        var parentEl = angular.element(document.body);
+        $mdDialog.show({
+          parent: parentEl,
+          targetEvent: $event,
+          template: require('../views/dialogs/groups-wizard.html'),
+          locals: {
+            groupObj: currentGroup,
+            items: 'test'
+          },
+          controller: 'main.groups.create',
+          controllerAs: 'groupCreateCtrl'
+        });
+      };
 
     };
     activate();

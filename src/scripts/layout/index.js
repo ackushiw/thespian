@@ -145,6 +145,9 @@ module.exports = function(namespace) {
         views: {
           'expanded@app': {
             template: require('./views/profile/groups.html')
+          },
+          'action@app': {
+            template: require('./views/groups/action-button.html')
           }
         }
       }).state('app.messages', { //user messages view
