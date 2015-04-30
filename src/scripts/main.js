@@ -8,6 +8,7 @@ var app = angular.module(namespace, [
     // inject:modules start
     require('./groups')(namespace).name,
         require('./layout')(namespace).name,
+        require('./messages')(namespace).name,
         require('./profile')(namespace).name,
         require('./projects')(namespace).name,
         require('./tags')(namespace).name
