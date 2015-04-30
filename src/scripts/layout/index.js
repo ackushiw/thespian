@@ -151,7 +151,26 @@ module.exports = function(namespace) {
           }
         }
       }).state('app.messages', { //user messages view
-        url: '/messages'
+        url: '/messages',
+        views: {
+          'topnav': {
+            template: require('./views/default-topnav.html')
+          },
+          'sidenav': {
+            template: require('./views/default-sidenav.html'),
+            controller: fullname + '.sidenav',
+            controllerAs: 'sidenavCtrl'
+          },
+          'main@app': {
+            template: require('./views/messages/inbox-list.html')
+          },
+          'expanded@app': {
+            template: require('./views/messages/conversation.html')
+          },
+          'action': {
+            template: require('./views/default-action.html')
+          }
+        }
       }).state('app.projects', { // user projects view
         url: 'projects',
         views: {
