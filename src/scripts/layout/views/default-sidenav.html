@@ -118,7 +118,7 @@
                   </md-item>
 
                   <md-item>
-                    <md-button aria-label="log out" class="capitalize block sidemenu-button deemphasize" ng-class="{'md-warn': logoutHover}" ng-click="fireAuth.$unauth()" flex class="md-warn" layout="row" layout-align="space-between center" ng-mouseenter="logoutHover = true" ng-mouseleave="logoutHover = false">
+                    <md-button aria-label="log out" class="capitalize block sidemenu-button deemphasize" ng-class="{'md-warn': logoutHover}" ng-click="fireAuth.$unauth()" ui-sref="landing" flex class="md-warn" layout="row" layout-align="space-between center" ng-mouseenter="logoutHover = true" ng-mouseleave="logoutHover = false">
                       <md-icon md-font-icon="mdi mdi-power mdi-lg"></md-icon>
                       <span ng-show="responsiveCtrl.sidenavOpen">Log out</span>
                       <span flex></span>

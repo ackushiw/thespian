@@ -22,10 +22,6 @@ module.exports = function(namespace) {
   require('./directives')(app);
   require('./services')(app);
   // inject:folders end
-  document.addEventListener("deviceready", function() {
-    //$cordovaPlugin.someFunction().then(success, error);
-    console.log('cordova ready');
-  }, false);
 
   app.config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
@@ -47,15 +43,37 @@ module.exports = function(namespace) {
         controller: fullname + '.main',
         controllerAs: 'appCtrl',
         resolve: {
-          'currentAuth': [fullname + '.auth', '$rootScope', '$state', 'FBURL', '$log', function(Auth, $rootScope, $state, FBURL, $log) {
+          'currentAuth': [fullname + '.auth', '$rootScope', '$mdDialog', '$state', 'FBURL', '$window', '$log', function(Auth, $rootScope, $mdDialog, $state, FBURL, $window, $log) {
             return Auth.$requireAuth().then(function(data) {
               $rootScope.fireAuth = Auth;
               var userPresenceRef = new Firebase(FBURL + '/user-status/' + data.uid + '/online');
               userPresenceRef.set(true);
               return data;
             }).catch(function(error) {
+              $log.log($window.location.href);
               $log.error('Error: ', error);
-              $state.go('landing');
+              //$state.go('landing');
+              var confirm = $mdDialog.confirm()
+                //.parent(angular.element(document.body))
+                .title('Login?')
+                .content('All of the banks have agreed to forgive you your debts.')
+                .ariaLabel('Login')
+                .ok('Go!')
+                .cancel('Cancel')
+                .hasBackdrop(true);
+              $mdDialog.show(confirm).then(function() {
+                Firebase.goOnline();
+                Auth.$authWithOAuthPopup("google").then(function(authData) {
+                  console.log("Logged in as:", authData.uid);
+                  $state.reload();
+                }).catch(function(error) {
+                  console.error("Authentication failed:", error);
+                });
+              }, function() {
+                console.log('login canceled');
+                $state.go('landing');
+              });
+
             });
           }]
         }

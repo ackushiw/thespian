@@ -55,6 +55,7 @@ module.exports = function(app) {
 
     //activate functions
     var activate = function() {
+
       vm.openResumeWizard = function($event) {
         //firebase
         var draftsRef = new Firebase(FBURL + '/drafts-projects/' + currentAuth.uid);

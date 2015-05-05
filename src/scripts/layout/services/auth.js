@@ -3,15 +3,13 @@ var servicename = 'auth';
 
 module.exports = function(app) {
 
-  var dependencies = ['$firebaseAuth', '$state', 'FBURL', '$log'];
+  var dependencies = ['$mdDialog', '$firebaseAuth', '$state', 'FBURL', '$log'];
 
-  function service($firebaseAuth, $state, FBURL, $log) {
+  function service($mdDialog, $firebaseAuth, $state, FBURL, $log) {
     var ref = new Firebase(FBURL);
 
     function disconnect() {
-      $state.go('landing');
-      ref.unauth();
-      $log.log('disconnected');
+
     }
     ref.onAuth(function(data) {
       if(data) {
