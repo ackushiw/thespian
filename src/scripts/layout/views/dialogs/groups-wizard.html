@@ -1,7 +1,7 @@
 <md-dialog aria-label="resume wizard dialog" flex-gt-lg="66">
   <md-toolbar>
     <div class="md-toolbar-tools" layout="row" layout-align="space-around center">
-      <span>{{project.title || 'New Group'}}</span>
+      <span>{{group.title || 'New Group'}}</span>
       <span flex="66" flex-sm="33"></span>
       <md-button aria-label="button" ng-click="">
         <md-icon md-font-icon="" class="mdi mdi-file mdi-lg"></md-icon>
@@ -18,24 +18,22 @@
     <md-tabs md-dynamic-height md-border-bottom md-align-tabs="bottom" md-stretch-tabs="never">
       <md-tab label="Type">
         <md-content class="md-padding">
-          <pre>{{project}}</pre>
+          <pre hide>{{group}}</pre>
           <h4 style="margin:0">
             <md-input-container>
               <label>Title</label>
-              <input type="text" ng-model="project.title" ng-blur="project.$priority = project.title">
+              <input type="text" ng-model="group.title" ng-blur="group.$priority = group.title">
             </md-input-container>
           </h4>
           <md-input-container>
             <label>Desciption</label>
-            <textarea rows="1" ng-model="project.description"></textarea>
+            <textarea rows="1" ng-model="group.description"></textarea>
           </md-input-container>
-          <md-select ng-model="project.type" placeholder="type">
+          <md-select ng-model="group.type" placeholder="type">
             <md-option value="theater">Theater</md-option>
             <md-option value="film">Film</md-option>
             <md-option value="tv">TV</md-option>
           </md-select>
-          <md-switch ng-model="project.forResume">Add to Resume</md-switch>
-          <p>A project can be created for the past, present and future</p>
         </md-content>
       </md-tab>
       <md-tab label="two">

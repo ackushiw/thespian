@@ -22,6 +22,10 @@ module.exports = function(namespace) {
   require('./directives')(app);
   require('./services')(app);
   // inject:folders end
+  document.addEventListener("deviceready", function() {
+    //$cordovaPlugin.someFunction().then(success, error);
+    console.log('cordova ready');
+  }, false);
 
   app.config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
@@ -43,9 +47,11 @@ module.exports = function(namespace) {
         controller: fullname + '.main',
         controllerAs: 'appCtrl',
         resolve: {
-          'currentAuth': [fullname + '.auth', '$state', '$log', function(Auth, $state, $log) {
+          'currentAuth': [fullname + '.auth', '$rootScope', '$state', 'FBURL', '$log', function(Auth, $rootScope, $state, FBURL, $log) {
             return Auth.$requireAuth().then(function(data) {
-              $log.log('Security check passed: ', data);
+              $rootScope.fireAuth = Auth;
+              var userPresenceRef = new Firebase(FBURL + '/user-status/' + data.uid + '/online');
+              userPresenceRef.set(true);
               return data;
             }).catch(function(error) {
               $log.error('Error: ', error);
@@ -144,14 +150,37 @@ module.exports = function(namespace) {
         url: '/companies',
         views: {
           'expanded@app': {
-            template: require('./views/profile/groups.html')
+            template: require('./views/profile/groups.html'),
+            controller: 'main.groups.userGroups',
+            controllerAs: 'userGroupsCtrl'
           },
           'action@app': {
             template: require('./views/groups/action-button.html')
           }
         }
+      }).state('app.profile.groups.detail', {
+        url: '/:id',
+        views: {
+          'expanded@app': {
+            template: require('./views/groups/group-page.html'),
+            controller: 'main.groups.main',
+            controllerAs: 'groupPageCtrl'
+          }
+        },
+        resolve: {
+          'groupId': ['$stateParams', '$q', '$log', function($stateParams, $q, $log) {
+            return $q(function(resolve, reject) {
+              if($stateParams.id) {
+                resolve($stateParams.id);
+              } else {
+                $log.error('Error: no group id');
+                reject('No group id');
+              }
+            })
+          }]
+        }
       }).state('app.messages', { //user messages view
-        url: '/messages',
+        url: 'messages',
         views: {
           'topnav': {
             template: require('./views/default-topnav.html')
@@ -162,13 +191,13 @@ module.exports = function(namespace) {
             controllerAs: 'sidenavCtrl'
           },
           'main@app': {
-            template: require('./views/messages/inbox-list.html')
+            template: require('./views/messages/inbox.html')
           },
           'expanded@app': {
             template: require('./views/messages/conversation.html')
           },
           'action': {
-            template: require('./views/default-action.html')
+            template: require('./views/messages/action.html')
           }
         }
       }).state('app.projects', { // user projects view

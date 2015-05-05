@@ -24,7 +24,7 @@ module.exports = function(app) {
       console.log('firebase object', vm.googleProfile);
       vm.userPicture = vm.googleProfile.picture;
       vm.profileMenuList = [{
-        title: 'Stats',
+        title: 'About',
         link: 'app.profile.stats',
         priority: '1',
         icon: 'mdi-account',
@@ -36,26 +36,26 @@ module.exports = function(app) {
         icon: 'mdi-file-document-box',
         type: 'default'
       }, {
-        title: 'Headshot',
+        title: 'Pictures',
         link: 'app.profile.pictures',
         priority: '2',
         icon: 'mdi-file-image-box',
         type: 'default'
       }, {
-        title: 'Reel',
+        title: 'Videos',
         link: 'app.profile.videos',
         priority: '2',
         icon: 'mdi-filmstrip',
         type: 'default'
       }, {
-        title: 'News',
+        title: 'Articles & Reviews',
         link: 'app.profile.news',
         priority: '2',
         icon: 'mdi-newspaper',
         type: 'default'
 
       }, {
-        title: 'Companies',
+        title: 'Groups',
         link: 'app.profile.groups',
         priority: '2',
         icon: 'mdi-google-circles-communities',

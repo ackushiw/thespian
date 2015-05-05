@@ -4,9 +4,9 @@ var controllername = 'main';
 module.exports = function(app) {
   /*jshint validthis: true */
 
-  var deps = ['$rootScope', '$mdMedia', '$mdDialog', '$famous', '$timeline', 'FBURL', 'currentAuth', '$window', '$log'];
+  var deps = ['$rootScope', '$cordovaDevice', '$mdMedia', '$mdDialog', '$famous', '$timeline', 'FBURL', 'currentAuth', '$state', '$window', '$log'];
 
-  function controller($rootScope, $mdMedia, $mdDialog, $famous, $timeline, FBURL, currentAuth, $window, $log) {
+  function controller($rootScope, $cordovaDevice, $mdMedia, $mdDialog, $famous, $timeline, FBURL, currentAuth, $state, $window, $log) {
     var vm = this;
 
     //init
@@ -17,10 +17,34 @@ module.exports = function(app) {
     $rootScope.lgScreen = $mdMedia('lg');
     $rootScope.gtLgScreen = $mdMedia('gt-lg');
 
+    // function disconnect() {
+    //   $state.go('landing');
+    //   $log.log('disconnected');
+    // }
+
     //famous
     var Transitionable = $famous['famous/transitions/Transitionable'];
     var Easing = $famous['famous/transitions/Easing'];
     var EventHandler = $famous['famous/core/EventHandler'];
+
+    // //firebase
+    // var userStatusUrl = FBURL + '/user-status/' + currentAuth.uid;
+    // var userPresenceRef = new Firebase(userStatusUrl + '/online');
+    // var connectionsRef = new Firebase(userStatusUrl + '/connections');
+    // var lastOnlineRef = new Firebase(userStatusUrl + '/lastOnline');
+    // userPresenceRef.on('value', function(snap) {
+    //   if(snap.val() === true) {
+    //     var connectionDetails = {
+    //       time: Firebase.ServerValue.TIMESTAMP
+    //     };
+    //     var con = connectionsRef.push(connectionDetails);
+    //     con.onDisconnect().remove();
+    //     userPresenceRef.onDisconnect().set(false, vm.test);
+    //     lastOnlineRef.onDisconnect().set(Firebase.ServerValue.TIMESTAMP);
+    //   } else {
+    //     disconnect();
+    //   }
+    // });
 
     // tests
     vm.message = 'Hello World';
@@ -55,11 +79,12 @@ module.exports = function(app) {
       vm.openGroupWizard = function($event) {
         $log.log('open group seasame');
         //firebase
-        var groupsRef = new Firebase(FBURL + '/groups-projects/' + currentAuth.uid);
+        var groupsRef = new Firebase(FBURL + '/groups');
         var currentGroup = groupsRef.push({
           creator: currentAuth.uid,
           updated: Firebase.ServerValue.TIMESTAMP
         });
+        currentGroup.child('members').child(currentAuth.uid).set(100);
         var parentEl = angular.element(document.body);
         $mdDialog.show({
           parent: parentEl,
@@ -67,6 +92,7 @@ module.exports = function(app) {
           template: require('../views/dialogs/groups-wizard.html'),
           locals: {
             groupObj: currentGroup,
+            userId: currentAuth.uid,
             items: 'test'
           },
           controller: 'main.groups.create',

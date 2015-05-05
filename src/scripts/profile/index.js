@@ -1,5 +1,5 @@
 'use strict';
-
+require('angular-ui-router');
 require('famous-angular');
 require('ngCordova');
 require('angular-material');
@@ -12,7 +12,7 @@ module.exports = function(namespace) {
   var fullname = namespace + '.' + modulename;
 
   var angular = require('angular');
-  var app = angular.module(fullname, ['famous.angular', 'ngCordova', 'ngMaterial', 'firebase']);
+  var app = angular.module(fullname, ['ui.router', 'famous.angular', 'ngCordova', 'ngMaterial', 'firebase']);
   // inject:folders start
   require('./controllers')(app);
   require('./directives')(app);

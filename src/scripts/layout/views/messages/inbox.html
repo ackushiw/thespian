@@ -1,0 +1,58 @@
+<fa-modifier>
+  <fa-view>
+    <fa-modifier fa-translate="[0,0,1]">
+      <fa-surface>
+        <md-toolbar layout="column">
+          <div class="md-toolbar-tools">
+            <span>Inbox</span>
+          </div>
+
+          <md-tabs md-stretch-tabs="always">
+            <md-tab>
+              <md-tab-label class="white">
+                <md-icon md-font-icon="mdi mdi-bell mdi-lg"></md-icon>
+                <span hide>Inbox</span>
+              </md-tab-label>
+            </md-tab>
+            <md-tab>
+              <md-tab-label class="white">
+                <md-icon md-font-icon="mdi mdi-bell mdi-lg"></md-icon>
+                <span hide>Groups</span>
+              </md-tab-label>
+            </md-tab>
+            <md-tab>
+              <md-tab-label class="white">
+                <md-icon md-font-icon="mdi mdi-bell mdi-lg"></md-icon>
+                <span hide>Following</span>
+              </md-tab-label>
+            </md-tab>
+          </md-tabs>
+
+        </md-toolbar>
+      </fa-surface>
+    </fa-modifier>
+    <fa-modifier>
+      <fa-scroll-view>
+        <fa-modifier fa-size="[undefined,60]">
+          <fa-view>
+            <fa-modifier>
+              <fa-surface>inbox list</fa-surface>
+            </fa-modifier>
+          </fa-view>
+        </fa-modifier>
+        <fa-modifier>
+          <fa-view>
+            <fa-modifier>
+              <fa-surface>inbox list</fa-surface>
+            </fa-modifier>
+          </fa-view>
+        </fa-modifier>
+      </fa-scroll-view>
+    </fa-modifier>
+    <fa-modifier>
+      <fa-surface fa-background-color="'white'" class="full-height">
+        <div class="md-whiteframe-z1" layout-fill></div>
+      </fa-surface>
+    </fa-modifier>
+  </fa-view>
+</fa-modifier>

@@ -80,10 +80,9 @@ module.exports = function(app) {
         console.log('start', event);
       });
 
-      vm.test = function() {
-        console.log('event sign in');
+      vm.launch = function() {
+        Firebase.goOnline();
         $rootScope.fireAuth.$authWithOAuthPopup('google').then(function(authData) {
-          console.log('logged in as: ', authData.uid);
           $state.go('app.profile');
         }).catch(function(error) {
           console.error('Authentication failed: ', error);

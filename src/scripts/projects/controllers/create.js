@@ -1,5 +1,5 @@
 'use strict';
-var controllername = 'create';
+var controllername = 'create'; //project create
 
 module.exports = function(app) {
   /*jshint validthis: true */
@@ -9,12 +9,12 @@ module.exports = function(app) {
   function controller($scope, $mdDialog, draftObj, $firebaseObject, $log) {
     var vm = this;
     //firebase
-    var draftUrl = draftObj.toString();
+    var draftUrl = groupObj.toString();
     var draftRef = new Firebase(draftUrl);
-    var draftObj = $firebaseObject(draftRef);
+    var syncObj = $firebaseObject(draftRef);
     vm.message = 'Create Project Hello World';
     var activate = function() {
-      draftObj.$bindTo($scope, 'project').then(function() {
+      syncObj.$bindTo($scope, 'project').then(function() {
         $log.log('object bound');
       });
 

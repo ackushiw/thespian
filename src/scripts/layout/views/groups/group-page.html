@@ -1,0 +1,62 @@
+<fa-modifier>
+  <fa-view>
+    <fa-modifier fa-translate="[0,0,1]" fa-size="[undefined, 112]">
+      <fa-surface>
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <md-button aria-label="go back" ui-sref="app.profile.groups" class="md-icon-button">
+              <md-icon md-font-icon="mdi mdi-arrow-left mdi-lg"></md-icon>
+            </md-button>
+            <span>{{groupPageCtrl.sync.title}}</span>
+          </div>
+          <md-tabs>
+            <md-tab>
+              <md-tab-label class="white">About</md-tab-label>
+            </md-tab>
+            <md-tab>
+              <md-tab-label class="white">users</md-tab-label>
+            </md-tab>
+            <md-tab>
+              <md-tab-label class="white">location</md-tab-label>
+            </md-tab>
+            <md-tab>
+              <md-tab-label class="white">projects</md-tab-label>
+            </md-tab>
+            <md-tab>
+              <md-tab-label class="white">info</md-tab-label>
+            </md-tab>
+          </md-tabs>
+        </md-toolbar>
+      </fa-surface>
+    </fa-modifier>
+    <fa-modifier>
+      <fa-scroll-view>
+        <fa-modifier fa-size="[undefined,64]">
+          <fa-view>
+            <fa-modifier>
+              <fa-surface>header</fa-surface>
+            </fa-modifier>
+          </fa-view>
+        </fa-modifier>
+        <fa-modifier>
+          <fa-view>
+            <fa-modifier>
+              <fa-surface class="full-height">
+                <md-content class="md-padding">
+                  <h1>group {{groupPageCtrl.sync.title}}</h1>
+                  <pre>test{{groupPageCtrl.id}}</pre>
+                  <pre>group object: {{groupPageCtrl.sync}}</pre>
+                </md-content>
+              </fa-surface>
+            </fa-modifier>
+          </fa-view>
+        </fa-modifier>
+      </fa-scroll-view>
+    </fa-modifier>
+    <fa-modifier fa-translate="[0,0,-1]">
+      <fa-surface fa-background-color="'white'" class="full-height">
+        <div layout-fill></div>
+      </fa-surface>
+    </fa-modifier>
+  </fa-view>
+</fa-modifier>
