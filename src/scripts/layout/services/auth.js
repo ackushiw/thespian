@@ -7,8 +7,27 @@ module.exports = function(app) {
 
   function service($mdDialog, $firebaseAuth, $state, FBURL, $log) {
     var ref = new Firebase(FBURL);
+    var auth = $firebaseAuth(ref);
 
     function disconnect() {
+      var confirm = $mdDialog.confirm()
+        .title('Login?')
+        .content('All of the banks have agreed to forgive you your debts.')
+        .ariaLabel('Login')
+        .ok('Go!')
+        .cancel('Cancel')
+        .hasBackdrop(true);
+      $mdDialog.show(confirm).then(function() {
+        Firebase.goOnline();
+        auth.$authWithOAuthPopup('google').then(function(authData) {
+          $state.reload();
+        }).catch(function(error) {
+          $log.error('Authentication failed:', error);
+        });
+      }, function() {
+        $log.log('login canceled');
+        $state.go('landing');
+      });
 
     }
     ref.onAuth(function(data) {
@@ -38,7 +57,7 @@ module.exports = function(app) {
       }
     });
 
-    return $firebaseAuth(ref);
+    return auth;
 
   }
   service.$inject = dependencies;

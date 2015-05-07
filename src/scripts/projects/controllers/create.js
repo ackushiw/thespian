@@ -9,7 +9,7 @@ module.exports = function(app) {
   function controller($scope, $mdDialog, draftObj, $firebaseObject, $log) {
     var vm = this;
     //firebase
-    var draftUrl = groupObj.toString();
+    var draftUrl = draftObj.toString();
     var draftRef = new Firebase(draftUrl);
     var syncObj = $firebaseObject(draftRef);
     vm.message = 'Create Project Hello World';

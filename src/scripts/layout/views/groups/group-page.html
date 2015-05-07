@@ -4,13 +4,13 @@
       <fa-surface>
         <md-toolbar>
           <div class="md-toolbar-tools">
-            <md-button aria-label="go back" ui-sref="app.profile.groups" class="md-icon-button">
+            <md-button aria-label="go back" ui-sref="app.profile.groups" class="md-icon-button" style="margin-right:16px;">
               <md-icon md-font-icon="mdi mdi-arrow-left mdi-lg"></md-icon>
             </md-button>
             <span>{{groupPageCtrl.sync.title}}</span>
           </div>
           <md-tabs>
-            <md-tab>
+            <md-tab ui-sref="app.profile.groups.detail({id: groupPageCtrl.id})" ui-sref-active="active">
               <md-tab-label class="white">About</md-tab-label>
             </md-tab>
             <md-tab>
@@ -19,7 +19,7 @@
             <md-tab>
               <md-tab-label class="white">location</md-tab-label>
             </md-tab>
-            <md-tab>
+            <md-tab ui-sref="app.profile.groups.detail({id: groupPageCtrl.id})" ui-sref-active="active">
               <md-tab-label class="white">projects</md-tab-label>
             </md-tab>
             <md-tab>

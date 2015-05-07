@@ -50,11 +50,8 @@ module.exports = function(namespace) {
               userPresenceRef.set(true);
               return data;
             }).catch(function(error) {
-              $log.log($window.location.href);
               $log.error('Error: ', error);
-              //$state.go('landing');
               var confirm = $mdDialog.confirm()
-                //.parent(angular.element(document.body))
                 .title('Login?')
                 .content('All of the banks have agreed to forgive you your debts.')
                 .ariaLabel('Login')
