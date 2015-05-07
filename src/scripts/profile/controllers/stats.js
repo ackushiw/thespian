@@ -14,7 +14,7 @@ module.exports = function(app) {
     var EventHandler = $famous['famous/core/EventHandler'];
     var Transitionable = $famous['famous/transitions/Transitionable'];
     vm.scrollEventHandler = new EventHandler();
-    vm.contentLayout = "row";
+    vm.contentLayout = 'row';
     vm.updateSize = function(height, width) {
       vm.contentSize = new Transitionable([undefined, height]);
       console.log('action height', height);
@@ -22,9 +22,9 @@ module.exports = function(app) {
       vm.contentSize.set([undefined, height]);
 
       if(width < 640) {
-        vm.contentLayout = "column";
+        vm.contentLayout = 'column';
       } else {
-        vm.contentLayout = "row";
+        vm.contentLayout = 'row';
       }
 
     };
@@ -55,7 +55,7 @@ module.exports = function(app) {
 
       function skillsSearch(query) {
         var filteredSkills = skillsRef.orderByKey().equalTo(query);
-        var results = $firebaseArray(filteredSkills)
+        var results = $firebaseArray(filteredSkills);
         results.$loaded().then(function(data) {
           console.log(data);
           return data;

@@ -23,7 +23,8 @@
         "sinon": false,
         "element": false,
         "by": false,
-        "browser": false
+        "browser": false,
+        "Firebase": false
     },
     "predef": [
         "beforeEach",
