@@ -40,12 +40,25 @@
         </fa-modifier>
         <fa-modifier>
           <fa-view>
-            <fa-modifier >
+            <fa-modifier>
               <fa-surface class="full-height">
-                <md-content class="md-padding">
-                  <h1>group {{groupPageCtrl.sync.title}}</h1>
+                <md-content class="md-padding" layout-fill>
+                  <h5><md-icon md-font-icon="mdi mdi-information mdi-lg"></md-icon>About</h5>
                   <pre>test{{groupPageCtrl.id}}</pre>
                   <pre>group object: {{groupPageCtrl.sync}}</pre>
+                  <md-input-container>
+                    <label>Title</label>
+                    <input type="text" ng-model="groupPageCtrl.sync.title">
+                  </md-input-container>
+                  <md-input-container>
+                    <label>Description</label>
+                    <textarea ng-model="groupPageCtrl.sync.description"></textarea>
+                  </md-input-container>
+                  <md-divider></md-divider>
+                  <h5><md-icon md-font-icon="mdi mdi-map-marker mdi-lg"></md-icon> Location</h5>
+                  <h5><md-icon md-font-icon="mdi mdi-clock mdi-lg"></md-icon> Time and Dates</h5>
+                  <h5><md-icon md-font-icon="mdi mdi-label mdi-lg"></md-icon> Labels</h5>
+
                 </md-content>
               </fa-surface>
             </fa-modifier>
