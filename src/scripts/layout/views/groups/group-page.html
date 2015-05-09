@@ -57,9 +57,12 @@
                   <md-divider></md-divider>
                   <h5><md-icon md-font-icon="mdi mdi-map-marker mdi-lg"></md-icon> Location</h5>
                   <div style="width:100%;">
+                    <md-input-container class="map-places">
+                      <input type="text" ng-autocomplete options="groupPageCtrl.searchMap.options" ng-model="groupPageCtrl.searchMap.text" details="groupPageCtrl.searchMap.details" >
+                    </md-input-container>
+                    <md-button aria-label="update map" layout-fill class="md-primary" ng-class="{'md-raised': groupPageCtrl.searchMap.details}" ng-disabled="!groupPageCtrl.searchMap.details" ng-click="groupPageCtrl.updateMap(groupPageCtrl.searchMap.details)">Update Map</md-button>
                     <ui-gmap-google-map ng-init="groupPageCtrl.mapInit()" control="groupPageCtrl.map.control" pan="groupPageCtrl.map.pan" center='groupPageCtrl.map.center' zoom='groupPageCtrl.map.zoom'>
-                      <ui-gmap-search-box template="groupPageCtrl.mapSearch.template" events="groupPageCtrl.mapSearch.events"></ui-gmap-search-box>
-                    </ui-gmap-google-map>
+                      </ui-gmap-google-map>
 
                   </div>
                   <h5><md-icon md-font-icon="mdi mdi-clock mdi-lg"></md-icon> Time and Dates</h5>

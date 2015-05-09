@@ -14,6 +14,9 @@ module.exports = function(app) {
     vm.scrollEvents = new EventHandler();
 
     //firebase
+    var GeoFire = require('geofire');
+    var geofireRef = new Firebase(FBURL + '/z-geofire');
+    var geoFire = new GeoFire(geofireRef);
     var ref = new Firebase(FBURL + '/groups/' + $stateParams.id);
     vm.sync = $firebaseObject(ref);
     vm.message = 'Hello Group World';
@@ -33,19 +36,59 @@ module.exports = function(app) {
         }, 500);
       }
     }
+    vm.updateMap = function (location) {
+      console.log('test', location);
+      vm.sync.address = location.formatted_address;
+      vm.sync.place_id = location.place_id;
+      vm.sync.location = location.geometry.location;
+      vm.sync.place_url = location.url;
+      vm.sync.$save().then(function (data) {
+        console.log(data);
+        geoFire.set($stateParams.id, [location.geometry.location.A,location.geometry.location.F]).then(function (location) {
+          console.log('data added to geofire with location: ', location);
+        },function (error) {
+          console.error('Error: ', error);
+        });
+        vm.map ={
+          center: {
+            latitude: vm.sync.location.A,
+            longitude: vm.sync.location.F
+          },
+          zoom: 13
+        };
+        vm.map.control.refresh();
+      }, function (error) {
+        console.error('Error: ', error);
+      });
+    };
     var activate = function() {
+      vm.sync.$loaded().then(function (data) {
+        if (data.location) {
+          vm.map = {
+            center: {
+              latitude: data.location.A,
+              longitude: data.location.F
+            },
+            zoom: 13
+          };
+          //vm.map.control.refresh();
+        }
+      });
       vm.map = {
         center: {
-          latitude: 45,
-          longitude: -73
+          latitude: 0,
+          longitude: 0
         },
         control: {},
         pan: false,
-        zoom: 8
+        zoom: 1
       };
-      vm.mapSearch = {
-        template: require('./views/map/search.html'),
-        events: vm.mapEvents
+      vm.searchMap = {
+        text: null,
+        details: null,
+        options:{
+          watchEnter: true
+        }
       };
       vm.mapInit = function () {
         //console.log('test');

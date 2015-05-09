@@ -107,9 +107,13 @@
     "angular-material": "./bower_components/angular-material/angular-material.js",
     "angular-aria": "./bower_components/angular-aria/angular-aria.js",
     "angular-google-maps": "./bower_components/angular-google-maps/dist/angular-google-maps.js",
+    "ngAutocomplete": "./bower_components/ngAutocomplete/src/ngAutocomplete.js",
     "ng-resize": "./bower_components/ng-resize/ngresize.min.js",
     "angularfire": "./bower_components/angularfire/dist/angularfire.min.js",
+    "angularGeoFire": "./bower_components/angularGeoFire/dist/angularGeoFire.min.js",
     "firebase": "./bower_components/firebase/firebase.js",
+    "geofire": "./bower_components/geofire/dist/geofire.min.js",
+    "rsvp": "./bower_components/rsvp/rsvp.min.js",
     "firebase-util": "./bower_components/firebase-util/dist/firebase-util.min.js",
     "firebase-index": "./bower_components/FirebaseIndex/FirebaseIndex.js"
   },
@@ -192,6 +196,11 @@
         "lodash:_"
       ]
     },
+    "ngAutocomplete":{
+      "depends":[
+        "angular"
+      ]
+    },
     "ng-resize": {
       "depends": [
         "angular"
@@ -201,6 +210,18 @@
       "depends": [
         "angular",
         "firebase"
+      ]
+    },
+    "angularGeoFire":{
+      "depends":[
+        "angular:angular",
+        "geofire:GeoFire"
+      ]
+    },
+    "geofire": {
+      "depends":[
+        "firebase",
+        "rsvp"
       ]
     },
     "firebase-util": {

@@ -25,7 +25,10 @@
     "famous-object": "https://github.com/jamalneufeld/famous-object.git",
     "angular-lodash": "~0.1.2",
     "angular-google-maps": "~2.1.0",
-    "ng-lodash": "~0.2.3"
+    "ng-lodash": "~0.2.3",
+    "ngAutocomplete": "~1.0.0",
+    "geofire": "~3.2.2",
+    "angularGeoFire": "~3.0.0"
   },
   "resolutions": {
     "angular": "1.3.x"

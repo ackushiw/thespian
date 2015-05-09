@@ -4,10 +4,10 @@ require('angular-ui-router');
 require('famous-angular');
 require('ngCordova');
 require('angular-material');
-//var _ = require('lodash');
-//require('angular-lodash');
+require('angularGeoFire');
 require('ng-lodash');
 require('angular-google-maps');
+require('ngAutocomplete');
 require('ng-resize');
 require('angularfire');
 require('firebase-index');
@@ -19,9 +19,8 @@ module.exports = function(namespace) {
   var fullname = namespace + '.' + modulename;
 
   var angular = require('angular');
-  var _ = require('lodash');
   var profileModule = require('../profile')(namespace);
-  var app = angular.module(fullname, ['ui.router', 'famous.angular', 'ngCordova', 'ngMaterial','uiGmapgoogle-maps', 'ngResize','ngLodash', 'firebase', profileModule.name]);
+  var app = angular.module(fullname, ['ui.router', 'famous.angular', 'ngCordova', 'ngMaterial','uiGmapgoogle-maps', 'ngAutocomplete', 'ngResize','ngLodash', 'firebase','angularGeoFire', profileModule.name]);
   // inject:folders start
   require('./controllers')(app);
   require('./directives')(app);
@@ -280,8 +279,6 @@ module.exports = function(namespace) {
   ]);
   //firebase settings
   app.constant('FBURL', 'https://thespus.firebaseio.com');
-  var _ = require('lodash');
-console.log(_);
   //google maps settings
   app.config(['uiGmapGoogleMapApiProvider', function (uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
