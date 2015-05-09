@@ -4,6 +4,10 @@ require('angular-ui-router');
 require('famous-angular');
 require('ngCordova');
 require('angular-material');
+//var _ = require('lodash');
+//require('angular-lodash');
+require('ng-lodash');
+require('angular-google-maps');
 require('ng-resize');
 require('angularfire');
 require('firebase-index');
@@ -15,8 +19,9 @@ module.exports = function(namespace) {
   var fullname = namespace + '.' + modulename;
 
   var angular = require('angular');
+  var _ = require('lodash');
   var profileModule = require('../profile')(namespace);
-  var app = angular.module(fullname, ['ui.router', 'famous.angular', 'ngCordova', 'ngMaterial', 'ngResize', 'firebase', profileModule.name]);
+  var app = angular.module(fullname, ['ui.router', 'famous.angular', 'ngCordova', 'ngMaterial','uiGmapgoogle-maps', 'ngResize','ngLodash', 'firebase', profileModule.name]);
   // inject:folders start
   require('./controllers')(app);
   require('./directives')(app);
@@ -25,7 +30,7 @@ module.exports = function(namespace) {
 
   app.config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
-      $urlRouterProvider.otherwise('app');
+      $urlRouterProvider.otherwise('/welcome');
       $stateProvider.state('landing', {
         url: '/welcome',
         template: require('./views/home.html'),
@@ -60,14 +65,14 @@ module.exports = function(namespace) {
                 .hasBackdrop(true);
               $mdDialog.show(confirm).then(function() {
                 Firebase.goOnline();
-                Auth.$authWithOAuthPopup("google").then(function(authData) {
-                  console.log("Logged in as:", authData.uid);
+                Auth.$authWithOAuthPopup('google').then(function(authData) {
+                  $log.log('Logged in as:', authData.uid);
                   $state.reload();
                 }).catch(function(error) {
-                  console.error("Authentication failed:", error);
+                  $log.error('Authentication failed:', error);
                 });
               }, function() {
-                console.log('login canceled');
+                $log.log('login canceled');
                 $state.go('landing');
               });
 
@@ -191,7 +196,7 @@ module.exports = function(namespace) {
                 $log.error('Error: no group id');
                 reject('No group id');
               }
-            })
+            });
           }]
         }
       }).state('app.messages', { //user messages view
@@ -273,8 +278,19 @@ module.exports = function(namespace) {
       });
     }
   ]);
-
+  //firebase settings
   app.constant('FBURL', 'https://thespus.firebaseio.com');
+  var _ = require('lodash');
+console.log(_);
+  //google maps settings
+  app.config(['uiGmapGoogleMapApiProvider', function (uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+      key: 'AIzaSyA-mjOqwdMYO2dKlPGvCqwGOGm5NvTJ-zE',
+      v: '3.19',
+      libraries: 'places'
+    });
+  }]);
+
 
   return app;
 };

@@ -64,15 +64,15 @@ module.exports = function(app) {
 
       //**mobile
       if(vm.width < 600) {
-        $log.log('sm');
+        vm.device = 'sm';
         if(vm.width > vm.height) {
-          $log.log('landscape');
+          vm.orientation = 'landscape';
           vm.topnavSize.set([vm.width, 48], {
             duration: 300,
             curve: Easing.outExpo
           });
         } else {
-          $log.log('portrait', vm.width);
+          vm.orientation ='portrait';
           vm.topnavSize.set([vm.width, 56], {
             duration: 300,
             curve: Easing.outExpo
@@ -143,14 +143,15 @@ module.exports = function(app) {
         });
 
       } else if(vm.width < 960) {
+        vm.device = 'md';
         if(vm.width > vm.height) {
-          $log.log('landscape');
+          vm.orientation = 'landscape';
           vm.topnavSize.set([vm.width - 64, 48], {
             duration: 300,
             curve: Easing.outExpo
           });
         } else {
-          $log.log('portrait', vm.width);
+          vm.orientation = 'portrait';
           var portraitWidth = vm.width - 200;
           console.log(portraitWidth);
           vm.topnavSize.set([portraitWidth, 56], {
@@ -158,7 +159,6 @@ module.exports = function(app) {
             curve: Easing.outExpo
           });
         }
-        $log.log('md');
         //top nav
         vm.topnavTranslate.set([64, 0, 300], {
           duration: 300,
@@ -224,7 +224,7 @@ module.exports = function(app) {
         });
 
       } else if(vm.width < 1200) {
-        $log.log('lg');
+        vm.device = 'lg';
         //top nav
         vm.topnavTranslate.set([100, 0, 300], {
           duration: 300,
@@ -302,7 +302,7 @@ module.exports = function(app) {
       if(vm.width >= 1200) {
         vm.sidenavState = true;
         vm.sidenavOpen = true;
-        $log.log('gt-lg');
+        vm.device = 'gt-lg';
         //top nav
         vm.topnavTranslate.set([240, 0, 300], {
           duration: 300,
@@ -549,7 +549,7 @@ module.exports = function(app) {
     };
 
     vm.focusDetailsView = function() {
-      console.log('width', vm.width);
+      $log.log('width', vm.width);
       vm.detailsFocused = true;
       if(vm.width < 960) {
         //content view
@@ -569,9 +569,9 @@ module.exports = function(app) {
 
       }
 
-    }
+    };
     vm.closeDetailsView = function() {
-      console.log('width', vm.width);
+      $log.log('width', vm.width);
       vm.detailsFocused = false;
       if(vm.width < 960) {
         //content view
@@ -591,7 +591,7 @@ module.exports = function(app) {
 
       }
 
-    }
+    };
 
     //activate functions
     var activate = function() {
@@ -602,7 +602,7 @@ module.exports = function(app) {
       };
       vm.closeSidenav = function() {
         vm.sidenavOpen = false;
-        sidenavClose()
+        sidenavClose();
       };
 
     };

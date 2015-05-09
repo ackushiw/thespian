@@ -12,9 +12,9 @@ module.exports = function(app) {
     function disconnect() {
       var confirm = $mdDialog.confirm()
         .title('Login?')
-        .content('All of the banks have agreed to forgive you your debts.')
+        .content('Please login to see this page.')
         .ariaLabel('Login')
-        .ok('Go!')
+        .ok('Login')
         .cancel('Cancel')
         .hasBackdrop(true);
       $mdDialog.show(confirm).then(function() {

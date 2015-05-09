@@ -2,12 +2,19 @@
 @import 'famous';
 @import 'colors';
 @import 'fire-list';
+
 .lg-content {
   padding: 60px 16px 16px;
+}
+//maps
+.angular-google-map-container {
+  height: 400px;
+  width: 100%;
 }
 //fonts
 $default-font: 'Cutive', Serif;
 $mono-type: 'Cutive Mono', 'Courier New', Courier, monospace;
+
 h1,
 h2,
 h3,
@@ -16,12 +23,15 @@ h5,
 h6,
 span {
   font-family: $default-font;
+
   &.black {
     color: $text-black;
   }
+
   &.display {
     color: $text-display;
   }
+
   &.white {
     color: $text-white;
   }
@@ -29,23 +39,29 @@ span {
 .white {
   color: $text-white;
 }
+
 .mono {
   font-family: $mono-type;
 }
+
 body,
 p {
   font-family: $mono-type;
   color: $text-black;
+
   &.white {
     color: $text-white;
   }
 }
+
 a.md-button {
   text-transform: capitalize;
 }
+
 .capitalize {
   text-transform: capitalize;
 }
+
 .deemphasize {
   color: $text-display;
 }
@@ -53,18 +69,23 @@ a.md-button {
 .mdi-lg {
   font-size: 1.5em;
 }
+
 .md-button.center {
+
   span.mdi {
     vertical-align: top;
   }
 }
+
 .md-button.block {
-  width: 100%;
   text-align: start;
+  width: 100%;
 }
+
 .circular {
   border-radius: 50%;
 }
+
 .md-button.md-default-theme.circular {
   border-radius: 50%;
 }
@@ -78,7 +99,7 @@ a.md-button {
     padding: 8px;
   }
   button.md-button {
-    
+
   }
 }
 //tags
@@ -160,6 +181,7 @@ a.md-button {
   display: block;
   width: 100%;
 }
+
 .FlexEmbed--3by1:before {
   padding-bottom: 33.33333%;
 }

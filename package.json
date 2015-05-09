@@ -24,7 +24,7 @@
     "github": "0.2.3",
     "github-username": "1.1.1",
     "growly": "1.1.1",
-    "gulp": "3.8.10",
+    "gulp": "3.8.11",
     "gulp-autoprefixer": "2.0.0",
     "gulp-bump": "0.1.11",
     "gulp-concat": "2.4.2",
@@ -97,7 +97,8 @@
     "angular-animate": "./bower_components/angular-animate/angular-animate.js",
     "angular-sanitize": "./bower_components/angular-sanitize/angular-sanitize.js",
     "angular-lodash": "./bower_components/angular-lodash/angular-lodash.js",
-    "lodash": "./bower_components/lodash/dist/lodash.compat.js",
+    "ng-lodash": "./bower_components/ng-lodash/build/ng-lodash.min.js",
+    "lodash": "./bower_components/lodash/dist/lodash.underscore.js",
     "famous": "./bower_components/famous/dist/famous-global.js",
     "famous-angular": "./bower_components/famous-angular/dist/famous-angular.js",
     "famous-object": "./bower_components/famous-object/famous-object.js",
@@ -105,6 +106,7 @@
     "ngCordovaMocks": "./bower_components/ngCordova/dist/ng-cordova-mocks.js",
     "angular-material": "./bower_components/angular-material/angular-material.js",
     "angular-aria": "./bower_components/angular-aria/angular-aria.js",
+    "angular-google-maps": "./bower_components/angular-google-maps/dist/angular-google-maps.js",
     "ng-resize": "./bower_components/ng-resize/ngresize.min.js",
     "angularfire": "./bower_components/angularfire/dist/angularfire.min.js",
     "firebase": "./bower_components/firebase/firebase.js",
@@ -138,8 +140,13 @@
     },
     "angular-lodash": {
       "depends": [
-        "angular",
-        "lodash"
+        "angular:angular",
+        "lodash:_"
+      ]
+    },
+    "ng-lodash":{
+      "depends": [
+        "angular"
       ]
     },
     "famous": {
@@ -177,6 +184,12 @@
         "angular",
         "angular-aria",
         "angular-animate"
+      ]
+    },
+    "angular-google-maps":{
+      "depends":[
+        "angular:angular",
+        "lodash:_"
       ]
     },
     "ng-resize": {

@@ -30,7 +30,7 @@
       </fa-surface>
     </fa-modifier>
     <fa-modifier fa-translate="[0,0,1]">
-      <fa-scroll-view>
+      <fa-scroll-view fa-pipe-from="groupPageCtrl.scrollEvents">
         <fa-modifier fa-size="[undefined,112]">
           <fa-view>
             <fa-modifier>
@@ -41,7 +41,7 @@
         <fa-modifier>
           <fa-view>
             <fa-modifier>
-              <fa-surface class="full-height">
+              <fa-surface class="full-height" fa-pipe-to="groupPageCtrl.scrollEvents">
                 <md-content class="md-padding" layout-fill>
                   <h5><md-icon md-font-icon="mdi mdi-information mdi-lg"></md-icon>About</h5>
                   <pre>test{{groupPageCtrl.id}}</pre>
@@ -56,6 +56,12 @@
                   </md-input-container>
                   <md-divider></md-divider>
                   <h5><md-icon md-font-icon="mdi mdi-map-marker mdi-lg"></md-icon> Location</h5>
+                  <div style="width:100%;">
+                    <ui-gmap-google-map ng-init="groupPageCtrl.mapInit()" control="groupPageCtrl.map.control" pan="groupPageCtrl.map.pan" center='groupPageCtrl.map.center' zoom='groupPageCtrl.map.zoom'>
+                      <ui-gmap-search-box template="groupPageCtrl.mapSearch.template" events="groupPageCtrl.mapSearch.events"></ui-gmap-search-box>
+                    </ui-gmap-google-map>
+
+                  </div>
                   <h5><md-icon md-font-icon="mdi mdi-clock mdi-lg"></md-icon> Time and Dates</h5>
                   <h5><md-icon md-font-icon="mdi mdi-label mdi-lg"></md-icon> Labels</h5>
 
@@ -67,7 +73,7 @@
       </fa-scroll-view>
     </fa-modifier>
     <fa-modifier fa-translate="[0,0,-1]">
-      <fa-surface fa-background-color="'white'" class="full-height">
+      <fa-surface fa-background-color="'white'" class="full-height" fa-pipe-to="groupPageCtrl.scrollEvents">
         <div layout-fill></div>
       </fa-surface>
     </fa-modifier>

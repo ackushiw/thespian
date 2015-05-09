@@ -24,7 +24,8 @@
         "element": false,
         "by": false,
         "browser": false,
-        "Firebase": false
+        "Firebase": false,
+        "angular": false
     },
     "predef": [
         "beforeEach",

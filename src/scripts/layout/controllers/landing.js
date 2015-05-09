@@ -86,7 +86,7 @@ module.exports = function(app) {
           $state.go('app.profile');
         }).catch(function(error) {
           console.error('Authentication failed: ', error);
-        })
+        });
 
       };
 
