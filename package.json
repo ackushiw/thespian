@@ -6,7 +6,14 @@
     "postinstall": "bower install && node ./bin/protractor-fix-version.js"
   },
   "dependencies": {
-    "famous-polyfills": "^0.3.0"
+    "angular-google-picker": "^0.1.2",
+    "angular-resource": "^1.3.15",
+    "aws-sdk": "^2.1.28",
+    "famous-polyfills": "^0.3.0",
+    "gcloud": "^0.14.0",
+    "geofire": "^3.2.2",
+    "googleapis": "^2.0.3",
+    "ng-file-upload": "^4.2.1"
   },
   "devDependencies": {
     "brfs": "1.2.0",
@@ -94,6 +101,7 @@
     "angular": "./bower_components/angular/angular.js",
     "angular-mocks": "./bower_components/angular-mocks/angular-mocks.js",
     "angular-ui-router": "./bower_components/angular-ui-router/release/angular-ui-router.js",
+    "angular-ui-utils": "./bower_components/angular-ui-utils/ui-utils.min.js",
     "angular-animate": "./bower_components/angular-animate/angular-animate.js",
     "angular-sanitize": "./bower_components/angular-sanitize/angular-sanitize.js",
     "angular-lodash": "./bower_components/angular-lodash/angular-lodash.js",
@@ -101,7 +109,6 @@
     "lodash": "./bower_components/lodash/dist/lodash.underscore.js",
     "famous": "./bower_components/famous/dist/famous-global.js",
     "famous-angular": "./bower_components/famous-angular/dist/famous-angular.js",
-    "famous-object": "./bower_components/famous-object/famous-object.js",
     "ngCordova": "./bower_components/ngCordova/dist/ng-cordova.js",
     "ngCordovaMocks": "./bower_components/ngCordova/dist/ng-cordova-mocks.js",
     "angular-material": "./bower_components/angular-material/angular-material.js",
@@ -112,10 +119,11 @@
     "angularfire": "./bower_components/angularfire/dist/angularfire.min.js",
     "angularGeoFire": "./bower_components/angularGeoFire/dist/angularGeoFire.min.js",
     "firebase": "./bower_components/firebase/firebase.js",
-    "geofire": "./bower_components/geofire/dist/geofire.min.js",
-    "rsvp": "./bower_components/rsvp/rsvp.min.js",
-    "firebase-util": "./bower_components/firebase-util/dist/firebase-util.min.js",
-    "firebase-index": "./bower_components/FirebaseIndex/FirebaseIndex.js"
+    "angular-google-picker": "./bower_components/angular-google-picker/dist/google-picker.min.js",
+    "oauth-ng": "./bower_components/oauth-ng/dist/oauth-ng.js",
+    "ngstorage": "./bower_components/ngstorage/ngStorage.min.js",
+    "angular-google-gapi": "./bower_components/angular-google-gapi/angular-google-gapi.min.js",
+    "angular-facebook": "./bower_components/angular-facebook/lib/angular-facebook.js"
   },
   "browserify": {
     "transform": [
@@ -142,13 +150,23 @@
         "angular"
       ]
     },
+    "angular-ui-utils": {
+      "depends": [
+        "angular"
+      ]
+    },
+    "angular-google-gapi": {
+      "depends": [
+        "angular"
+      ]
+    },
     "angular-lodash": {
       "depends": [
         "angular:angular",
         "lodash:_"
       ]
     },
-    "ng-lodash":{
+    "ng-lodash": {
       "depends": [
         "angular"
       ]
@@ -164,11 +182,6 @@
         "angular-animate",
         "angular-sanitize",
         "angular-ui-router"
-      ]
-    },
-    "famous-object": {
-      "depends": [
-        "famous-angular"
       ]
     },
     "ngCordova": {
@@ -190,14 +203,14 @@
         "angular-animate"
       ]
     },
-    "angular-google-maps":{
-      "depends":[
+    "angular-google-maps": {
+      "depends": [
         "angular:angular",
         "lodash:_"
       ]
     },
-    "ngAutocomplete":{
-      "depends":[
+    "ngAutocomplete": {
+      "depends": [
         "angular"
       ]
     },
@@ -212,26 +225,21 @@
         "firebase"
       ]
     },
-    "angularGeoFire":{
-      "depends":[
+    "angularGeoFire": {
+      "depends": [
         "angular:angular",
         "geofire:GeoFire"
       ]
     },
-    "geofire": {
-      "depends":[
-        "firebase",
-        "rsvp"
+    "oauth-ng": {
+      "depends": [
+        "angular",
+        "ngstorage"
       ]
     },
-    "firebase-util": {
+    "ngstorage": {
       "depends": [
-        "firebase"
-      ]
-    },
-    "firebase-index": {
-      "depends": [
-        "firebase"
+        "angular"
       ]
     }
   }

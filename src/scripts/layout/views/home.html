@@ -10,14 +10,22 @@
         <md-card>
           <md-content class="md-padding" layout="column">
             <h3>login using Google</h3>
+
             <md-button flex aria-label="login" ng-click="landingCtrl.launch()" class="md-raised md-warn center">Login
               <md-icon md-font-icon="mdi mdi-google-plus"></md-icon>
             </md-button>
+            <md-button flex aria-label="login" ng-click="landingCtrl.cognito()" class="md-raised md-accent center">Login
+              <md-icon md-font-icon="mdi mdi-amazon mdi-lg"></md-icon>
+            </md-button>
+            <md-button flex aria-label="login" ng-click="landingCtrl.facebook()" class="md-raised md-primary center">Login
+              <md-icon md-font-icon="mdi mdi-facebook mdi-lg"></md-icon>
+            </md-button>
+
           </md-content>
         </md-card>
       </fa-surface>
     </fa-modifier>
-    <fa-scroll-view id="scrollview" fa-pipe-from="landingCtrl.scrollEventHandler">
+    <fa-scroll-view id="scrollview" faObject="scrollObject" fa-pipe-from="landingCtrl.scrollEventHandler">
       <fa-modifier>
         <fa-view>
           <fa-modifier>
@@ -42,10 +50,18 @@
   </fa-modifier>
   <fa-modifier class="background view" fa-translate="[0,0,1]">
     <div>
-      <fa-surface fa-background-color="'#268bd2'" fa-opacity="responsiveCtrl.opacityTest">
+      <fa-surface fa-background-color="'#268bd2'" fa-opacity="responsiveCtrl.opacityTest" fa-pipe-to="landingCtrl.scroller">
         <h1>height: {{responsiveCtrl.height}}</h1>
         <h1>width: {{responsiveCtrl.width}}</h1>
+
       </fa-surface>
     </div>
+  </fa-modifier>
+  <fa-modifier class="nav view" fa-translate="[0,0,10]" fa-align="[1,0]" fa-origin="[1,0]" fa-size="[100,60]">
+
+    <fa-surface>
+      <md-button aria-label="sign up" ng-click="landingCtrl.openSignupWizard($event)">sign up</md-button>
+    </fa-surface>
+
   </fa-modifier>
 </fa-app>

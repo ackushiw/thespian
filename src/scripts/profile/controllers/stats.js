@@ -33,9 +33,7 @@ module.exports = function(app) {
     var userRef = new Firebase(FBURL + '/actorsProfiles/' + currentAuth.uid);
     var skillsRef = new Firebase(FBURL + '/actorsProfiles/' + currentAuth.uid + '/skills');
     var tagsRef = new Firebase(FBURL + '/tags');
-    //firebase index
-    var file = require('firebase-index'); // make this into a factory service
-    var skillsIndex = new file.FirebaseIndex(skillsRef, tagsRef);
+  
 
     var userObj = $firebaseObject(userRef);
 

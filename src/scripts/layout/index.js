@@ -1,6 +1,11 @@
 'use strict';
+//apis
+require('angular-google-gapi');
+require('aws-sdk');
+require('angular-facebook');
+//angular
 require('angular-ui-router');
-
+require('angular-ui-utils');
 require('famous-angular');
 require('ngCordova');
 require('angular-material');
@@ -9,8 +14,10 @@ require('ng-lodash');
 require('angular-google-maps');
 require('ngAutocomplete');
 require('ng-resize');
+require('ng-file-upload');
 require('angularfire');
-require('firebase-index');
+require('oauth-ng');
+require('ngstorage');
 
 var modulename = 'layout';
 
@@ -20,7 +27,8 @@ module.exports = function(namespace) {
 
   var angular = require('angular');
   var profileModule = require('../profile')(namespace);
-  var app = angular.module(fullname, ['ui.router', 'famous.angular', 'ngCordova', 'ngMaterial','uiGmapgoogle-maps', 'ngAutocomplete', 'ngResize','ngLodash', 'firebase','angularGeoFire', profileModule.name]);
+  var apiModule = require('../api')(namespace);
+  var app = angular.module(fullname, ['ui.router', 'famous.angular', 'angular-google-gapi', 'oauth', 'facebook','ngStorage', 'ngCordova', 'ngMaterial', 'uiGmapgoogle-maps', 'ngAutocomplete', 'ngResize', 'ngLodash', 'firebase', 'ngFileUpload', 'angularGeoFire', profileModule.name, apiModule.name]);
   // inject:folders start
   require('./controllers')(app);
   require('./directives')(app);
@@ -148,7 +156,9 @@ module.exports = function(namespace) {
         url: '/pictures',
         views: {
           'expanded@app': {
-            template: require('./views/profile/pictures.html')
+            template: require('./views/profile/pictures.html'),
+            controller: profileModule.name + '.pictures',
+            controllerAs: 'picturesCtrl'
           }
         }
       }).state('app.profile.videos', {
@@ -275,19 +285,38 @@ module.exports = function(namespace) {
           }
         }
       });
+
     }
   ]);
+  //Amazon AWS config
+  app.run(['$window', function($window) {
+    var AWS = $window.AWS;
+    console.log('google api',$window.gapi);
+    AWS.config.update({
+      accessKeyId: 'AKIAJIOQZUROHBNWSKTQ',
+      secretAccessKey: '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'
+    });
+    AWS.config.region = 'us-east-1';
+    // aws.config.credentials = new aws.CognitoIdentityCredentials({
+    //   IdentityPoolId: 'us-east-1:44475292-5246-4fdb-ad6d-b3668187d9f8',
+    // });
+    console.log('amazon: ', AWS);
+
+  }]);
   //firebase settings
   app.constant('FBURL', 'https://thespus.firebaseio.com');
+  //facebook config
+  app.config(['FacebookProvider', function (FacebookProvider) {
+    FacebookProvider.init('274540376052370');
+  }]);
   //google maps settings
-  app.config(['uiGmapGoogleMapApiProvider', function (uiGmapGoogleMapApiProvider) {
+  app.config(['uiGmapGoogleMapApiProvider', function(uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
       key: 'AIzaSyA-mjOqwdMYO2dKlPGvCqwGOGm5NvTJ-zE',
       v: '3.19',
       libraries: 'places'
     });
   }]);
-
 
   return app;
 };

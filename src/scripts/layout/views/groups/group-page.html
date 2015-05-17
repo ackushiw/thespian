@@ -42,11 +42,11 @@
           <fa-view>
             <fa-modifier>
               <fa-surface class="full-height" fa-pipe-to="groupPageCtrl.scrollEvents">
-                <md-content class="md-padding" layout-fill>
+                <md-content class="md-padding">
                   <h5>
                     <md-icon md-font-icon="mdi mdi-information mdi-lg"></md-icon>About</h5>
-                  <pre>test{{groupPageCtrl.id}}</pre>
-                  <pre>group object: {{group}}</pre>
+                  <pre hide>test{{groupPageCtrl.id}}</pre>
+                  <pre hide>group object: {{group}}</pre>
                   <md-input-container>
                     <label>Title</label>
                     <input type="text" ng-model="group.title">
@@ -58,20 +58,22 @@
                   <md-divider></md-divider>
                   <h5>
                     <md-icon md-font-icon="mdi mdi-map-marker mdi-lg"></md-icon> Location</h5>
-                  <div style="width:100%;">
+
                     <md-input-container class="map-places">
                       <input type="text" ng-autocomplete options="groupPageCtrl.searchMap.options" ng-model="group.address" details="groupPageCtrl.searchMap.details">
                     </md-input-container>
                 </md-content>
+                <md-content>
                 <md-button aria-label="update map" layout-fill class="md-primary" ng-class="{'md-raised': groupPageCtrl.searchMap.details}" ng-disabled="!groupPageCtrl.searchMap.details" ng-click="groupPageCtrl.updateMap(groupPageCtrl.searchMap.details)">Update Map</md-button>
                 <ui-gmap-google-map ng-if="groupPageCtrl.mapLoaded" control="groupPageCtrl.map.control" pan="groupPageCtrl.map.pan" center='groupPageCtrl.map.center' zoom='groupPageCtrl.map.zoom' options="groupPageCtrl.map.options">
 
                   <ui-gmap-marker idKey="groupPageCtrl.id" coords="groupPageCtrl.map.marker.coords" options="groupPageCtrl.map.marker.options" events="groupPageCtrl.map.marker.events"></ui-gmap-marker>
 
                 </ui-gmap-google-map>
-                <md-content>
+              </md-content>
+                <md-content class="md-padding">
 
-                  </div>
+
                   <h5>
                     <md-icon md-font-icon="mdi mdi-clock mdi-lg"></md-icon> Time and Dates</h5>
                   <h5>

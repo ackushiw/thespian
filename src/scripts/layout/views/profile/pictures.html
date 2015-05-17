@@ -1,6 +1,6 @@
 <fa-modifier>
   <fa-view>
-    <fa-modifier>
+    <fa-modifier fa-translate="[0,0,3]" fa-size="[undefined, 64]">
       <fa-surface>
         <md-toolbar>
           <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
@@ -12,5 +12,42 @@
         </md-toolbar>
       </fa-surface>
     </fa-modifier>
+
+    <fa-modifier fa-translate="[0,0,1]">
+      <fa-scroll-view>
+        <fa-modifier fa-size="[undefined, 60]">
+          <fa-view>
+
+          </fa-view>
+        </fa-modifier>
+        <fa-modifier>
+          <fa-view>
+            <fa-modifier>
+              <fa-surface>
+                <p>A list of user's groups</p>
+                <pre>user: {{picturesCtrl.message}}</pre>
+
+                Drop File:
+                <div ngf-drop ng-model="picturesCtrl.dropHeadshotUpload" class="headshot-drop-box" style="background-image: url(images/placeholders/headshot_drop.png)" ngf-change="picturesCtrl.uploadHeadshot($files)" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true" ngf-accept="'.jpg,.png'">
+                  <img ng-src="{{mainViewCtrl.googleProfile.picture}}" alt="headshot image" />Drop Headshot files here</div>
+                <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+
+              <md-button layout-fill class="md-warn md-raised" aria-label="choose file for headshot" ngf-select ngf-change="picturesCtrl.uploadHeadshot($files)" ngf-accept="'.jpg,.png'" ng-model="picturesCtrl.inputHeadshot">
+                <md-icon md-font-icon="mdi mdi-file-find mdi-lg"></md-icon>
+                <span>Choose File to Upload</span>
+              </md-button>
+              <md-progress-linear class="md-accent" md-mode="determinate" value="{{picturesCtrl.headshotUploadProgress}}"></md-progress-linear>
+              <md-progress-circular class="md-accent" md-mode="determinate" value="{{picturesCtrl.headshotUploadProgress}}"></md-progress-circular>          
+
+              </fa-surface>
+            </fa-modifier>
+          </fa-view>
+        </fa-modifier>
+      </fa-scroll-view>
+    </fa-modifier>
+    <fa-modifier fa-translate="[0,0,-1]">
+      <fa-surface fa-background-color="'white'"></fa-surface>
+    </fa-modifier>
+
   </fa-view>
 </fa-modifier>
