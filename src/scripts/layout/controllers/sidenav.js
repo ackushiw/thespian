@@ -33,9 +33,9 @@ module.exports = function(app) {
         vm.contentSize.set([undefined, height]);
 
         if(width < 600) {
-          vm.contentLayout = "column";
+          vm.contentLayout = 'column';
         } else {
-          vm.contentLayout = "row";
+          vm.contentLayout = 'row';
         }
 
       };

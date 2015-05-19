@@ -3,9 +3,9 @@ var servicename = 'uploadS3';
 
 module.exports = function(app) {
 
-  var dependencies = ['AWSService', 'Upload', 'FBURL', 'main.layout.auth', '$window', '$q'];
+  var dependencies = ['AWSService', 'Upload', 'FBURL', 'main.layout.auth', '$window', '$q', '$log'];
 
-  function service(AWSService, Upload, FBURL, auth, $window, $q) {
+  function service(AWSService, Upload, FBURL, auth, $window, $q, $log) {
     var amzId, amzKey;
     var AWS = $window.AWS;
 
@@ -13,7 +13,7 @@ module.exports = function(app) {
       if(!err) {
         amzId = AWS.config.credentials.identityId;
         amzKey = AWS.config.credentials.accessKeyId;
-        console.log('Cognito Identity Id: ', amzId);
+        $log.log('Cognito Identity Id: ', amzId);
       }
     });
 
@@ -22,7 +22,7 @@ module.exports = function(app) {
       put: function(items, location) {
         var defer = $q.defer();
         auth.$waitForAuth().then(function(authData) {
-          console.log(authData.token);
+          $log.log(authData.token);
           AWSService.setToken(authData.token);
           AWSService.s3({
             params: {
@@ -54,12 +54,12 @@ module.exports = function(app) {
                     };
                     ref.setWithPriority(fireFile, auth.google.displayName);
                   } else {
-                    console.error(error);
+                    $log.error(error);
                   }
 
                 });
               } else {
-                console.error(err);
+                $log.error(err);
               }
 
             });
@@ -71,18 +71,18 @@ module.exports = function(app) {
       },
       upload: function(data, location, uploadProgress) {
         auth.$waitForAuth().then(function(authData) {
-          console.log(AWSService.credentials());
+          $log.log(AWSService.credentials());
           //AWSService.setToken(authData.token);
           AWS.config.credentials.get(function() {
             // Access AWS resources here.
-            console.log('cognito available?', AWS.config.credentials);
+            $log.log('cognito available?', AWS.config.credentials);
           });
           var file = data[0];
           var fname = file.name;
           file.ext = fname.substr((~-fname.lastIndexOf('.') >>> 0) + 2); // jshint ignore:line
           //var authData = auth.$getAuth();
           var bucketUrl = 'https://thespus-' + location + '.s3.amazonaws.com/';
-          console.log(bucketUrl);
+          $log.log(bucketUrl);
           Upload.upload({
             url: bucketUrl, //S3 upload url including bucket name
             method: 'POST',
@@ -95,17 +95,17 @@ module.exports = function(app) {
               'Content-Type': file.type !== '' ? file.type : 'application/octet-stream', // content type of the file (NotEmpty)
               filename: authData.uid + '-' + location + '.' + file.ext // this is needed for Flash polyfill IE8-9
             },
-            file: file,
+            file: file
           }).progress(function(evt) {
 
             var fileUploadData = parseInt(100.0 * evt.loaded / evt.total);
             uploadProgress(fileUploadData);
-            console.log('progress: ' + parseInt(100.0 * evt.loaded / evt.total) + '% file :' + evt.config.file.name);
+            $log.log('progress: ' + parseInt(100.0 * evt.loaded / evt.total) + '% file :' + evt.config.file.name);
           }).success(function(data, status, headers, config) { // file is uploaded successfully
-            console.log('file ' + config.file.name + 'is uploaded successfully. Response: ', data);
-            console.log('config', config);
-            console.log('headers', headers);
-            console.log('status', status);
+            $log.log('file ' + config.file.name + 'is uploaded successfully. Response: ', data);
+            $log.log('config', config);
+            $log.log('headers', headers);
+            $log.log('status', status);
             var ref = new Firebase(FBURL + '/' + location + '/' + authData.uid);
             var fireFile = {
               name: file.name,
@@ -118,7 +118,7 @@ module.exports = function(app) {
             };
             ref.setWithPriority(fireFile, authData.google.displayName);
           }).error(function(error) {
-            console.error('upload error: ', error);
+            $log.error('upload error: ', error);
           });
         });
       }

@@ -12,7 +12,7 @@ module.exports = function(app) {
     vm.draftObject = $firebaseObject(ref);
     vm.message = vm.draftObject.title;
     vm.params = $stateParams.id;
-    vm.userId = currentAuth.uid
+    vm.userId = currentAuth.uid;
     var activate = function() {
 
     };

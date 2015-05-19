@@ -4,9 +4,9 @@ var controllername = 'stats';
 module.exports = function(app) {
   /*jshint validthis: true */
 
-  var deps = ['$scope', '$famous', '$firebaseObject', '$firebaseArray', 'FBURL', 'currentAuth'];
+  var deps = ['$scope', '$famous', '$firebaseObject', '$firebaseArray', 'FBURL', 'currentAuth', '$log'];
 
-  function controller($scope, $famous, $firebaseObject, $firebaseArray, FBURL, currentAuth) {
+  function controller($scope, $famous, $firebaseObject, $firebaseArray, FBURL, currentAuth, $log) {
     var vm = this;
     var _ = require('lodash');
     vm.user = currentAuth.uid;
@@ -17,8 +17,8 @@ module.exports = function(app) {
     vm.contentLayout = 'row';
     vm.updateSize = function(height, width) {
       vm.contentSize = new Transitionable([undefined, height]);
-      console.log('action height', height);
-      console.log('action width', width);
+      $log.log('action height', height);
+      $log.log('action width', width);
       vm.contentSize.set([undefined, height]);
 
       if(width < 640) {
@@ -29,12 +29,11 @@ module.exports = function(app) {
 
     };
     //firebase
-    var googleRef = new Firebase(FBURL + '/userDir/' + currentAuth.uid);
+    //var googleRef = new Firebase(FBURL + '/userDir/' + currentAuth.uid);
     var userRef = new Firebase(FBURL + '/actorsProfiles/' + currentAuth.uid);
     var skillsRef = new Firebase(FBURL + '/actorsProfiles/' + currentAuth.uid + '/skills');
-    var tagsRef = new Firebase(FBURL + '/tags');
-  
-
+    //var tagsRef = new Firebase(FBURL + '/tags');
+    
     var userObj = $firebaseObject(userRef);
 
     var activate = function() {
@@ -45,7 +44,7 @@ module.exports = function(app) {
       vm.ageRangeOptions = _.range(0, 101);
 
       vm.ageRange = function(lowAge, highAge) {
-        console.log('test', _.range(lowAge, highAge + 1, 1));
+        $log.log('test', _.range(lowAge, highAge + 1, 1));
         $scope.userStats.ageRange = _.range(lowAge, highAge + 1);
       };
 
@@ -55,10 +54,10 @@ module.exports = function(app) {
         var filteredSkills = skillsRef.orderByKey().equalTo(query);
         var results = $firebaseArray(filteredSkills);
         results.$loaded().then(function(data) {
-          console.log(data);
+          $log.log(data);
           return data;
         }).catch(function(error) {
-          console.error('Error: ', error);
+          $log.error('Error: ', error);
         });
 
       }

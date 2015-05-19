@@ -10,9 +10,9 @@ module.exports = function(app) {
     var vm = this;
 
     //famous
-    var Transitionable = $famous['famous/transitions/Transitionable'];
-    var Easing = $famous['famous/transitions/Easing'];
-    var EventHandler = $famous['famous/core/EventHandler'];
+    //var Transitionable = $famous['famous/transitions/Transitionable'];
+    //var Easing = $famous['famous/transitions/Easing'];
+    //var EventHandler = $famous['famous/core/EventHandler'];
 
     // tests
     vm.message = 'Hello World';

@@ -39,7 +39,7 @@ module.exports = function(app) {
           updated: Firebase.ServerValue.TIMESTAMP
         }, skill, firebaseCallback);
         //add user to skills user index
-        var userIndex = newSkillInLibraryUrl + '/users';
+        //var userIndex = newSkillInLibraryUrl + '/users';
         newSkillSync.child('users/' + skillsCtrl.userId).set({
           name: skillsCtrl.userName
         }, firebaseCallback);
@@ -64,7 +64,7 @@ module.exports = function(app) {
 
     skillsCtrl.remove = function(item) {
       var newUrl = baseUrl + '/' + item.$id;
-      console.log(item);
+      $log.log(item);
       var skillRef = new Firebase(newUrl);
       var skillObj = $firebaseObject(skillRef);
       skillObj.$remove().then(function(value) {

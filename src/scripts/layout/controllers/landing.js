@@ -13,17 +13,17 @@ module.exports = function(app) {
     $rootScope.fireAuth = $firebaseAuth(ref);
     //famous
     var EventHandler = $famous['famous/core/EventHandler'];
-    var EventMapper = $famous['famous/events/EventMapper'];
-    var Engine = $famous['famous/core/Engine'];
+    //var EventMapper = $famous['famous/events/EventMapper'];
+    //var Engine = $famous['famous/core/Engine'];
     var ScrollSync = $famous['famous/inputs/ScrollSync'];
-    var Transform = $famous['famous/core/Transform'];
+    //var Transform = $famous['famous/core/Transform'];
     var Transitionable = $famous['famous/transitions/Transitionable'];
     var Easing = $famous['famous/transitions/Easing'];
 
     vm.scrollEventHandler = new EventHandler();
 
     vm.scroller = new ScrollSync();
-    console.log(vm.scroller);
+    $log.log(vm.scroller);
 
     vm.titlePos = {
       translate: new Transitionable(0),
@@ -78,11 +78,11 @@ module.exports = function(app) {
     vm.message = 'Hello World';
     var activate = function() {
       function facebookCallback(response) {
-        console.log(response);
+        $log.log(response);
         var AWS = $window.AWS;
         if(response.authResponse) {
 
-          console.log('You are now logged in.');
+          $log.log('You are now logged in.');
 
           // Add the Facebook access token to the Cognito credentials login map.
           AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -95,11 +95,11 @@ module.exports = function(app) {
           // Obtain AWS credentials
           AWS.config.credentials.get(function() {
             // Access AWS resources here.
-            console.log('cognito available?', AWS.config.credentials);
+            $log.log('cognito available?', AWS.config.credentials);
           });
 
         } else {
-          console.log('There was a problem logging you in.');
+          $log.log('There was a problem logging you in.');
         }
       }
       vm.openSignupWizard = function($event) {
@@ -116,7 +116,7 @@ module.exports = function(app) {
         });
       };
       vm.scrollEventHandler.on('click', function(event) {
-        console.log('start', event);
+        $log.log('start', event);
       });
 
       vm.launch = function() {
@@ -125,7 +125,7 @@ module.exports = function(app) {
           //vm.signinCallback(authData)
           $state.go('app.profile');
         }).catch(function(error) {
-          console.error('Authentication failed: ', error);
+          $log.error('Authentication failed: ', error);
         });
 
       };
@@ -140,27 +140,27 @@ module.exports = function(app) {
         Facebook.login(facebookCallback);
       };
       vm.signinCallback = function(authResult) {
-        console.log('signed in: ', authResult);
-        if(authResult['status']['signed_in']) {
+        $log.log('signed in: ', authResult);
+        if(authResult.status && authResult.signed_in) {
           var AWS = $window.AWS;
           // Add the Google access token to the Cognito credentials login map.
           AWS.config.credentials = new AWS.CognitoIdentityCredentials({
             IdentityPoolId: 'us-east-1:44475292-5246-4fdb-ad6d-b3668187d9f8',
             Logins: {
-              'accounts.google.com': authResult['id_token']
+              'accounts.google.com': authResult.id_token
             }
           });
 
           // Obtain AWS credentials
           AWS.config.credentials.get(function() {
             // Access AWS resources here.
-            console.log('cognito available?', AWS.config.credentials);
+            $log.log('cognito available?', AWS.config.credentials);
           });
           // Firebase.goOnline();
           // $rootScope.fireAuth.$authWithOAuthPopup('google').then(function(authData) {
           //   $state.go('app.profile');
           // }).catch(function(error) {
-          //   console.error('Authentication failed: ', error);
+          //   $log.error('Authentication failed: ', error);
           // });
 
         } else {
@@ -169,7 +169,7 @@ module.exports = function(app) {
           //   "user_signed_out" - User is signed-out
           //   "access_denied" - User denied access to your app
           //   "immediate_failed" - Could not automatically log in the user
-          console.log('Sign-in state: ' + authResult['error']);
+          $log.log('Sign-in state: ' + authResult.error);
         }
       };
 

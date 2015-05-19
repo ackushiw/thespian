@@ -7,8 +7,8 @@ module.exports = function(app) {
   /*eslint-disable consistent-this */
 
   // directive
-  var directiveDeps = ['$timeout', 'resize'];
-  var directive = function($timeout, resize) {
+  var directiveDeps = ['$timeout', 'resize', '$log'];
+  var directive = function($timeout, resize, $log) {
     return {
       restrict: 'A',
       scope: {
@@ -24,14 +24,14 @@ module.exports = function(app) {
         }
 
         $timeout(function() {
-          console.log(element);
-          console.log(element.prop('offsetHeight'));
-          emitDimensions()
+          $log.log(element);
+          $log.log(element.prop('offsetHeight'));
+          emitDimensions();
         }, 2000);
 
         scope.$on('resize', function($event) {
 
-          emitDimensions()
+          emitDimensions();
         });
       }
     };

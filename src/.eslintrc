@@ -5,7 +5,9 @@
   "globals": {
     "inject": true,
     "jasmine": true,
-    "spyOn": true
+    "spyOn": true,
+    "Firebase": true,
+    "angular": true
   },
   "rules": {
     "consistent-this": [1,  "vm"]

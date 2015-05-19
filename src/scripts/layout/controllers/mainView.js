@@ -4,24 +4,24 @@ var controllername = 'mainView';
 module.exports = function(app) {
   /*jshint validthis: true */
 
-  var deps = ['$famous', '$mdMedia', '$firebaseObject', 'FBURL', 'currentAuth'];
+  var deps = ['$famous', '$mdMedia', '$firebaseObject', 'FBURL', 'currentAuth', '$log'];
 
-  function controller($famous, $mdMedia, $firebaseObject, FBURL, currentAuth) {
+  function controller($famous, $mdMedia, $firebaseObject, FBURL, currentAuth, $log) {
     var vm = this;
     //firebase
     var googleData = new Firebase(FBURL + '/userDir/' + currentAuth.uid);
     var userData = new Firebase(FBURL + '/actorsProfiles/' + currentAuth.uid);
     //famous
     var EventHandler = $famous['famous/core/EventHandler'];
-    var Engine = $famous['famous/core/Engine'];
-    var Transform = $famous['famous/core/Transform'];
+    //var Engine = $famous['famous/core/Engine'];
+    //var Transform = $famous['famous/core/Transform'];
 
     vm.scrollEventHandler = new EventHandler();
     vm.message = 'Hello World';
     var activate = function() {
       vm.googleProfile = $firebaseObject(googleData);
       vm.userProfile = $firebaseObject(userData);
-      console.log('firebase object', vm.googleProfile);
+      $log.log('firebase object', vm.googleProfile);
       vm.userPicture = vm.googleProfile.picture;
       vm.profileMenuList = [{
         title: 'About',

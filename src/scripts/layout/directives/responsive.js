@@ -72,7 +72,7 @@ module.exports = function(app) {
             curve: Easing.outExpo
           });
         } else {
-          vm.orientation ='portrait';
+          vm.orientation = 'portrait';
           vm.topnavSize.set([vm.width, 56], {
             duration: 300,
             curve: Easing.outExpo
@@ -565,8 +565,6 @@ module.exports = function(app) {
           duration: 1000,
           curve: Easing.outExpo
         });
-      } else {
-
       }
 
     };
@@ -587,8 +585,6 @@ module.exports = function(app) {
           duration: 1000,
           curve: Easing.outExpo
         });
-      } else {
-
       }
 
     };

@@ -4,9 +4,9 @@ var controllername = 'signup';
 module.exports = function(app) {
   /*jshint validthis: true */
 
-  var deps = ['main.api.parse'];
+  var deps = ['main.api.parse', '$log'];
 
-  function controller(Parse) {
+  function controller(Parse, $log) {
     var vm = this;
     vm.message = 'Hello World';
     vm.newUser = {
@@ -29,8 +29,8 @@ module.exports = function(app) {
     vm.checkName = function(name) {
 
       if(name) {
-        console.log(vm.newUser);
-        console.log(vm.user);
+        $log.log(vm.newUser);
+        $log.log(vm.user);
         vm.user.name = name;
         vm.inputValid.name = true;
       }
@@ -62,7 +62,7 @@ module.exports = function(app) {
         },
         error: function(user, error) {
           // Show the error message somewhere and let the user try again.
-          alert('Error: ' + error.code + ' ' + error.message);
+          $log.error('Error: ' + error.code + ' ' + error.message);
         }
       });
     };
