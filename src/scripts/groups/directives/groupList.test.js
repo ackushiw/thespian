@@ -7,25 +7,25 @@ var unitHelper = require('unitHelper');
 
 describe(app.name, function() {
 
-    describe('Directives', function() {
+  describe('Directives', function() {
 
-        describe(directivename, function() {
+    describe(directivename, function() {
 
-            beforeEach(function() {
-                angular.mock.module(app.name);
-            });
+      beforeEach(function() {
+        angular.mock.module(app.name);
+      });
 
-            beforeEach(inject(function($injector) {
-                this.$templateCache = $injector.get('$templateCache');
-                this.$compile = $injector.get('$compile');
-                this.$scope = $injector.get('$rootScope').$new();
-            }));
+      beforeEach(inject(function($injector) {
+        this.$templateCache = $injector.get('$templateCache');
+        this.$compile = $injector.get('$compile');
+        this.$scope = $injector.get('$rootScope').$new();
+      }));
 
-            it('should succeed', function() {
-                var element = unitHelper.compileDirective.call(this, directivename, '<group-list></group-list>');
-                expect(element.html().trim()).toBeDefined();
-            });
+      it('should succeed', function() {
+        var element = unitHelper.compileDirective.call(this, directivename, '<group-list></group-list>');
+        expect(element.html().trim()).toBeDefined();
+      });
 
-        });
     });
+  });
 });

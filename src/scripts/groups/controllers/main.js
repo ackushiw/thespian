@@ -48,14 +48,12 @@ module.exports = function(app) {
           },
           zoom: 13
         };
-
         vm.map.marker = {
           coords: {
             latitude: vm.sync.location.A,
             longitude: vm.sync.location.F
           }
         };
-
       }, function(error) {
         $log.error('Error: ', error);
       });

@@ -8,15 +8,13 @@ var modulename = 'tags';
 
 module.exports = function(namespace) {
 
-    var fullname = namespace + '.' + modulename;
+  var fullname = namespace + '.' + modulename;
 
-    var angular = require('angular');
-    var app = angular.module(fullname, ['ui.router', 'famous.angular', 'ngCordova']);
-    // inject:folders start
-    require('./directives')(app);
-    // inject:folders end
+  var angular = require('angular');
+  var app = angular.module(fullname, ['ui.router', 'famous.angular', 'ngCordova']);
+  // inject:folders start
+  require('./directives')(app);
+  // inject:folders end
 
-    
-
-    return app;
+  return app;
 };

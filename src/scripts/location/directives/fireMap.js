@@ -5,11 +5,13 @@ var directivename = 'fireMap';
 module.exports = function(app) {
 
   // controller
+
   var controllerDeps = ['FBURL', '$firebaseObject', 'uiGmapGoogleMapApi', '$log'];
   var controller = function(FBURL, $firebaseObject, uiGmapGoogleMapApi, $log) {
     var fireMapCtrl = this;
     var vm = fireMapCtrl;
     $log.log(vm.map);
+
 
     fireMapCtrl.directivename = directivename;
   };
@@ -44,12 +46,14 @@ module.exports = function(app) {
               $log.log('bound');
             });
 
+
             // function save() {
             //   sync.$save();
             // }
 
             function syncLocation(location) {
               $log.log('test', location);
+
               sync.address = location.formatted_address;
               sync.place_id = location.place_id;
               sync.location = location.geometry.location;
@@ -60,6 +64,7 @@ module.exports = function(app) {
                   $log.log('data added to geofire with location: ', location);
                 }, function(error) {
                   $log.error('Error: ', error);
+
                 });
                 scope.map = {
                   center: {
@@ -115,11 +120,13 @@ module.exports = function(app) {
                         var lat = marker.getPosition().lat();
                         var lon = marker.getPosition().lng();
                         $log.log(marker);
+
                         var latlng = new maps.LatLng(lat, lon);
                         scope.geocoder.geocode({
                           'latLng': latlng
                         }, function(results, status) {
                           if(status === maps.GeocoderStatus.OK) {
+
                             if(results[0]) {
                               $log.log(results);
                               syncLocation(results[0]);

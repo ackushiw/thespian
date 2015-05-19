@@ -4,12 +4,12 @@ var app = require('./main.js');
 
 describe('app', function() {
 
-    beforeEach(function() {
-        angular.mock.module(app.name);
-    });
+  beforeEach(function() {
+    angular.mock.module(app.name);
+  });
 
-    it('should be defined', function() {
-        expect(app).toBeDefined();
-    });
+  it('should be defined', function() {
+    expect(app).toBeDefined();
+  });
 
 });

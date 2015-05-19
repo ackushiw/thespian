@@ -32,8 +32,10 @@ module.exports = function(app) {
     //var googleRef = new Firebase(FBURL + '/userDir/' + currentAuth.uid);
     var userRef = new Firebase(FBURL + '/actorsProfiles/' + currentAuth.uid);
     var skillsRef = new Firebase(FBURL + '/actorsProfiles/' + currentAuth.uid + '/skills');
+
     //var tagsRef = new Firebase(FBURL + '/tags');
-    
+
+
     var userObj = $firebaseObject(userRef);
 
     var activate = function() {
