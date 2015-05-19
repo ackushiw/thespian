@@ -4,9 +4,9 @@ var controllername = 'main'; //group-page
 module.exports = function(app) {
   /*jshint validthis: true */
 
-  var deps = ['$scope','$famous', '$firebaseObject', 'FBURL', 'uiGmapGoogleMapApi', '$stateParams', '$timeout', '$q', '$log']; //resolve : groupId
+  var deps = ['$scope', '$famous', '$firebaseObject', 'FBURL', 'uiGmapGoogleMapApi', '$stateParams', '$timeout', '$q', '$log']; //resolve : groupId
 
-  function controller($scope,$famous, $firebaseObject, FBURL, uiGmapGoogleMapApi, $stateParams, $timeout, $q, $log) {
+  function controller($scope, $famous, $firebaseObject, FBURL, uiGmapGoogleMapApi, $stateParams, $timeout, $q, $log) {
     var vm = this;
     //$log.log($stateParams.id);
     //famous
@@ -19,7 +19,7 @@ module.exports = function(app) {
     var geoFire = new GeoFire(geofireRef);
     var ref = new Firebase(FBURL + '/groups/' + $stateParams.id);
     vm.sync = $firebaseObject(ref);
-    vm.sync.$bindTo($scope, 'group').then(function () {
+    vm.sync.$bindTo($scope, 'group').then(function() {
       $log.log('bound');
     });
 
@@ -47,18 +47,17 @@ module.exports = function(app) {
           },
           zoom: 13
         };
-         vm.map.marker ={
-           coords: {
-             latitude: vm.sync.location.A,
-             longitude: vm.sync.location.F
-           }
-         };
+        vm.map.marker = {
+          coords: {
+            latitude: vm.sync.location.A,
+            longitude: vm.sync.location.F
+          }
+        };
       }, function(error) {
         $log.error('Error: ', error);
       });
       vm.searchMap.details = null;
     }
-
 
     //google maps
     vm.mapLoaded = false;
@@ -74,10 +73,10 @@ module.exports = function(app) {
         scrollwheel: false
       }
     };
-    uiGmapGoogleMapApi.then(function (maps) {
+    uiGmapGoogleMapApi.then(function(maps) {
 
       vm.geocoder = new maps.Geocoder();
-      if (maps && vm.map.control.getGMap) {
+      if(maps && vm.map.control.getGMap) {
         $log.debug(vm.map.control);
         vm.map.object = vm.map.control.getGMap();
         console.log('map object', vm.map.object);
@@ -140,11 +139,9 @@ module.exports = function(app) {
     vm.message = 'Hello Group World';
     vm.id = $stateParams.id;
 
-
     var activate = function() {
       vm.save = save;
       vm.updateMap = syncLocation;
-
 
       vm.searchMap = {
         text: vm.sync.address || null,

@@ -33,7 +33,6 @@ module.exports = function(app) {
     var userRef = new Firebase(FBURL + '/actorsProfiles/' + currentAuth.uid);
     var skillsRef = new Firebase(FBURL + '/actorsProfiles/' + currentAuth.uid + '/skills');
     var tagsRef = new Firebase(FBURL + '/tags');
-  
 
     var userObj = $firebaseObject(userRef);
 

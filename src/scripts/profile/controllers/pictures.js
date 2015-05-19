@@ -8,8 +8,8 @@ module.exports = function(app) {
   function controller(FBURL, $firebaseObject, currentAuth, uploadS3, $window) {
     var vm = this;
 
-    var headshotRef = new Firebase(FBURL + '/actor-headshots/'+ currentAuth.uid);
-    var bannerRef = new Firebase(FBURL + '/actor-banner/'+ currentAuth.uid);
+    var headshotRef = new Firebase(FBURL + '/actor-headshots/' + currentAuth.uid);
+    var bannerRef = new Firebase(FBURL + '/actor-banner/' + currentAuth.uid);
     vm.headshot = $firebaseObject(headshotRef);
     vm.banner = $firebaseObject(bannerRef);
     vm.message = 'Hello World';
@@ -22,6 +22,7 @@ module.exports = function(app) {
       function headshotUploadProgress(loaded) {
         vm.headshotUploadProgress = loaded;
       }
+
       function bannerUploadProgress(loaded) {
         vm.bannerUploadProgress = loaded;
       }
