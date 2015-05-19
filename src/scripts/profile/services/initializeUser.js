@@ -10,23 +10,31 @@ module.exports = function(app) {
     var auth = $firebaseAuth(baseRef);
     var googleRef = new Firebase(FBURL + '/userDir/' + auth.uid);
     var googleObj = $firebaseObject(googleRef);
-    var userStatsRef = new Firebase(FBURL + '/actorsProfiles/' + auth.uid);
+    var userProfileRef = new Firebase(FBURL + '/actorsProfiles/' + auth.uid);
+    var googleProfile = auth.google.cachedUserProfile;
+    var defaultProfile = {
+      actorName: googleProfile.name,
+      headshot: googleProfile.picture
+    };
 
-    googleRef.transaction(function(currentData) {
-      if(currentData === null) {
-        return auth.google.cachedUserProfile;
+    return function (uid, callback) {
+      // body...
+      if (uid == auth.uid) {
+        console.log('user ids match');
+        userProfileRef.child('actorName').set(googleProfile.name);
+        userProfileRef.child('headshot').set(googleProfile.picture);
+        callback(auth.uid);
       } else {
-        return undefined;
+        console.error('user ids do not match');
+        if (uid) {
+
+        } else {
+
+        }
       }
-    });
-
-    var add = function(a, b) {
-      return a + b;
     };
 
-    return {
-      add: add
-    };
+
 
   }
   service.$inject = dependencies;

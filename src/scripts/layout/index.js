@@ -58,16 +58,16 @@ module.exports = function(namespace) {
           'currentAuth': [fullname + '.auth', '$rootScope', '$mdDialog', '$state', 'FBURL', '$window', '$log', function(Auth, $rootScope, $mdDialog, $state, FBURL, $window, $log) {
             return Auth.$requireAuth().then(function(data) {
               $rootScope.fireAuth = Auth;
-              var userPresenceRef = new Firebase(FBURL + '/user-status/' + data.uid + '/online');
+              var userPresenceRef = new Firebase(FBURL + '/userDir/' + data.uid + '/online');
               userPresenceRef.set(true);
               return data;
             }).catch(function(error) {
               $log.error('Error: ', error);
               var confirm = $mdDialog.confirm()
-                .title('Login?')
-                .content('All of the banks have agreed to forgive you your debts.')
+                .title('You are not signed in.')
+                .content('Would you like to sign in?')
                 .ariaLabel('Login')
-                .ok('Go!')
+                .ok('Sign In')
                 .cancel('Cancel')
                 .hasBackdrop(true);
               $mdDialog.show(confirm).then(function() {

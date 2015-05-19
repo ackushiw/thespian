@@ -3,9 +3,9 @@ var servicename = 'auth';
 
 module.exports = function(app) {
 
-  var dependencies = ['$mdDialog', '$firebaseAuth', '$state', 'FBURL', '$log'];
+  var dependencies = ['$mdDialog', '$firebaseAuth', 'AWSService', '$state', 'FBURL', '$log'];
 
-  function service($mdDialog, $firebaseAuth, $state, FBURL, $log) {
+  function service($mdDialog, $firebaseAuth, AWSService, $state, FBURL, $log) {
     var ref = new Firebase(FBURL);
     var auth = $firebaseAuth(ref);
 
@@ -33,17 +33,21 @@ module.exports = function(app) {
     ref.onAuth(function(data) {
       if(data) {
         $log.log('authService', data);
-        var userStatusUrl = FBURL + '/user-status/' + data.uid;
+        var googleProfile = data.google.cachedUserProfile;
+        var userStatusUrl = FBURL + '/userDir/' + data.uid;
         var userPresenceRef = new Firebase(userStatusUrl + '/online');
-        var connectionsRef = new Firebase(userStatusUrl + '/connections');
+        var userRef = new Firebase(FBURL + '/userDir');
         var lastOnlineRef = new Firebase(userStatusUrl + '/lastOnline');
+
+        AWSService.setToken(auth.token);
+
         userPresenceRef.once('value', function(snap) {
           if(snap.val() === true) {
-            var connectionDetails = {
-              time: Firebase.ServerValue.TIMESTAMP
-            };
-            var con = connectionsRef.push(connectionDetails);
-            con.onDisconnect().remove();
+
+            googleProfile.updated = Firebase.ServerValue.TIMESTAMP;
+
+            userRef.child(data.uid).set(googleProfile);
+
             userPresenceRef.onDisconnect().set(false);
             lastOnlineRef.onDisconnect().set(Firebase.ServerValue.TIMESTAMP);
           } else {

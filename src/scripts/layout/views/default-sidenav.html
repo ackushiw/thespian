@@ -1,11 +1,11 @@
 <fa-modifier>
-  <fa-modifier fa-translate="[0,0,1]">
+  <fa-modifier fa-translate="[0,0,3]">
     <div hide-sm hide-gt-lg>
-      <fa-modifier fa-translate="[8,8,2]">
+      <fa-modifier fa-translate="[8,8,4]">
         <menu-button action="responsiveCtrl.toggleSidenav(responsiveCtrl.sidenavOpen)" state="responsiveCtrl.sidenavOpen"></menu-button>
       </fa-modifier>
     </div>
-    <fa-modifier fa-translate="[0,0,0]" fa-size="[undefined, 64]">
+    <fa-modifier fa-translate="[0,0,2]" fa-size="[undefined, 64]">
       <fa-surface>
         <md-toolbar>
           <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
@@ -19,7 +19,7 @@
       </fa-surface>
     </fa-modifier>
   </fa-modifier>
-  <fa-modifier fa-translate="[0,68,0]">
+  <fa-modifier fa-translate="[0,68,2]">
     <fa-scroll-view fa-pipe-from="sidenavCtrl.scrollEventHandler">
       <fa-modifier fa-size="sidenavCtrl.contentSize.get()">
         <fa-view>
@@ -140,7 +140,7 @@
 
     </fa-scroll-view>
   </fa-modifier>
-  <fa-modifier fa-translate="[0,0,-2]">
+  <fa-modifier fa-translate="[0,0,0]">
     <fa-surface fa-background-color="'white'" class="full-height">
       <md-content layout-fill class="md-whiteframe-z2"></md-content>
     </fa-surface>

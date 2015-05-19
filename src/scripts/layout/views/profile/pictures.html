@@ -23,22 +23,38 @@
         <fa-modifier>
           <fa-view>
             <fa-modifier>
-              <fa-surface>
-                <p>A list of user's groups</p>
-                <pre>user: {{picturesCtrl.message}}</pre>
+              <fa-surface class="full-height">
+                <md-content class="md-padding" layout-fill layout="column">
+                  <div layout-fill layout="column" layout-gt-sm="row">
 
-                Drop File:
-                <div ngf-drop ng-model="picturesCtrl.dropHeadshotUpload" class="headshot-drop-box" style="background-image: url(images/placeholders/headshot_drop.png)" ngf-change="picturesCtrl.uploadHeadshot($files)" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true" ngf-accept="'.jpg,.png'">
-                  <img ng-src="{{mainViewCtrl.googleProfile.picture}}" alt="headshot image" />Drop Headshot files here</div>
-                <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+                    <md-card flex-sm flex-gt-sm="33">
+                      <md-progress-linear class="md-accent" md-mode="determinate" value="{{picturesCtrl.headshotUploadProgress}}"></md-progress-linear>
+                      <div ngf-drop ng-model="picturesCtrl.dropHeadshotUpload" class="headshot-drop-box" ngf-change="picturesCtrl.uploadHeadshot($files)" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true" ngf-accept="'.jpg,.png'">
+                        <img style="width:100%" ng-src="{{picturesCtrl.headshot.url}}" alt="headshot image" />
+                      </div>
+                      <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
 
-              <md-button layout-fill class="md-warn md-raised" aria-label="choose file for headshot" ngf-select ngf-change="picturesCtrl.uploadHeadshot($files)" ngf-accept="'.jpg,.png'" ng-model="picturesCtrl.inputHeadshot">
-                <md-icon md-font-icon="mdi mdi-file-find mdi-lg"></md-icon>
-                <span>Choose File to Upload</span>
-              </md-button>
-              <md-progress-linear class="md-accent" md-mode="determinate" value="{{picturesCtrl.headshotUploadProgress}}"></md-progress-linear>
-              <md-progress-circular class="md-accent" md-mode="determinate" value="{{picturesCtrl.headshotUploadProgress}}"></md-progress-circular>          
+                      <md-button flex class="md-warn md-raised" aria-label="choose file for headshot" ngf-select ngf-change="picturesCtrl.uploadHeadshot($files)" ngf-accept="'.jpg,.png'" ng-model="picturesCtrl.inputHeadshot">
+                        <md-icon md-font-icon="mdi mdi-file-find mdi-lg"></md-icon>
+                        <span>Choose File to Upload</span>
+                      </md-button>
 
+                    </md-card>
+                    <md-card flex-sm flex-gt-sm="60">
+                      <md-progress-linear class="md-accent" md-mode="determinate" value="{{picturesCtrl.bannerUploadProgress}}"></md-progress-linear>
+                      <div ngf-drop ng-model="picturesCtrl.dropBannerUpload" class="banner-drop-box" ngf-change="picturesCtrl.uploadBanner($files)" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true" ngf-accept="'.jpg,.png'">
+                        <img style="width:100%" ng-src="{{picturesCtrl.banner.url}}" alt="banner image" />
+                      </div>
+                      <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+
+                      <md-button flex class="md-warn md-raised" aria-label="choose file for Banner" ngf-select ngf-change="picturesCtrl.uploadBanner($files)" ngf-accept="'.jpg,.png'" ng-model="picturesCtrl.inputBanner">
+                        <md-icon md-font-icon="mdi mdi-file-find mdi-lg"></md-icon>
+                        <span>Choose File to Upload</span>
+                      </md-button>
+
+                    </md-card>
+                  </div>
+                </md-content>
               </fa-surface>
             </fa-modifier>
           </fa-view>
