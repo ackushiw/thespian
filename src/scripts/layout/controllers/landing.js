@@ -122,7 +122,7 @@ module.exports = function(app) {
       vm.launch = function() {
         Firebase.goOnline();
         $rootScope.fireAuth.$authWithOAuthPopup('google').then(function(authData) {
-          //vm.signinCallback(authData);
+          //vm.signinCallback(authData)
           $state.go('app.profile');
         }).catch(function(error) {
           console.error('Authentication failed: ', error);
@@ -141,14 +141,13 @@ module.exports = function(app) {
       };
       vm.signinCallback = function(authResult) {
         console.log('signed in: ', authResult);
-        if(authResult.uid) {
+        if(authResult['status']['signed_in']) {
           var AWS = $window.AWS;
-
           // Add the Google access token to the Cognito credentials login map.
           AWS.config.credentials = new AWS.CognitoIdentityCredentials({
             IdentityPoolId: 'us-east-1:44475292-5246-4fdb-ad6d-b3668187d9f8',
             Logins: {
-              'accounts.google.com': authResult.google.accessToken
+              'accounts.google.com': authResult['id_token']
             }
           });
 
