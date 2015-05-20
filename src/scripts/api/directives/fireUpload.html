@@ -1,0 +1,13 @@
+<md-card layout-fill>
+  <md-progress-linear class="md-accent" md-mode="determinate" value="{{fireUploadCtrl.uploadProgress}}"></md-progress-linear>
+  <div ngf-drop ng-model="fireUploadCtrl.dropUpload" class="fireupload-drop-box" ngf-change="fireUploadCtrl.upload($files)" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true" ngf-accept="fireUploadCtrl.accept">
+    <img style="width:100%" ng-src="{{fireUploadCtrl.fireFile.url || fireUploadCtrl.placeholder}}" alt="banner image" />
+  </div>
+  <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+
+  <md-button flex class="md-accent md-raised" aria-label="choose file to upload" ngf-select ngf-change="fireUploadCtrl.upload($files)" ngf-accept="fireUploadCtrl.accept" ng-model="fireUploadCtrl.inputUpload">
+    <md-icon md-font-icon="mdi mdi-file-find mdi-lg"></md-icon>
+    <span>Choose File to Upload</span>
+  </md-button>
+
+</md-card>

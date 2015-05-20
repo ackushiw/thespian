@@ -10,6 +10,7 @@ module.exports = function(namespace) {
   var angular = require('angular');
   var app = angular.module(fullname, ['ui.router', 'famous.angular', 'ngCordova']);
   // inject:folders start
+  require('./directives')(app);
   require('./services')(app);
   // inject:folders end
 
@@ -31,15 +32,15 @@ module.exports = function(namespace) {
         credentials: function() {
           return credentialsPromise;
         },
-        setToken: function(token, providerId) {
+        setToken: function(token, providerId, uid) {
 
           var config = {
             RoleArn: self.arn,
             WebIdentityToken: token,
-            RoleSessionName: 'thespus-web'
+            RoleSessionName: 'thespus-web-' + uid
           };
           if(providerId) {
-            config['providerId'] = providerId;
+            config.providerId = providerId;
           }
 
           self.config = config;
