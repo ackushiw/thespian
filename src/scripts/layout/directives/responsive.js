@@ -153,7 +153,7 @@ module.exports = function(app) {
         } else {
           vm.orientation = 'portrait';
           var portraitWidth = vm.width - 200;
-          console.log(portraitWidth);
+          $log.log(portraitWidth);
           vm.topnavSize.set([portraitWidth, 56], {
             duration: 300,
             curve: Easing.outExpo
@@ -503,12 +503,12 @@ module.exports = function(app) {
     }
 
     vm.toggleSidenav = function(state) {
-      console.log(state);
+      $log.log(state);
       if(!state) {
         expandSidenav();
         vm.sidenavOpen = true;
       } else {
-        console.log('run');
+        $log.log('run');
         responsiveCtrl.setDimensions();
         vm.sidenavOpen = false;
       }

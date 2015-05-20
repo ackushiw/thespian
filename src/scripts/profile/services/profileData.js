@@ -3,7 +3,7 @@ var servicename = 'profileData';
 
 module.exports = function(app) {
 
-  var dependencies = ['FBURL', '$firebaseObject','main.profile.initializeUser', '$log'];
+  var dependencies = ['FBURL', '$firebaseObject', 'main.profile.initializeUser', '$log'];
 
   function service(FBURL, $firebaseObject, initializeUser, $log) {
     //this service syncs the user's profile data @ location

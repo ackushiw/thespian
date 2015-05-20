@@ -39,7 +39,7 @@ module.exports = function(app) {
         var userRef = new Firebase(FBURL + '/userDir');
         var lastOnlineRef = new Firebase(userStatusUrl + '/lastOnline');
 
-        AWSService.setToken(auth.token);
+        AWSService.setToken(auth.token, null, data.uid);
 
         userPresenceRef.once('value', function(snap) {
           if(snap.val() === true) {

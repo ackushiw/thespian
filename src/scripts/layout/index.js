@@ -28,7 +28,7 @@ module.exports = function(namespace) {
   var angular = require('angular');
   var profileModule = require('../profile')(namespace);
   var apiModule = require('../api')(namespace);
-  var app = angular.module(fullname, ['ui.router', 'famous.angular', 'angular-google-gapi', 'oauth', 'facebook','ngStorage', 'ngCordova', 'ngMaterial', 'uiGmapgoogle-maps', 'ngAutocomplete', 'ngResize', 'ngLodash', 'firebase', 'ngFileUpload', 'angularGeoFire', profileModule.name, apiModule.name]);
+  var app = angular.module(fullname, ['ui.router', 'famous.angular', 'angular-google-gapi', 'oauth', 'facebook', 'ngStorage', 'ngCordova', 'ngMaterial', 'uiGmapgoogle-maps', 'ngAutocomplete', 'ngResize', 'ngLodash', 'firebase', 'ngFileUpload', 'angularGeoFire', profileModule.name, apiModule.name]);
   // inject:folders start
   require('./controllers')(app);
   require('./directives')(app);
@@ -120,8 +120,8 @@ module.exports = function(namespace) {
             controllerAs: 'statsCtrl'
           }
         },
-        onExit: ['currentAuth', function(currentAuth) {
-          console.log('onExit function');
+        onExit: ['currentAuth', '$log', function(currentAuth, $log) {
+          $log.log('onExit function');
           // var ref = new Firebase(FBURL + '/actorsProfiles/' + currentAuth.uid);
           // obj = $firebaseObj(ref);
           // obj.$priority = obj.actorName;
@@ -289,9 +289,9 @@ module.exports = function(namespace) {
     }
   ]);
   //Amazon AWS config
-  app.run(['$window', function($window) {
+  app.run(['$window', '$log', function($window, $log) {
     var AWS = $window.AWS;
-    console.log('google api',$window.gapi);
+    $log.log('google api', $window.gapi);
     AWS.config.update({
       accessKeyId: 'AKIAJIOQZUROHBNWSKTQ',
       secretAccessKey: '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'
@@ -300,13 +300,13 @@ module.exports = function(namespace) {
     // aws.config.credentials = new aws.CognitoIdentityCredentials({
     //   IdentityPoolId: 'us-east-1:44475292-5246-4fdb-ad6d-b3668187d9f8',
     // });
-    console.log('amazon: ', AWS);
+    $log.log('amazon: ', AWS);
 
   }]);
   //firebase settings
   app.constant('FBURL', 'https://thespus.firebaseio.com');
   //facebook config
-  app.config(['FacebookProvider', function (FacebookProvider) {
+  app.config(['FacebookProvider', function(FacebookProvider) {
     FacebookProvider.init('274540376052370');
   }]);
   //google maps settings
