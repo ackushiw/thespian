@@ -8,9 +8,6 @@ module.exports = function(app) {
   function controller(FBURL, $firebaseObject, currentAuth, uploadS3, $cacheFactory, $window, $log) {
     var vm = this;
 
-    //$log.log($window.CacheStorage.keys());
-    $log.log(Math.random().toString(36).substring(7));
-
     var headshotRef = new Firebase(FBURL + '/actor-headshots/' + currentAuth.uid);
     var bannerRef = new Firebase(FBURL + '/actor-banner/' + currentAuth.uid);
     vm.headshot = $firebaseObject(headshotRef);

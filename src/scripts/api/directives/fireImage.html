@@ -1,0 +1,5 @@
+
+<div layout-fill layout="column" layout-align="center center" style="background: url('{{fireImageCtrl.placeholder}}') no-repeat center; background-size:cover;">
+  <img ng-if="fireImageCtrl.url" style="width:100%" ng-src="{{fireImageCtrl.url}}" alt="fire-image" />
+  <md-progress-circular ng-if="!fireImageCtrl.url" class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+</div>

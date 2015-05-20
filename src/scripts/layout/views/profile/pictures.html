@@ -27,12 +27,13 @@
                 <md-content class="md-padding" layout-fill layout="column">
                   <div layout-fill layout="column" layout-gt-sm="row">
                     <div flex-sm flex-gt-sm="33">
-                      <fire-upload accept="'.jpg'" id="{{picturesCtrl.uid}}" location="actor-headshots" placeholder="/images/headshot_drop.png"></fire-upload>
+                      <fire-upload accept="'.jpg'" button-accept="image/jpeg" id="{{picturesCtrl.uid}}" location="actor-headshots" placeholder="/images/headshot_drop.png"></fire-upload>
                     </div>
                     <div flex-sm flex-gt-sm="66">
                       <fire-upload accept="'.jpg'" button-accept="image/jpeg" id="{{picturesCtrl.uid}}" location="actor-banner" placeholder="/images/headshot_drop.png"></fire-upload>
                     </div>
                   </div>
+                  <fire-image id="{{picturesCtrl.uid}}" location="actor-headshots" placeholder="images/headshot_drop.png"></fire-image>
                 </md-content>
               </fa-surface>
             </fa-modifier>
