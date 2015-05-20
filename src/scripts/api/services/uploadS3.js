@@ -19,7 +19,7 @@ module.exports = function(app) {
 
     return {
       Bucket: 'thespus-',
-      put: function(items, location) {
+      put: function(items, location, objectId) {
         var defer = $q.defer();
         auth.$waitForAuth().then(function(authData) {
           $log.log(authData.token);
@@ -69,7 +69,7 @@ module.exports = function(app) {
 
         return defer.promise;
       },
-      upload: function(data, location, uploadProgress) {
+      upload: function(data, location, objectId, uploadProgress) {
         auth.$waitForAuth().then(function(authData) {
           $log.log(AWSService.credentials());
           //AWSService.setToken(authData.token);
@@ -79,6 +79,7 @@ module.exports = function(app) {
           });
           var file = data[0];
           var fname = file.name;
+          var fileId = objectId || authData.uid;
           file.ext = fname.substr((~-fname.lastIndexOf('.') >>> 0) + 2); // jshint ignore:line
           //var authData = auth.$getAuth();
           var bucketUrl = 'https://thespus-' + location + '.s3.amazonaws.com/';
@@ -87,13 +88,13 @@ module.exports = function(app) {
             url: bucketUrl, //S3 upload url including bucket name
             method: 'POST',
             fields: {
-              key: authData.uid + '-' + location + '.' + file.ext, // the key to store the file on S3, could be file name or customized
+              key: fileId + '-' + location + '.' + file.ext, // the key to store the file on S3, could be file name or customized
               AWSAccessKeyId: amzId,
               acl: 'public-read', // sets the access to the uploaded file in the bucket: private or public
               //policy: vm.amzPolicy, // base64-encoded json policy (see article below)
               //signature: vm.amzSignature, // base64-encoded signature based on policy string (see article below)
               'Content-Type': file.type !== '' ? file.type : 'application/octet-stream', // content type of the file (NotEmpty)
-              filename: authData.uid + '-' + location + '.' + file.ext // this is needed for Flash polyfill IE8-9
+              filename: fileId + '-' + location + '.' + file.ext // this is needed for Flash polyfill IE8-9
             },
             file: file
           }).progress(function(evt) {
@@ -106,8 +107,9 @@ module.exports = function(app) {
             $log.log('config', config);
             $log.log('headers', headers);
             $log.log('status', status);
-            var ref = new Firebase(FBURL + '/' + location + '/' + authData.uid);
+            var ref = new Firebase(FBURL + '/' + location + '/' + fileId);
             var fireFile = {
+              creator: authData.uid,
               name: file.name,
               type: file.type,
               size: file.size,

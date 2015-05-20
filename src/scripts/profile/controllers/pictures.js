@@ -3,16 +3,19 @@ var controllername = 'pictures';
 
 module.exports = function(app) {
   /*jshint validthis: true */
-  var deps = ['FBURL', '$firebaseObject', 'currentAuth', 'main.api.uploadS3', '$window', '$log'];
+  var deps = ['FBURL', '$firebaseObject', 'currentAuth', 'main.api.uploadS3', '$cacheFactory', '$window', '$log'];
 
-  function controller(FBURL, $firebaseObject, currentAuth, uploadS3, $window, $log) {
+  function controller(FBURL, $firebaseObject, currentAuth, uploadS3, $cacheFactory, $window, $log) {
     var vm = this;
+
+    //$log.log($window.CacheStorage.keys());
+    $log.log(Math.random().toString(36).substring(7));
 
     var headshotRef = new Firebase(FBURL + '/actor-headshots/' + currentAuth.uid);
     var bannerRef = new Firebase(FBURL + '/actor-banner/' + currentAuth.uid);
     vm.headshot = $firebaseObject(headshotRef);
     vm.banner = $firebaseObject(bannerRef);
-    vm.message = 'Hello World';
+    vm.uid = currentAuth.uid;
     vm.driveFiles = [];
     vm.test = function(data) {
       $log.log('test', data);
@@ -33,7 +36,7 @@ module.exports = function(app) {
 
         if(file) {
           //uploadS3.put(data, 'actor-headshots');
-          uploadS3.upload(data, 'actor-headshots', headshotUploadProgress);
+          uploadS3.upload(data, 'actor-headshots', currentAuth.uid, headshotUploadProgress);
         } else {
           $log.error('no file:', data);
         }
@@ -46,7 +49,7 @@ module.exports = function(app) {
 
         if(file) {
           //uploadS3.put(data, 'actor-banners');
-          uploadS3.upload(data, 'actor-banner', bannerUploadProgress);
+          uploadS3.upload(data, 'actor-banner', currentAuth.uid, bannerUploadProgress);
         } else {
           $log.error('no file:', data);
         }
