@@ -6,53 +6,59 @@ module.exports = function(app) {
   var dependencies = ['AWSService', 'Upload', 'FBURL', 'main.layout.auth', '$window', '$q', '$log'];
 
   function service(AWSService, Upload, FBURL, auth, $window, $q, $log) {
-    var amzId, amzKey;
-    var AWS = $window.AWS;
-
-    AWS.config.credentials.get(function(err) {
-      if(!err) {
-        amzId = AWS.config.credentials.identityId;
-        amzKey = AWS.config.credentials.accessKeyId;
-        $log.log('Cognito Identity Id: ', amzId);
-      }
-    });
 
     return {
-      Bucket: 'thespus-',
       put: function(items, location, objectId) {
         var defer = $q.defer();
-        auth.$waitForAuth().then(function(authData) {
-          $log.log(authData.token);
-          AWSService.setToken(authData.token);
+        var bucket = 'thespus-' + location;
+        var fireAuth = auth.$getAuth();
+        AWSService.credentials().then(function(authData) {
+          $log.warn(auth.google);
           AWSService.s3({
             params: {
-              Bucket: service.Bucket + location
+              Bucket: bucket
             }
           }).then(function(s3) {
             var file = items[0];
+            var fname = file.name;
+            var fileId = objectId;
+            file.ext = fname.substr((~-fname.lastIndexOf('.') >>> 0) + 2); // jshint ignore:line
+
             var params = {
-              Key: file.name,
+              //ACL: 'public-read',
+              Key: fileId + '-' + location + '.' + file.ext,
               Body: file,
+              // Metadata: {
+              //   uid: fireAuth.uid,
+              //   owner: fireAuth.google.displayName,
+              //   ext: file.ext
+              // },
               ContentType: file.type
+
             };
 
             s3.putObject(params, function(err, data) {
+              $log.log('s3 data', data);
               if(!err) {
                 var params = {
-                  Bucket: service.Bucket + location,
-                  Key: file.name,
+                  Bucket: bucket,
+                  Key: fileId + '-' + location + '.' + file.ext,
                   Expires: 900 * 4
                 };
                 s3.getSignedUrl('getObject', params, function(error, url) {
                   if(!error) {
-                    var ref = new Firebase(FBURL + '/' + location + '/' + authData.uid);
+                    var ref = new Firebase(FBURL + '/' + location + '/' + fileId);
                     var fireFile = {
+                      creator: fireAuth.uid,
                       name: file.name,
                       type: file.type,
                       size: file.size,
-                      url: url
+                      ext: file.ext,
+                      url: 'https://s3.amazonaws.com/' + bucket + '/' + fileId + '-' + location + '.' + file.ext,
+                      lastModified: file.lastModified,
+                      uploaded: Firebase.ServerValue.TIMESTAMP
                     };
-                    ref.setWithPriority(fireFile, auth.google.displayName);
+                    ref.setWithPriority(fireFile, fireAuth.google.displayName);
                   } else {
                     $log.error(error);
                   }
@@ -70,16 +76,15 @@ module.exports = function(app) {
         return defer.promise;
       },
       upload: function(data, location, objectId, uploadProgress) {
-        auth.$waitForAuth().then(function(authData) {
-          $log.log(AWSService.credentials());
-          //AWSService.setToken(authData.token);
-          AWS.config.credentials.get(function() {
-            // Access AWS resources here.
-            $log.log('cognito available?', AWS.config.credentials);
-          });
+        AWSService.credentials().then(function(authData) {
+          var fireAuth = auth.$getAuth();
+          console.log(authData);
+          //accessKeyId
+          //secretAccessKey
+          //expired
           var file = data[0];
           var fname = file.name;
-          var fileId = objectId || authData.uid;
+          var fileId = objectId;
           file.ext = fname.substr((~-fname.lastIndexOf('.') >>> 0) + 2); // jshint ignore:line
           //var authData = auth.$getAuth();
           var bucketUrl = 'https://thespus-' + location + '.s3.amazonaws.com/';
@@ -89,7 +94,8 @@ module.exports = function(app) {
             method: 'POST',
             fields: {
               key: fileId + '-' + location + '.' + file.ext, // the key to store the file on S3, could be file name or customized
-              AWSAccessKeyId: amzId,
+              AWSAccessKeyId: authData.accessKeyId,
+              AWSSecretAccessKey: authData.secretAccessKey,
               acl: 'public-read', // sets the access to the uploaded file in the bucket: private or public
               //policy: vm.amzPolicy, // base64-encoded json policy (see article below)
               //signature: vm.amzSignature, // base64-encoded signature based on policy string (see article below)
@@ -109,7 +115,7 @@ module.exports = function(app) {
             $log.log('status', status);
             var ref = new Firebase(FBURL + '/' + location + '/' + fileId);
             var fireFile = {
-              creator: authData.uid,
+              creator: fireAuth.uid,
               name: file.name,
               type: file.type,
               size: file.size,
@@ -118,7 +124,7 @@ module.exports = function(app) {
               lastModified: file.lastModified,
               uploaded: Firebase.ServerValue.TIMESTAMP
             };
-            ref.setWithPriority(fireFile, authData.google.displayName);
+            ref.setWithPriority(fireFile, fireAuth.google.displayName);
           }).error(function(error) {
             $log.error('upload error: ', error);
           });

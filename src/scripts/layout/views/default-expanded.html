@@ -1,16 +1,19 @@
 <fa-modifier>
   <fa-scroll-view fa-pipe-from="expandedCtrl.scrollEventHandler">
-    <fa-modifier fa-proportions="[1,.5625]">
+    <fa-modifier fa-size="expandedCtrl.bannerSize.get()">
       <fa-view>
-        <fa-modifier fa-proportions="[1,.5625]">
+        <fa-modifier fa-size="expandedCtrl.bannerSize.get()">
           <fa-surface class="full-height" fa-pipe-to="expandedCtrl.scrollEventHandler">
-            <div class="CoverImage FlexEmbed FlexEmbed--16by9" style="background-image:url(https://lh6.googleusercontent.com/-TOlHURd5xfw/UgkQcQ-CHlI/AAAAAAAA49o/TsxpOfCWAIk/w1207-h905-no/IMG_20130724_174059.jpg)"></div>
+            <md-content get-dimensions action="expandedCtrl.updateBannerSize(height, width)">
+
+              <fire-image id="{{expandedCtrl.uid}}" location="actor-banner" placeholder="images/placeholder_banner.png" ></fire-image>
+            </md-content>
           </fa-surface>
         </fa-modifier>
 
       </fa-view>
     </fa-modifier>
-    <fa-modifier>
+    <fa-modifier fa-translate="[0,0,2]">
       <fa-view>
         <fa-modifier>
           <fa-surface class="full-height" fa-pipe-to="expandedCtrl.scrollEventHandler">

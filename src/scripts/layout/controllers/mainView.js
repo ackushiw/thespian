@@ -13,11 +13,21 @@ module.exports = function(app) {
     var userData = new Firebase(FBURL + '/actorsProfiles/' + currentAuth.uid);
     //famous
     var EventHandler = $famous['famous/core/EventHandler'];
+    var Transitionable = $famous['famous/transitions/Transitionable'];
     //var Engine = $famous['famous/core/Engine'];
     //var Transform = $famous['famous/core/Transform'];
 
     vm.scrollEventHandler = new EventHandler();
-    vm.message = 'Hello World';
+    vm.headshotSize = new Transitionable([0, 0]);
+    //vm.viewAlign = new Transitionable([0,-1]);
+    vm.updateHeadshotSize = function (height, width) {
+      vm.headshotSize.set([undefined, height]);
+      //vm.viewAlign.set([0,0]);
+    };
+    vm.refresh = function (event) {
+      $log.log('refreshed');
+    };
+    vm.uid = currentAuth.uid;
     var activate = function() {
       vm.googleProfile = $firebaseObject(googleData);
       vm.userProfile = $firebaseObject(userData);
@@ -53,7 +63,6 @@ module.exports = function(app) {
         priority: '2',
         icon: 'mdi-newspaper',
         type: 'default'
-
       }, {
         title: 'Groups',
         link: 'app.profile.groups',

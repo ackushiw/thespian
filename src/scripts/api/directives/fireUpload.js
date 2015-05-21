@@ -36,7 +36,8 @@ module.exports = function(app) {
       var file = data[0];
       if(file) {
         $log.log('upload started', file);
-        uploadS3.upload(data, vm.location, vm.id, uploadProgress);
+        //uploadS3.upload(data, vm.location, vm.id, uploadProgress);
+        uploadS3.put(data, vm.location, vm.id, uploadProgress);
       } else {
         $log.warn('no file:', data);
       }

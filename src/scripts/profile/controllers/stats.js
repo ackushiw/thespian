@@ -17,8 +17,6 @@ module.exports = function(app) {
     vm.contentLayout = 'row';
     vm.updateSize = function(height, width) {
       vm.contentSize = new Transitionable([undefined, height]);
-      $log.log('action height', height);
-      $log.log('action width', width);
       vm.contentSize.set([undefined, height]);
 
       if(width < 640) {

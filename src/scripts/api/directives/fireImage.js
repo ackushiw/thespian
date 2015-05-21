@@ -19,6 +19,9 @@ module.exports = function(app) {
     function existsCallback(exists, image) {
       if(exists) {
         fireImageCtrl.url = image + '?r=' + Math.random().toString(36).substring(7);
+        if (fireImageCtrl.updated) {
+          fireImageCtrl.updated();
+        }
       }
     }
 
@@ -49,7 +52,8 @@ module.exports = function(app) {
       scope: {
         placeholder: '@', // '@' reads attribute value, '=' provides 2-way binding, '&" works with functions
         location: '@',
-        id: '@'
+        id: '@',
+        updated: '&'
       },
       controller: controller,
       controllerAs: 'fireImageCtrl',

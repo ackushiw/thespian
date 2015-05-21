@@ -4,9 +4,9 @@ var controllername = 'landing';
 module.exports = function(app) {
   /*jshint validthis: true */
 
-  var deps = ['$rootScope', '$mdDialog', '$famous', '$timeline', 'GAuth', 'Facebook', '$firebaseAuth', 'FBURL', '$window', '$state', '$log'];
+  var deps = ['$rootScope', '$mdDialog', '$famous', '$timeline', 'main.api.cognito', 'GAuth', 'main.api.google', 'Facebook', 'AWSService', '$firebaseAuth', 'FBURL', '$window', '$state', '$log'];
 
-  function controller($rootScope, $mdDialog, $famous, $timeline, GAuth, Facebook, $firebaseAuth, FBURL, $window, $state, $log) {
+  function controller($rootScope, $mdDialog, $famous, $timeline, cognito, GAuth, Google, Facebook, AWSService, $firebaseAuth, FBURL, $window, $state, $log) {
     var vm = this;
     //firebaseAuth
     var ref = new Firebase(FBURL);
@@ -77,31 +77,31 @@ module.exports = function(app) {
 
     vm.message = 'Hello World';
     var activate = function() {
+      function authCallback(cognitoAuth) {
+
+        // cognitoAuth.get(function () {
+        //   // Access AWS resources here.
+        //   cognito.set(cognitoAuth);
+        //   $log.log('cognito available?', cognitoAuth);
+        // });
+        AWSService.credentials().then(function(authData) {
+          $log.log('AWSService-auth', authData);
+        });
+
+      }
+
       function facebookCallback(response) {
         $log.log(response);
-        var AWS = $window.AWS;
+
         if(response.authResponse) {
-
           $log.log('You are now logged in.');
-
           // Add the Facebook access token to the Cognito credentials login map.
-          AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-            IdentityPoolId: 'us-east-1:44475292-5246-4fdb-ad6d-b3668187d9f8',
-            Logins: {
-              'graph.facebook.com': response.authResponse.accessToken
-            }
-          });
-
-          // Obtain AWS credentials
-          AWS.config.credentials.get(function() {
-            // Access AWS resources here.
-            $log.log('cognito available?', AWS.config.credentials);
-          });
-
+          cognito.initFacebook(response.authResponse.accessToken, authCallback);
         } else {
           $log.log('There was a problem logging you in.');
         }
       }
+
       vm.openSignupWizard = function($event) {
         $log.log('open signup seasame');
 
@@ -131,37 +131,32 @@ module.exports = function(app) {
       };
 
       vm.cognito = function(authData) {
+        $log.log(authData);
         var additionalParams = {
           'callback': vm.signinCallback
         };
-        $window.gapi.auth.signIn(additionalParams);
+        Google.signIn(additionalParams);
       };
       vm.facebook = function() {
         Facebook.login(facebookCallback);
       };
       vm.signinCallback = function(authResult) {
         $log.log('signed in: ', authResult);
-        if(authResult.status && authResult.signed_in) {
+        if(authResult.status.signed_in) {
           var AWS = $window.AWS;
           // Add the Google access token to the Cognito credentials login map.
-          AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-            IdentityPoolId: 'us-east-1:44475292-5246-4fdb-ad6d-b3668187d9f8',
-            Logins: {
-              'accounts.google.com': authResult.id_token
+          cognito.initGoogle(authResult.id_token, authCallback);
+
+          Firebase.goOnline();
+
+          ref.authWithOAuthToken('google', authResult.access_token, function(error, authData) {
+            if(error) {
+              $log.error('Login Failed!', error);
+            } else {
+              $log.log('Authenticated successfully with payload:', authData);
+              $state.go('app.profile');
             }
           });
-
-          // Obtain AWS credentials
-          AWS.config.credentials.get(function() {
-            // Access AWS resources here.
-            $log.log('cognito available?', AWS.config.credentials);
-          });
-          // Firebase.goOnline();
-          // $rootScope.fireAuth.$authWithOAuthPopup('google').then(function(authData) {
-          //   $state.go('app.profile');
-          // }).catch(function(error) {
-          //   $log.error('Authentication failed: ', error);
-          // });
 
         } else {
           // Update the app to reflect a signed out user

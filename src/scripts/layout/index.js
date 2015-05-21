@@ -65,7 +65,7 @@ module.exports = function(namespace) {
               $log.error('Error: ', error);
               var confirm = $mdDialog.confirm()
                 .title('You are not signed in.')
-                .content('Would you like to sign in?')
+                .content('Would you like to sign in?---resolve')
                 .ariaLabel('Login')
                 .ok('Sign In')
                 .cancel('Cancel')

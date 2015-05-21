@@ -32,21 +32,16 @@ module.exports = function(namespace) {
         credentials: function() {
           return credentialsPromise;
         },
-        setToken: function(token, providerId, uid) {
-
-          var config = {
-            RoleArn: self.arn,
-            WebIdentityToken: token,
-            RoleSessionName: 'thespus-web-' + uid
-          };
-          if(providerId) {
-            config.providerId = providerId;
-          }
-
+        setToken: function(config) {
           self.config = config;
-          AWS.config.credentials = new AWS.WebIdentityCredentials(config);
-          credentialsDefer.resolve(AWS.config.credentials);
+          AWS.config.credentials = new AWS.CognitoIdentityCredentials(config);
+          AWS.config.credentials.get(function () {
+            credentialsDefer.resolve(AWS.config.credentials);
+          });
         },
+        // updateToken: function () {
+        //
+        // },
         s3: function(params) {
           var defer = $q.defer();
           credentialsPromise.then(function() {
@@ -65,7 +60,7 @@ module.exports = function(namespace) {
     }];
   });
   app.config(['AWSServiceProvider', function(AWSServiceProvider) {
-    AWSServiceProvider.setArn('arn:aws:iam::235088159752:role/firebase-google');
+    AWSServiceProvider.setArn('arn:aws:iam::235088159752:role/Cognito_thespusAuth_Role');
   }]);
 
   return app;

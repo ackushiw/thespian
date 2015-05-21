@@ -5,24 +5,23 @@
         <fa-surface fa-pipe-to="mainViewCtrl.scrollEventHandler">test scroll {{mainViewCtrl.message}}</fa-surface>
       </fa-modifier>
     </fa-view> -->
-    <fa-modifier>
+    <fa-modifier fa-size="mainViewCtrl.headshotSize.get()">
       <fa-view>
-        <fa-modifier fa-perspective="100" fa-size="[undefined, 450]">
-          <fa-surface fa-size="[undefined, 450]" class="full-height" fa-pipe-to="mainViewCtrl.scrollEventHandler ">
-            <div class="md-whiteframe-z2">
-              <img hide-sm hide-md hide-lg ng-src="{{mainViewCtrl.googleProfile.picture}}" alt="headshot" width="480">
-              <img hide-sm hide-md hide-gt-lg ng-src="{{mainViewCtrl.googleProfile.picture}}" alt="headshot" width="380">
-            </div>
-            <div hide-gt-md style="height:100%;background: url(images/headshot1.jpg) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;"></div>
+        <fa-modifier fa-perspective="100" fa-size="mainViewCtrl.headshotSize.get()">
+          <fa-surface  class="full-height" fa-pipe-to="mainViewCtrl.scrollEventHandler ">
+            <md-content class="md-whiteframe-z2" get-dimensions action="mainViewCtrl.updateHeadshotSize(height, width)">
+              <fire-image  id="{{mainViewCtrl.uid}}" location="actor-headshots"></fire-image>
+            </md-content>
+
           </fa-surface>
-          <!-- <fa-image-surface fa-size="[undefined, auto] " fa-image-url="images/headshot1.jpg " fa-pipe-to="mainViewCtrl.scrollEventHandler " style="height:auto; "></fa-image-surface> -->
+
         </fa-modifier>
       </fa-view>
     </fa-modifier>
     <fa-view>
       <fa-modifier fa-translate="[0,0,1]">
         <fa-surface class="full-height " fa-pipe-to="mainViewCtrl.scrollEventHandler ">
-          <md-card layout-fill layout="row " style="background-color:white;" class="md-whiteframe-z2">
+          <md-card layout-fill layout="column" style="background-color:white;" class="md-whiteframe-z2">
             <md-toolbar>
               <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
                 <h3>{{mainViewCtrl.userProfile.actorName || mainViewCtrl.googleProfile.given_name + ' ' + mainViewCtrl.googleProfile.family_name}}</h3>

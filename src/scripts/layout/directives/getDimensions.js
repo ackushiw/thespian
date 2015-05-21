@@ -12,7 +12,6 @@ module.exports = function(app) {
     return {
       restrict: 'A',
       scope: {
-
         action: '&'
       },
       link: function(scope, element, attrs) {
@@ -30,7 +29,6 @@ module.exports = function(app) {
         }, 2000);
 
         scope.$on('resize', function($event) {
-
           emitDimensions();
         });
       }
