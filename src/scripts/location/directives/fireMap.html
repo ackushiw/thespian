@@ -1,7 +1,10 @@
 <div>
-    This is directive : fire-map
+  This is directive : fire-map
 </div>
-<input type="text" ng-autocomplete ng-model="fireMapCtrl.search" name="name" value="">
-<ui-gmap-google-map ng-if="fireMapCtrl.mapLoaded" control="fireMapCtrl.map.control" center="fireMapCtrl.map.center" zoom="fireMapCtrl.map.zoom">
-  <ui-gmap-marker idKey="fireMapCtrl.id" coords="fireMapCtrl.map.marker.coords" options="fireMapCtrl.map.marker.options" events="fireMapCtrl.map.marker.events"></ui-gmap-marker>
-</ui-gmap-google-map>
+<input name="name" ng-autocomplete ng-model="fireMapCtrl.search" type="text"
+  value="">
+  <ui-gmap-google-map center="fireMapCtrl.map.center"
+    control="fireMapCtrl.map.control" ng-if="fireMapCtrl.mapLoaded" zoom="fireMapCtrl.map.zoom">
+    <ui-gmap-marker coords="fireMapCtrl.map.marker.coords"
+      events="fireMapCtrl.map.marker.events" idKey="fireMapCtrl.id" options="fireMapCtrl.map.marker.options"></ui-gmap-marker>
+  </ui-gmap-google-map>

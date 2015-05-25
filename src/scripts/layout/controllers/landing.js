@@ -4,9 +4,9 @@ var controllername = 'landing';
 module.exports = function(app) {
   /*jshint validthis: true */
 
-  var deps = ['$rootScope', '$mdDialog', '$famous', '$timeline', 'main.api.cognito', 'GAuth', 'main.api.google', 'Facebook', 'AWSService', '$firebaseAuth', 'FBURL', '$window', '$state', '$log'];
+  var deps = ['$rootScope', '$mdDialog', '$famous', '$timeline', 'main.api.cognito', 'GAuth', 'main.api.google', 'Facebook', 'AWSService', '$firebaseAuth', 'FBURL', '$state', '$log'];
 
-  function controller($rootScope, $mdDialog, $famous, $timeline, cognito, GAuth, Google, Facebook, AWSService, $firebaseAuth, FBURL, $window, $state, $log) {
+  function controller($rootScope, $mdDialog, $famous, $timeline, cognito, GAuth, Google, Facebook, AWSService, $firebaseAuth, FBURL, $state, $log) {
     var vm = this;
     //firebaseAuth
     var ref = new Firebase(FBURL);
@@ -143,7 +143,6 @@ module.exports = function(app) {
       vm.signinCallback = function(authResult) {
         $log.log('signed in: ', authResult);
         if(authResult.status.signed_in) {
-          var AWS = $window.AWS;
           // Add the Google access token to the Cognito credentials login map.
           cognito.initGoogle(authResult.id_token, authCallback);
 

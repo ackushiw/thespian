@@ -524,7 +524,7 @@ module.exports = function(app) {
     };
     vm.sidenavOptions = {
       translate: [0, 0, 180] //,
-        //size: [250, undefined]
+      //size: [250, undefined]
     };
 
     vm.mainContentOptions = {
@@ -540,7 +540,7 @@ module.exports = function(app) {
     };
     vm.lgContentOptions = {
       translate: [0, 0, 30] //,
-        //size: [1000, undefined]
+      //size: [1000, undefined]
     };
     vm.actionOptions = {
       align: [0, 0.86],

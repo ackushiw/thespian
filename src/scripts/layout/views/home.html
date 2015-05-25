@@ -1,38 +1,49 @@
 <fa-app class="full-screen">
   <fa-modifier fa-translate="[0,0,10]">
-    <fa-modifier fa-translate="landingCtrl.titleTimeline.translate(landingCtrl.titlePos.translate.get())" fa-align="landingCtrl.titleTimeline.align(landingCtrl.titlePos.align.get())" fa-origin="landingCtrl.titleTimeline.origin(landingCtrl.titlePos.origin.get())" fa-size="landingCtrl.titleTimeline.size(landingCtrl.titlePos.size.get())">
+    <fa-modifier
+      fa-align="landingCtrl.titleTimeline.align(landingCtrl.titlePos.align.get())" fa-origin="landingCtrl.titleTimeline.origin(landingCtrl.titlePos.origin.get())"
+      fa-size="landingCtrl.titleTimeline.size(landingCtrl.titlePos.size.get())"
+      fa-translate="landingCtrl.titleTimeline.translate(landingCtrl.titlePos.translate.get())">
       <fa-surface fa-pipe-to="landingCtrl.scrollEventHandler">
         <h1>Thespus</h1>
       </fa-surface>
     </fa-modifier>
-    <fa-modifier fa-translate="landingCtrl.loginTimeline.translate(landingCtrl.loginPos.translate.get())" fa-align="landingCtrl.loginTimeline.align(landingCtrl.loginPos.align.get())" fa-origin="landingCtrl.loginTimeline.origin(landingCtrl.loginPos.origin.get())" fa-size="landingCtrl.loginTimeline.size(landingCtrl.loginPos.size.get())">
+    <fa-modifier
+      fa-align="landingCtrl.loginTimeline.align(landingCtrl.loginPos.align.get())" fa-origin="landingCtrl.loginTimeline.origin(landingCtrl.loginPos.origin.get())"
+      fa-size="landingCtrl.loginTimeline.size(landingCtrl.loginPos.size.get())"
+      fa-translate="landingCtrl.loginTimeline.translate(landingCtrl.loginPos.translate.get())">
       <fa-surface fa-pipe-to="landingCtrl.scrollEventHandler">
         <md-card>
           <md-content class="md-padding" layout="column">
             <h3>login using Google</h3>
-
-            <md-button flex aria-label="login" ng-click="landingCtrl.launch()" class="md-raised md-warn center">Login
+            <md-button aria-label="login" class="md-raised md-warn center" flex
+              ng-click="landingCtrl.launch()">Login
               <md-icon md-font-icon="mdi mdi-google-plus"></md-icon>
             </md-button>
-            <md-button flex aria-label="login" ng-click="landingCtrl.cognito()" class="md-raised md-accent center">Login
+            <md-button aria-label="login" class="md-raised md-accent center" flex
+              ng-click="landingCtrl.cognito()">Login
               <md-icon md-font-icon="mdi mdi-amazon mdi-lg"></md-icon>
             </md-button>
-            <md-button flex aria-label="login" ng-click="landingCtrl.facebook()" class="md-raised md-primary center">Login
+            <md-button aria-label="login" class="md-raised md-primary center" flex
+              ng-click="landingCtrl.facebook()">Login
               <md-icon md-font-icon="mdi mdi-facebook mdi-lg"></md-icon>
             </md-button>
-
           </md-content>
         </md-card>
       </fa-surface>
     </fa-modifier>
-    <fa-scroll-view id="scrollview" faObject="scrollObject" fa-pipe-from="landingCtrl.scrollEventHandler">
+    <fa-scroll-view fa-pipe-from="landingCtrl.scrollEventHandler"
+      faObject="scrollObject" id="scrollview">
       <fa-modifier>
         <fa-view>
           <fa-modifier>
-            <fa-surface fa-background-color="'gold'" fa-pipe-to="landingCtrl.scrollEventHandler"><pre>test: {{landingCtrl.scroller._inProgress}}</pre>
+            <fa-surface fa-background-color="'gold'"
+              fa-pipe-to="landingCtrl.scrollEventHandler"><pre>test:
+              {{landingCtrl.scroller._inProgress}}</pre>
             </fa-surface>
           </fa-modifier>
-          <fa-modifier fa-align="[0.5, 1]" fa-translate="[0,0,0]" fa-origin="[0.5, 1]" fa-size="[100, 100]">
+          <fa-modifier fa-align="[0.5, 1]" fa-origin="[0.5, 1]" fa-size="[100, 100]"
+            fa-translate="[0,0,0]">
             <fa-surface>
               <md-icon md-font-icon="mdi mdi-chevron-down" style="font-size: 7em"></md-icon>
             </fa-surface>
@@ -42,7 +53,9 @@
       <fa-modifier>
         <fa-view>
           <fa-modifier>
-            <fa-surface fa-background-color="'red'" fa-pipe-to="landingCtrl.scrollEventHandler">test2 </fa-surface>
+            <fa-surface fa-background-color="'red'"
+              fa-pipe-to="landingCtrl.scrollEventHandler">test2
+            </fa-surface>
           </fa-modifier>
         </fa-view>
       </fa-modifier>
@@ -50,18 +63,18 @@
   </fa-modifier>
   <fa-modifier class="background view" fa-translate="[0,0,1]">
     <div>
-      <fa-surface fa-background-color="'#268bd2'" fa-opacity="responsiveCtrl.opacityTest" fa-pipe-to="landingCtrl.scroller">
+      <fa-surface fa-background-color="'#268bd2'"
+        fa-opacity="responsiveCtrl.opacityTest" fa-pipe-to="landingCtrl.scroller">
         <h1>height: {{responsiveCtrl.height}}</h1>
         <h1>width: {{responsiveCtrl.width}}</h1>
-
       </fa-surface>
     </div>
   </fa-modifier>
-  <fa-modifier class="nav view" fa-translate="[0,0,10]" fa-align="[1,0]" fa-origin="[1,0]" fa-size="[100,60]">
-
+  <fa-modifier class="nav view" fa-align="[1,0]" fa-origin="[1,0]" fa-size="[100,60]"
+    fa-translate="[0,0,10]">
     <fa-surface>
-      <md-button aria-label="sign up" ng-click="landingCtrl.openSignupWizard($event)">sign up</md-button>
+      <md-button aria-label="sign up" ng-click="landingCtrl.openSignupWizard($event)">sign
+        up</md-button>
     </fa-surface>
-
   </fa-modifier>
 </fa-app>

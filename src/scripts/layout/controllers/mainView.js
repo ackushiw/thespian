@@ -20,11 +20,11 @@ module.exports = function(app) {
     vm.scrollEventHandler = new EventHandler();
     vm.headshotSize = new Transitionable([0, 0]);
     //vm.viewAlign = new Transitionable([0,-1]);
-    vm.updateHeadshotSize = function (height, width) {
+    vm.updateHeadshotSize = function(height, width) {
       vm.headshotSize.set([undefined, height]);
       //vm.viewAlign.set([0,0]);
     };
-    vm.refresh = function (event) {
+    vm.refresh = function(event) {
       $log.log('refreshed');
     };
     vm.uid = currentAuth.uid;

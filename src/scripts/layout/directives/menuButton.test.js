@@ -1,6 +1,6 @@
 'use strict';
 /*eslint consistent-this:[0] */
-var angular = require('angular-mocks');
+var angularMock = require('angular-mocks');
 var app = require('../')('app');
 var directivename = 'menuButton';
 var unitHelper = require('unitHelper');
@@ -12,7 +12,7 @@ describe(app.name, function() {
     describe(directivename, function() {
 
       beforeEach(function() {
-        angular.mock.module(app.name);
+        angularMock.mock.module(app.name);
       });
 
       beforeEach(inject(function($injector) {

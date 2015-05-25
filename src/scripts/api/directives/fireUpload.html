@@ -1,14 +1,18 @@
 <md-card>
-  <md-progress-linear class="md-accent" md-mode="determinate" value="{{fireUploadCtrl.uploadProgress}}"></md-progress-linear>
-  <div ngf-drop ng-model="fireUploadCtrl.dropFile" class="fireupload-drop-box" ngf-change="fireUploadCtrl.upload($files, $event, $rejectedFiles)" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="true" ngf-accept="{{fireUploadCtrl.accept}}">
-    <!-- <img style="width:100%" ng-src="{{fireUploadCtrl.image}}" alt="upload placeholder image" /> -->
-    <fire-image id="{{fireUploadCtrl.id}}" location="{{fireUploadCtrl.location}}" placeholder="{{fireUploadCtrl.placeholder}}"></fire-image>
+  <md-progress-linear class="md-accent" md-mode="determinate"
+    value="{{fireUploadCtrl.uploadProgress}}"></md-progress-linear>
+  <div class="fireupload-drop-box" ng-model="fireUploadCtrl.dropFile"
+    ngf-accept="{{fireUploadCtrl.accept}}" ngf-allow-dir="true"
+    ngf-change="fireUploadCtrl.upload($files, $event, $rejectedFiles)" ngf-drag-over-class="dragover" ngf-drop ngf-multiple="false">
+    <!-- <img style="width:100%" ng-src="{{fireUploadCtrl.image}}" alt="upload placeholder image"/> -->
+    <fire-image id="{{fireUploadCtrl.id}}" location="{{fireUploadCtrl.location}}"
+      placeholder="{{fireUploadCtrl.placeholder}}"></fire-image>
   </div>
   <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
-
-  <md-button flex class="md-accent md-raised" aria-label="choose file to upload" ngf-select ngf-change="fireUploadCtrl.upload($files, $event, $rejectedFiles)" accept="{{fireUploadCtrl.buttonAccept}}" ng-model="fireUploadCtrl.inputFile">
+  <md-button accept="{{fireUploadCtrl.buttonAccept}}"
+    aria-label="choose file to upload" class="md-accent md-raised" flex ng-model="fireUploadCtrl.inputFile"
+    ngf-change="fireUploadCtrl.upload($files, $event, $rejectedFiles)" ngf-select>
     <md-icon md-font-icon="mdi mdi-file-find mdi-lg"></md-icon>
-  Upload
+    Upload
   </md-button>
-
 </md-card>

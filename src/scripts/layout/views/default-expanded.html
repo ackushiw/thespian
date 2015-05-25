@@ -4,13 +4,12 @@
       <fa-view>
         <fa-modifier fa-size="expandedCtrl.bannerSize.get()">
           <fa-surface class="full-height" fa-pipe-to="expandedCtrl.scrollEventHandler">
-            <md-content get-dimensions action="expandedCtrl.updateBannerSize(height, width)">
-
-              <fire-image id="{{expandedCtrl.uid}}" location="actor-banner" placeholder="images/placeholder_banner.png" ></fire-image>
+            <md-content action="expandedCtrl.updateBannerSize(height, width)" get-dimensions>
+              <fire-image id="{{expandedCtrl.uid}}" location="actor-banner"
+                placeholder="images/placeholder_banner.png"></fire-image>
             </md-content>
           </fa-surface>
         </fa-modifier>
-
       </fa-view>
     </fa-modifier>
     <fa-modifier fa-translate="[0,0,2]">
@@ -18,77 +17,75 @@
         <fa-modifier>
           <fa-surface class="full-height" fa-pipe-to="expandedCtrl.scrollEventHandler">
             <md-toolbar>
-              <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+              <div class="md-toolbar-tools" layout-align="space-between center" layout="row">
                 <span>Action Center</span>
                 <span>edit header image</span>
               </div>
             </md-toolbar>
-
-            <md-content layout-fill layout="column" flex="100" class="md-padding action-page">
-              <div layout="column" layout-md="column" layout-gt-lg="row">
-                <div layout="row" layout-md="column" flex>
+            <md-content class="md-padding action-page" flex="100" layout-fill layout="column">
+              <div layout-gt-lg="row" layout-md="column" layout="column">
+                <div flex layout-md="column" layout="row">
                   <div class="button-container" flex="50">
-                    <md-button aria-label="action page button" layout-fill layout="column" layout-align="space-between center" ui-sref="app.profile.stats" class="md-raised">
+                    <md-button aria-label="action page button" class="md-raised"
+                      layout-align="space-between center" layout-fill layout="column" ui-sref="app.profile.stats">
                       <div>
                         <p>Click here to edit your profile</p>
                       </div>
-
-                      <div layout="row" layout-align="space-between center">
+                      <div layout-align="space-between center" layout="row">
                         <md-icon md-font-icon="mdi mdi-account mdi-lg"></md-icon>
                         <span>Stats</span>
                       </div>
                     </md-button>
                   </div>
                   <div class="button-container" flex="50">
-                    <md-button aria-label="action page button" layout-fill layout="column" layout-align="space-between center" class="md-raised">
+                    <md-button aria-label="action page button" class="md-raised"
+                      layout-align="space-between center" layout-fill layout="column">
                       <p>Click here to create a project</p>
-                      <div layout="row" layout-align="space-between center">
+                      <div layout-align="space-between center" layout="row">
                         <md-icon md-font-icon="mdi mdi-bell mdi-lg"></md-icon>
                         <span>title 2</span>
                       </div>
                     </md-button>
                   </div>
                 </div>
-
               </div>
-              <div layout="row" layout-md="column" flex>
+              <div flex layout-md="column" layout="row">
                 <div class="button-container" flex="33">
-                  <md-button aria-label="action page button" layout-fill layout="column" layout-align="space-between center" class="md-raised">
+                  <md-button aria-label="action page button" class="md-raised"
+                    layout-align="space-between center" layout-fill layout="column">
                     <span>title</span>
-                    <div layout="row" layout-align="space-between center">
+                    <div layout-align="space-between center" layout="row">
                       <md-icon md-font-icon="mdi mdi-bell mdi-lg"></md-icon>
                       <span>title 2</span>
                     </div>
                   </md-button>
                 </div>
                 <div class="button-container" flex="33">
-                  <md-button aria-label="action page button" layout-fill layout="column" layout-align="space-between center" class="md-raised">
+                  <md-button aria-label="action page button" class="md-raised"
+                    layout-align="space-between center" layout-fill layout="column">
                     <span>title</span>
-                    <div layout="row" layout-align="space-between center">
+                    <div layout-align="space-between center" layout="row">
                       <md-icon md-font-icon="mdi mdi-bell mdi-lg"></md-icon>
                       <span>title 2</span>
                     </div>
                   </md-button>
                 </div>
                 <div class="button-container" flex="33">
-                  <md-button aria-label="action page button" layout-fill layout="column" layout-align="space-between center" class="md-raised">
+                  <md-button aria-label="action page button" class="md-raised"
+                    layout-align="space-between center" layout-fill layout="column">
                     <span>title</span>
-                    <div layout="row" layout-align="space-between center">
+                    <div layout-align="space-between center" layout="row">
                       <md-icon md-font-icon="mdi mdi-bell mdi-lg"></md-icon>
                       <span>title 2</span>
                     </div>
                   </md-button>
                 </div>
               </div>
-              </div>
-
-            </md-content>
-
-          </fa-surface>
-        </fa-modifier>
-
-      </fa-view>
-    </fa-modifier>
-  </fa-scroll-view>
-
+            </div>
+          </md-content>
+        </fa-surface>
+      </fa-modifier>
+    </fa-view>
+  </fa-modifier>
+</fa-scroll-view>
 </fa-modifier>

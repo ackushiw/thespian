@@ -78,7 +78,7 @@ module.exports = function(app) {
       upload: function(data, location, objectId, uploadProgress) {
         AWSService.credentials().then(function(authData) {
           var fireAuth = auth.$getAuth();
-          console.log(authData);
+          $log.log(authData);
           //accessKeyId
           //secretAccessKey
           //expired

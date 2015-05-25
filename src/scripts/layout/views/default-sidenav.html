@@ -1,18 +1,19 @@
 <fa-modifier>
   <fa-modifier fa-translate="[0,0,3]">
-    <div hide-sm hide-gt-lg>
+    <div hide-gt-lg hide-sm>
       <fa-modifier fa-translate="[8,8,4]">
-        <menu-button action="responsiveCtrl.toggleSidenav(responsiveCtrl.sidenavOpen)" state="responsiveCtrl.sidenavOpen"></menu-button>
+        <menu-button action="responsiveCtrl.toggleSidenav(responsiveCtrl.sidenavOpen)"
+          state="responsiveCtrl.sidenavOpen"></menu-button>
       </fa-modifier>
     </div>
-    <fa-modifier fa-translate="[0,0,2]" fa-size="[undefined, 64]">
+    <fa-modifier fa-size="[undefined, 64]" fa-translate="[0,0,2]">
       <fa-surface>
         <md-toolbar>
-          <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-
+          <div class="md-toolbar-tools" layout-align="space-between center" layout="row">
             <span>Thespus</span>
-            <md-button aria-label="close" ng-click="responsiveCtrl.closeSidenav()" class="md-icon-button" hide-gt-sm>
-              <md-icon md-font-icon="" class="mdi mdi-arrow-left mdi-lg"></md-icon>
+            <md-button aria-label="close" class="md-icon-button" hide-gt-sm
+              ng-click="responsiveCtrl.closeSidenav()">
+              <md-icon class="mdi mdi-arrow-left mdi-lg" md-font-icon=""></md-icon>
             </md-button>
           </div>
         </md-toolbar>
@@ -23,79 +24,98 @@
     <fa-scroll-view fa-pipe-from="sidenavCtrl.scrollEventHandler">
       <fa-modifier fa-size="sidenavCtrl.contentSize.get()">
         <fa-view>
-
           <fa-modifier>
             <fa-surface fa-pipe-to="sidenavCtrl.scrollEventHandler">
-              <md-content class="sidenav-content" get-dimensions action="sidenavCtrl.updateSize(height, width)">
+              <md-content action="sidenavCtrl.updateSize(height, width)" class="sidenav-content"
+                get-dimensions>
                 <md-list class="nav-list" layout="column">
                   <md-item>
-                    <md-button aria-label="sidenav button" ui-sref="app.profile" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                    <md-button aria-label="sidenav button"
+                      class="md-primary md-hue-1 center block capitalize sidemenu-button" flex layout-align="space-between center" layout="row"
+                      ui-sref-active="active md-accent" ui-sref="app.profile">
                       <md-icon md-font-icon="mdi mdi-account mdi-lg"></md-icon>
                       <span ng-show="responsiveCtrl.sidenavOpen">Profile</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
-                    <md-button aria-label="sidenav button" ui-sref="app.messages" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                    <md-button aria-label="sidenav button"
+                      class="md-primary md-hue-1 center block capitalize sidemenu-button" flex layout-align="space-between center" layout="row"
+                      ui-sref-active="active md-accent" ui-sref="app.messages">
                       <md-icon md-font-icon="mdi mdi-email mdi-lg"></md-icon>
                       <span ng-show="responsiveCtrl.sidenavOpen">Messages</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
-                    <md-button aria-label="sidenav button" ui-sref="app.projects" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                    <md-button aria-label="sidenav button"
+                      class="md-primary md-hue-1 center block capitalize sidemenu-button" flex layout-align="space-between center" layout="row"
+                      ui-sref-active="active md-accent" ui-sref="app.projects">
                       <md-icon md-font-icon="mdi mdi-briefcase mdi-lg"></md-icon>
                       <span ng-show="responsiveCtrl.sidenavOpen">Projects</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
-                    <md-button aria-label="sidenav button" ui-sref="app.drafts" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                    <md-button aria-label="sidenav button"
+                      class="md-primary md-hue-1 center block capitalize sidemenu-button" flex layout-align="space-between center" layout="row"
+                      ui-sref-active="active md-accent" ui-sref="app.drafts">
                       <md-icon md-font-icon="mdi mdi-pencil-box-outline mdi-lg"></md-icon>
                       <span ng-show="responsiveCtrl.sidenavOpen">Drafts</span>
                       <span flex></span>
                       <h6 ng-if="sidenavCtrl.draftsLength">{{sidenavCtrl.draftsLength}}</h6>
                     </md-button>
                   </md-item>
-
                   <md-divider></md-divider>
                   <md-item>
-                    <md-button aria-label="sidenav button" ui-sref="app.now" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                    <md-button aria-label="sidenav button"
+                      class="md-primary md-hue-1 center block capitalize sidemenu-button" flex layout-align="space-between center" layout="row"
+                      ui-sref-active="active md-accent" ui-sref="app.now">
                       <md-icon md-font-icon="mdi mdi-flash mdi-lg"></md-icon>
                       <span ng-show="responsiveCtrl.sidenavOpen">Now</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
-                    <md-button aria-label="sidenav button" ui-sref="app.actors" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                    <md-button aria-label="sidenav button"
+                      class="md-primary md-hue-1 center block capitalize sidemenu-button" flex layout-align="space-between center" layout="row"
+                      ui-sref-active="active md-accent" ui-sref="app.actors">
                       <md-icon md-font-icon="mdi mdi-account-multiple mdi-lg"></md-icon>
                       <span ng-show="responsiveCtrl.sidenavOpen">Actors</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
-                    <md-button aria-label="sidenav button" ui-sref="app.groups" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                    <md-button aria-label="sidenav button"
+                      class="md-primary md-hue-1 center block capitalize sidemenu-button" flex layout-align="space-between center" layout="row"
+                      ui-sref-active="active md-accent" ui-sref="app.groups">
                       <md-icon md-font-icon="mdi mdi-earth mdi-lg"></md-icon>
                       <span ng-show="responsiveCtrl.sidenavOpen">Companies</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
-                    <md-button aria-label="sidenav button" ui-sref="app.shows" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                    <md-button aria-label="sidenav button"
+                      class="md-primary md-hue-1 center block capitalize sidemenu-button" flex layout-align="space-between center" layout="row"
+                      ui-sref-active="active md-accent" ui-sref="app.shows">
                       <md-icon md-font-icon="mdi mdi-eye mdi-lg"></md-icon>
                       <span ng-show="responsiveCtrl.sidenavOpen">Shows</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
-                    <md-button aria-label="sidenav button" ui-sref="app.test" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                    <md-button aria-label="sidenav button"
+                      class="md-primary md-hue-1 center block capitalize sidemenu-button" flex layout-align="space-between center" layout="row"
+                      ui-sref-active="active md-accent" ui-sref="app.test">
                       <md-icon md-font-icon="mdi mdi-drawing-box mdi-lg"></md-icon>
                       <span ng-show="responsiveCtrl.sidenavOpen">test</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
-                    <md-button aria-label="sidenav button" ui-sref="app.test" ui-sref-active="active md-accent" flex class="md-primary md-hue-1 center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                    <md-button aria-label="sidenav button"
+                      class="md-primary md-hue-1 center block capitalize sidemenu-button" flex layout-align="space-between center" layout="row"
+                      ui-sref-active="active md-accent" ui-sref="app.test">
                       <md-icon md-font-icon="mdi mdi-bank mdi-lg"></md-icon>
                       <span ng-show="responsiveCtrl.sidenavOpen">test</span>
                       <span flex></span>
@@ -103,22 +123,28 @@
                   </md-item>
                   <md-divider></md-divider>
                   <md-item>
-                    <md-button aria-label="sidenav button" ui-sref="app.support" ui-sref-active="active md-accent" flex class="deemphasize center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                    <md-button aria-label="sidenav button"
+                      class="deemphasize center block capitalize sidemenu-button" flex layout-align="space-between center" layout="row"
+                      ui-sref-active="active md-accent" ui-sref="app.support">
                       <md-icon md-font-icon="mdi mdi-auto-fix mdi-lg"></md-icon>
                       <span ng-show="responsiveCtrl.sidenavOpen">Support</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
                   <md-item>
-                    <md-button aria-label="sidenav button" ui-sref="app.settings" ui-sref-active="active md-accent" flex class="deemphasize center block capitalize sidemenu-button" layout="row" layout-align="space-between center">
+                    <md-button aria-label="sidenav button"
+                      class="deemphasize center block capitalize sidemenu-button" flex layout-align="space-between center" layout="row"
+                      ui-sref-active="active md-accent" ui-sref="app.settings">
                       <md-icon md-font-icon="mdi mdi-settings mdi-lg"></md-icon>
                       <span ng-show="responsiveCtrl.sidenavOpen">Settings</span>
                       <span flex></span>
                     </md-button>
                   </md-item>
-
                   <md-item>
-                    <md-button aria-label="log out" class="capitalize block sidemenu-button deemphasize" ng-class="{'md-warn': logoutHover}" ng-click="fireAuth.$unauth()" ui-sref="landing" flex class="md-warn" layout="row" layout-align="space-between center" ng-mouseenter="logoutHover = true" ng-mouseleave="logoutHover = false">
+                    <md-button flex aria-label="log out"
+                      class="capitalize block sidemenu-button deemphasize" class="md-warn" layout-align="space-between center" layout="row"
+                      ng-class="{'md-warn': logoutHover}" ng-click="fireAuth.$unauth()" ng-mouseenter="logoutHover = true"
+                      ng-mouseleave="logoutHover = false" ui-sref="landing">
                       <md-icon md-font-icon="mdi mdi-power mdi-lg"></md-icon>
                       <span ng-show="responsiveCtrl.sidenavOpen">Log out</span>
                       <span flex></span>
@@ -137,13 +163,11 @@
           </fa-modifier>
         </fa-view>
       </fa-modifier>
-
     </fa-scroll-view>
   </fa-modifier>
   <fa-modifier fa-translate="[0,0,0]">
-    <fa-surface fa-background-color="'white'" class="full-height">
-      <md-content layout-fill class="md-whiteframe-z2"></md-content>
+    <fa-surface class="full-height" fa-background-color="'white'">
+      <md-content class="md-whiteframe-z2" layout-fill></md-content>
     </fa-surface>
   </fa-modifier>
-
 </fa-modifier>

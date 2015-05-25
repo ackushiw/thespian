@@ -1,4 +1,5 @@
 'use strict';
+/* jshint ignore:start */
 
 var args = require('yargs').argv;
 
@@ -6,13 +7,17 @@ module.exports = function(config) {
   var debug = false;
   try {
     debug = JSON.parse(args._[0]).debug;
-  } catch(err) {}
+  } catch(err) {
+    throw err;
+  }
   debug = debug || args.debug;
 
   var autowatch = true;
   try {
     autowatch = JSON.parse(args._[0]).autowatch;
-  } catch(err) {}
+  } catch(err) {
+    throw err;
+  }
   autowatch = autowatch || args.autowatch;
 
   var reporters = ['mocha', 'coverage'];

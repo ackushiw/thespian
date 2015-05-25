@@ -15,7 +15,7 @@ module.exports = function(namespace) {
   // inject:folders end
 
   app.provider('AWSService', function() {
-    var self = this;
+    var self = this; //eslint-disable-line
     self.arn = null;
 
     self.setArn = function(arn) {
@@ -25,8 +25,8 @@ module.exports = function(namespace) {
     };
     self.$get = ['$window', '$cacheFactory', '$q', function($window, $cacheFactory, $q) {
       var AWS = $window.AWS;
-      var credentialsDefer = $q.defer(),
-        credentialsPromise = credentialsDefer.promise;
+      var credentialsDefer = $q.defer();
+      var credentialsPromise = credentialsDefer.promise;
       var s3Cache = $cacheFactory('s3Cache');
       return {
         credentials: function() {
@@ -35,7 +35,7 @@ module.exports = function(namespace) {
         setToken: function(config) {
           self.config = config;
           AWS.config.credentials = new AWS.CognitoIdentityCredentials(config);
-          AWS.config.credentials.get(function () {
+          AWS.config.credentials.get(function() {
             credentialsDefer.resolve(AWS.config.credentials);
           });
         },
@@ -46,9 +46,9 @@ module.exports = function(namespace) {
           var defer = $q.defer();
           credentialsPromise.then(function() {
             var s3Object = s3Cache.get(JSON.stringify(params));
-            if (!s3Object) {
-                s3Object = new AWS.S3(params);
-                s3Cache.put(JSON.stringify(params), s3Object);
+            if(!s3Object) {
+              s3Object = new AWS.S3(params);
+              s3Cache.put(JSON.stringify(params), s3Object);
             }
 
             defer.resolve(s3Object);

@@ -17,9 +17,9 @@ module.exports = function(app) {
     //   headshot: googleProfile.picture
     // };
 
-    return function (uid, callback) {
+    return function(uid, callback) {
 
-      if (uid === auth.uid) {
+      if(uid === auth.uid) {
         $log.log('user ids match');
         userProfileRef.child('actorName').set(googleProfile.name);
         userProfileRef.child('headshot').set(googleProfile.picture);
@@ -33,8 +33,6 @@ module.exports = function(app) {
         // }
       }
     };
-
-
 
   }
   service.$inject = dependencies;

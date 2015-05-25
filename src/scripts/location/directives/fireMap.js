@@ -12,7 +12,6 @@ module.exports = function(app) {
     var vm = fireMapCtrl;
     $log.log(vm.map);
 
-
     fireMapCtrl.directivename = directivename;
   };
   controller.$inject = controllerDeps;
@@ -45,7 +44,6 @@ module.exports = function(app) {
             sync.$bindTo(scope, 'group').then(function() {
               $log.log('bound');
             });
-
 
             // function save() {
             //   sync.$save();

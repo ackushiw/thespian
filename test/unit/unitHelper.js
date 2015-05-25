@@ -1,9 +1,9 @@
 'use strict';
 
 require('./polyfill');
-var angular = require('angular');
+var angularTest = require('angular');
 
-var jQLite = exports.jQLite = angular.element;
+var jQLite = exports.jQLite = angularTest.element;
 
 var camelToDash = exports.camelToDash = function(str) {
   return str.replace(/\W+/g, '-')

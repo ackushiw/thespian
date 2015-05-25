@@ -7,7 +7,6 @@ var angular = require('angular');
 var app = angular.module(namespace, [
   // inject:modules start
   require('./api')(namespace).name,
-  require('./google')(namespace).name,
   require('./groups')(namespace).name,
   require('./layout')(namespace).name,
   require('./location')(namespace).name,

@@ -33,7 +33,6 @@ module.exports = function(app) {
 
     //var tagsRef = new Firebase(FBURL + '/tags');
 
-
     var userObj = $firebaseObject(userRef);
 
     var activate = function() {

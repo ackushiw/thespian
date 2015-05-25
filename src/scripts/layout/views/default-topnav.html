@@ -1,20 +1,19 @@
 <fa-modifier>
-  <fa-modifier fa-translate="[0,0,1]" fa-size="[responsiveCtrl.width, 36]" fa-opacity="[1]">
+  <fa-modifier fa-opacity="[1]" fa-size="[responsiveCtrl.width, 36]"
+    fa-translate="[0,0,1]">
     <fa-surface class="full-height">
-      <div layout="row" layout-align="space-between start" layout-fill>
-        <md-button aria-label="menu" hide-gt-sm class="md-icon-button white" ng-click="responsiveCtrl.expandSidenav()">
-          <md-icon md-font-icon class="mdi mdi-menu mdi-lg"></md-icon>
+      <div layout-align="space-between start" layout-fill layout="row">
+        <md-button aria-label="menu" class="md-icon-button white" hide-gt-sm
+          ng-click="responsiveCtrl.expandSidenav()">
+          <md-icon class="mdi mdi-menu mdi-lg" md-font-icon></md-icon>
         </md-button>
-        <md-button aria-label="search" hide-gt-md class="md-icon-button white">
-          <md-icon md-font-icon class="mdi mdi-magnify mdi-lg"></md-icon>
+        <md-button aria-label="search" class="md-icon-button white" hide-gt-md>
+          <md-icon class="mdi mdi-magnify mdi-lg" md-font-icon></md-icon>
         </md-button>
       </div>
     </fa-surface>
   </fa-modifier>
-  <fa-modifier fa-size="[responsiveCtrl.width, 36]" fa-opacity="[.1]">
-    <fa-surface fa-size="[responsiveCtrl.width, 36]" fa-background-color="'black'">
-
-    </fa-surface>
+  <fa-modifier fa-opacity="[.1]" fa-size="[responsiveCtrl.width, 36]">
+    <fa-surface fa-background-color="'black'" fa-size="[responsiveCtrl.width, 36]"></fa-surface>
   </fa-modifier>
-
 </fa-modifier>

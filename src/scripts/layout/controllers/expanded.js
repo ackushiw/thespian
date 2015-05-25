@@ -16,12 +16,11 @@ module.exports = function(app) {
 
     vm.scrollEventHandler = new EventHandler();
     vm.bannerSize = new Transitionable([0, 0]);
-    vm.updateBannerSize = function (height, width) {
+    vm.updateBannerSize = function(height, width) {
       vm.bannerSize.set([undefined, height]);
     };
 
     vm.uid = auth.uid;
-    console.log(vm.uid);
     var activate = function() {
 
     };

@@ -19,18 +19,19 @@ module.exports = function(app) {
     }
 
     function userExistsCallback(uid, exists) {
-        if(uid && exists) {
-          userObject(uid);
-        } else if(uid && !exists) {
-          //create profile
-          initializeUser(uid, userObject);
-        }
+      if(uid && exists) {
+        userObject(uid);
+      } else if(uid && !exists) {
+        //create profile
+        initializeUser(uid, userObject);
       }
-      // Tests to see if /profilesLocation/<userId> has any data.
+    }
+
+    // Tests to see if /profilesLocation/<userId> has any data.
     function checkIfUserExists(userId) {
       var usersRef = new Firebase(profilesLocation);
       usersRef.child(userId).once('value', function(snapshot) {
-        var exists = (snapshot.val() !== null);
+        var exists = snapshot.exists();
         userExistsCallback(userId, exists);
       });
     }

@@ -19,7 +19,7 @@ module.exports = function(app) {
     function existsCallback(exists, image) {
       if(exists) {
         fireImageCtrl.url = image + '?r=' + Math.random().toString(36).substring(7);
-        if (fireImageCtrl.updated) {
+        if(fireImageCtrl.updated) {
           fireImageCtrl.updated();
         }
       }
@@ -27,7 +27,7 @@ module.exports = function(app) {
 
     function sync() {
       ref.child('url').once('value', function(snapshot) {
-        var exists = (snapshot.val() !== null);
+        var exists = snapshot.exists();
         existsCallback(exists, snapshot.val());
       });
     }

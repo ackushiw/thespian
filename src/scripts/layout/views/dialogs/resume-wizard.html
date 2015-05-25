@@ -1,57 +1,84 @@
 <md-dialog aria-label="resume wizard dialog" flex-gt-lg="66">
   <md-toolbar>
-    <div class="md-toolbar-tools" layout="row" layout-align="space-around center">
+    <div class="md-toolbar-tools" layout-align="space-around center" layout="row">
       <span>{{project.title || 'New Project'}}</span>
-      <span flex="66" flex-sm="33"></span>
+      <span flex-sm="33" flex="66"></span>
       <md-button aria-label="button" ng-click="">
-        <md-icon md-font-icon="" class="mdi mdi-file mdi-lg"></md-icon>
+        <md-icon class="mdi mdi-file mdi-lg" md-font-icon=""></md-icon>
       </md-button>
       <md-button aria-label="button" ng-click="">
-        <md-icon md-font-icon="" class="mdi mdi-delete mdi-lg"></md-icon>
+        <md-icon class="mdi mdi-delete mdi-lg" md-font-icon=""></md-icon>
       </md-button>
       <md-button aria-label="button" ng-click="">
-        <md-icon md-font-icon="" class="mdi mdi-dots-vertical mdi-lg"></md-icon>
+        <md-icon class="mdi mdi-dots-vertical mdi-lg" md-font-icon=""></md-icon>
       </md-button>
     </div>
   </md-toolbar>
   <md-content class="md-padding">
-    <md-tabs md-dynamic-height md-border-bottom md-align-tabs="bottom" md-stretch-tabs="never">
+    <md-tabs md-align-tabs="bottom" md-border-bottom md-dynamic-height
+      md-stretch-tabs="never">
       <md-tab label="Type">
         <md-content class="md-padding">
           <pre>{{project}}</pre>
           <h4 style="margin:0">
             <md-input-container>
               <label>Title</label>
-              <input type="text" ng-model="project.title" ng-blur="project.$priority = project.title">
+              <input ng-blur="project.$priority = project.title" ng-model="project.title"
+                type="text"></md-input-container>
+            </h4>
+            <md-input-container>
+              <label>Desciption</label>
+              <textarea ng-model="project.description" rows="1"></textarea>
             </md-input-container>
-          </h4>
-          <md-input-container>
-            <label>Desciption</label>
-            <textarea rows="1" ng-model="project.description"></textarea>
-          </md-input-container>
-          <md-select ng-model="project.type" placeholder="type">
-            <md-option value="theater">Theater</md-option>
-            <md-option value="film">Film</md-option>
-            <md-option value="tv">TV</md-option>
-          </md-select>
-          <md-switch ng-model="project.forResume">Add to Resume</md-switch>
-          <p>A project can be created for the past, present and future</p>
-        </md-content>
-      </md-tab>
-      <md-tab label="two">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Tab Two</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum enim, vel tempor sapien arcu a tellus. Vivamus convallis sodales ante varius gravida. Curabitur a purus vel augue ultrices ultricies id a nisl. Nullam malesuada consequat diam, a facilisis tortor volutpat et. Sed urna dolor, aliquet vitae posuere vulputate, euismod ac lorem. Sed felis risus, pulvinar at interdum quis, vehicula sed odio. Phasellus in enim venenatis, iaculis tortor eu, bibendum ante. Donec ac tellus dictum neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor purus porttitor vitae. Phasellus ornare dui nec orci posuere, nec luctus mauris semper.</p>
-          <p>Morbi viverra, ante vel aliquet tincidunt, leo dolor pharetra quam, at semper massa orci nec magna. Donec posuere nec sapien sed laoreet. Etiam cursus nunc in condimentum facilisis. Etiam in tempor tortor. Vivamus faucibus egestas enim, at convallis diam pulvinar vel. Cras ac orci eget nisi maximus cursus. Nunc urna libero, viverra sit amet nisl at, hendrerit tempor turpis. Maecenas facilisis convallis mi vel tempor. Nullam vitae nunc leo. Cras sed nisl consectetur, rhoncus sapien sit amet, tempus sapien.</p>
-          <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-        </md-content>
-      </md-tab>
-      <md-tab label="three">
-        <md-content class="md-padding">
-          <h1 class="md-display-2">Tab Three</h1>
-          <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
-        </md-content>
-      </md-tab>
-    </md-tabs>
-  </md-content>
-</md-dialog>
+            <md-select ng-model="project.type" placeholder="type">
+              <md-option value="theater">Theater</md-option>
+              <md-option value="film">Film</md-option>
+              <md-option value="tv">TV</md-option>
+            </md-select>
+            <md-switch ng-model="project.forResume">Add to Resume</md-switch>
+            <p>A project can be created for the past, present and future</p>
+          </md-content>
+        </md-tab>
+        <md-tab label="two">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Tab Two</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante
+              augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam
+              cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin
+              consectetur felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam
+              placerat, tortor in ultrices porttitor, orci enim rutrum enim, vel tempor sapien
+              arcu a tellus. Vivamus convallis sodales ante varius gravida. Curabitur a purus
+              vel augue ultrices ultricies id a nisl. Nullam malesuada consequat diam, a
+              facilisis tortor volutpat et. Sed urna dolor, aliquet vitae posuere vulputate,
+              euismod ac lorem. Sed felis risus, pulvinar at interdum quis, vehicula sed odio.
+              Phasellus in enim venenatis, iaculis tortor eu, bibendum ante. Donec ac tellus
+              dictum neque volutpat blandit. Praesent efficitur faucibus risus, ac auctor
+              purus porttitor vitae. Phasellus ornare dui nec orci posuere, nec luctus mauris
+              semper.</p>
+            <p>Morbi viverra, ante vel aliquet tincidunt, leo dolor pharetra quam, at semper
+              massa orci nec magna. Donec posuere nec sapien sed laoreet. Etiam cursus nunc in
+              condimentum facilisis. Etiam in tempor tortor. Vivamus faucibus egestas enim, at
+              convallis diam pulvinar vel. Cras ac orci eget nisi maximus cursus. Nunc urna
+              libero, viverra sit amet nisl at, hendrerit tempor turpis. Maecenas facilisis
+              convallis mi vel tempor. Nullam vitae nunc leo. Cras sed nisl consectetur,
+              rhoncus sapien sit amet, tempus sapien.</p>
+            <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus.
+              Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam.
+              Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id
+              ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim
+              scelerisque, finibus commodo lectus.</p>
+          </md-content>
+        </md-tab>
+        <md-tab label="three">
+          <md-content class="md-padding">
+            <h1 class="md-display-2">Tab Three</h1>
+            <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus.
+              Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam.
+              Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id
+              ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim
+              scelerisque, finibus commodo lectus.</p>
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-content>
+  </md-dialog>

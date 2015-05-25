@@ -1,29 +1,29 @@
 <fa-modifier>
   <fa-scroll-view fa-pipe-from="mainViewCtrl.scrollEventHandler">
     <!-- <fa-view ng-if="!smScreen">
-      <fa-modifier fa-size="[undefined, 200]">
-        <fa-surface fa-pipe-to="mainViewCtrl.scrollEventHandler">test scroll {{mainViewCtrl.message}}</fa-surface>
-      </fa-modifier>
-    </fa-view> -->
+        <fa-modifier fa-size="[undefined, 200]">
+          <fa-surface fa-pipe-to="mainViewCtrl.scrollEventHandler">test scroll {{mainViewCtrl.message}}</fa-surface>
+        </fa-modifier>
+      </fa-view> -->
     <fa-modifier fa-size="mainViewCtrl.headshotSize.get()">
       <fa-view>
         <fa-modifier fa-perspective="100" fa-size="mainViewCtrl.headshotSize.get()">
-          <fa-surface  class="full-height" fa-pipe-to="mainViewCtrl.scrollEventHandler ">
-            <md-content class="md-whiteframe-z2" get-dimensions action="mainViewCtrl.updateHeadshotSize(height, width)">
-              <fire-image  id="{{mainViewCtrl.uid}}" location="actor-headshots"></fire-image>
+          <fa-surface class="full-height" fa-pipe-to="mainViewCtrl.scrollEventHandler ">
+            <md-content action="mainViewCtrl.updateHeadshotSize(height, width)"
+              class="md-whiteframe-z2" get-dimensions>
+              <fire-image id="{{mainViewCtrl.uid}}" location="actor-headshots"></fire-image>
             </md-content>
-
           </fa-surface>
-
         </fa-modifier>
       </fa-view>
     </fa-modifier>
     <fa-view>
       <fa-modifier fa-translate="[0,0,1]">
         <fa-surface class="full-height " fa-pipe-to="mainViewCtrl.scrollEventHandler ">
-          <md-card layout-fill layout="column" style="background-color:white;" class="md-whiteframe-z2">
+          <md-card class="md-whiteframe-z2" layout-fill layout="column"
+            style="background-color:white;">
             <md-toolbar>
-              <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+              <div class="md-toolbar-tools" layout-align="space-between center" layout="row">
                 <h3>{{mainViewCtrl.userProfile.actorName || mainViewCtrl.googleProfile.given_name + ' ' + mainViewCtrl.googleProfile.family_name}}</h3>
                 <span flex></span>
                 <md-button aria-label="profile nav button" class="md-icon-button center">
@@ -48,13 +48,12 @@
                 </md-tab>
               </md-tabs>
             </md-toolbar>
-
-            <md-content layout-fill layout="column" class="md-padding">
-
-              <md-list class="nav-list" layout="column" layout-align="start start">
-                <md-item ng-repeat="item in mainViewCtrl.profileMenuList" layout-fill>
-                  <md-item-content layout="row" layout-align="start center">
-                    <md-button aria-label="menu button" class="md-primary center block" layout-fill ng-click="responsiveCtrl.focusDetailsView(item)" ui-sref="{{item.link}}" ui-sref-active="active, md-accent">
+            <md-content class="md-padding" layout-fill layout="column">
+              <md-list class="nav-list" layout-align="start start" layout="column">
+                <md-item layout-fill ng-repeat="item in mainViewCtrl.profileMenuList">
+                  <md-item-content layout-align="start center" layout="row">
+                    <md-button aria-label="menu button" class="md-primary center block" layout-fill
+                      ng-click="responsiveCtrl.focusDetailsView(item)" ui-sref-active="active, md-accent" ui-sref="{{item.link}}">
                       <md-icon md-font-icon="mdi mdi-lg {{item.icon}}"></md-icon>
                       <span class="capitalize" flex>{{item.title}}</span>
                     </md-button>
@@ -62,11 +61,9 @@
                 </md-item>
               </md-list>
             </md-content>
-
           </md-card>
         </fa-surface>
       </fa-modifier>
-
     </fa-view>
     <!-- <fa-modifier fa-size="[undefined, 100] ">
       <fa-view>
@@ -75,7 +72,5 @@
         </fa-modifier>
       </fa-view>
     </fa-modifier> -->
-
   </fa-scroll-view>
-
 </fa-modifier>

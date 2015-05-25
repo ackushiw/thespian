@@ -1,6 +1,5 @@
 'use strict';
 require('famous-angular');
-require('ngCordova');
 
 var modulename = 'groups';
 

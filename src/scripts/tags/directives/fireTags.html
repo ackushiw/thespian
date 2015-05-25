@@ -1,21 +1,23 @@
 <div class="tag-form" layout-fill>
-
-  <div class="chip" ng-class="{delete: hover}" layouy="row" layout-align="start start" ng-repeat="tag in fireTagsCtrl.array">
+  <div class="chip" layout-align="start start" layouy="row" ng-class="{delete: hover}"
+    ng-repeat="tag in fireTagsCtrl.array">
     <md-button aria-label="go to tag" class="text" ui-sref="#">{{tag.title}}</md-button>
-
-    <md-button aria-label="delete" class="md-icon-button circular" ng-class="{'md-warn': hover}" ng-click="fireTagsCtrl.remove(tag)" ng-mouseenter="hover=true" ng-mouseleave="hover=false">
-      <md-icon md-font-icon="mdi mdi-close" layout="row" layout-align="center center"></md-icon>
+    <md-button aria-label="delete" class="md-icon-button circular"
+      ng-class="{'md-warn': hover}" ng-click="fireTagsCtrl.remove(tag)" ng-mouseenter="hover=true"
+      ng-mouseleave="hover=false">
+      <md-icon layout-align="center center" layout="row" md-font-icon="mdi mdi-close"></md-icon>
     </md-button>
   </div>
   <div class="input" layout="row">
-    <input type="text" flex ng-model="fireTagsCtrl.newTag" list="tags" ng-change="fireTagsCtrl.updateQuery(fireTagsCtrl.newTag)" ng-keydown="$event.which === 13 && fireTagsCtrl.add(fireTagsCtrl.newTag)" placeholder="Add Tag"></input>
-
-    <md-button aria-label="add tag" class="add" ng-class="{'md-accent md-raised': fireTagsCtrl.newTag}" ng-click="fireTagsCtrl.add(fireTagsCtrl.newTag)" ng-disabled="!fireTagsCtrl.newTag">add</md-button>
+    <input flex list="tags" ng-change="fireTagsCtrl.updateQuery(fireTagsCtrl.newTag)"
+      ng-keydown="$event.which === 13 && fireTagsCtrl.add(fireTagsCtrl.newTag)" ng-model="fireTagsCtrl.newTag"
+      placeholder="Add Tag" type="text"></input>
+    <md-button aria-label="add tag" class="add"
+      ng-class="{'md-accent md-raised': fireTagsCtrl.newTag}" ng-click="fireTagsCtrl.add(fireTagsCtrl.newTag)"
+      ng-disabled="!fireTagsCtrl.newTag">add</md-button>
     <datalist id="tags" ng-if="fireTagsCtrl.newTag">
-      <option value="{{value.title}}" ng-repeat="value in fireTagsCtrl.queryList"></option>
+      <option ng-repeat="value in fireTagsCtrl.queryList" value="{{value.title}}"></option>
     </datalist>
-
   </div>
-
 </div>
 <br style="width:100%">

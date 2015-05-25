@@ -3,11 +3,11 @@ var servicename = 'cognito';
 
 module.exports = function(app) {
 
-  var dependencies = ['$window', 'AWSService'];
+  var dependencies = ['AWSService'];
 
-  function service($window, AWSService) {
-    var AWS = $window.AWS;
-    var auth = AWS.config.credentials;
+  function service(AWSService) {
+    //var AWS = $window.AWS;
+    //var auth = AWS.config.credentials;
 
     function initFacebook(token, callback) {
       var config = {
@@ -41,7 +41,7 @@ module.exports = function(app) {
       service.signedIn = true;
       //accessKeyId
       //secretAccessKey
-      
+
     }
 
     return {

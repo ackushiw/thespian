@@ -7,7 +7,7 @@ module.exports = function(app) {
   // controller
   var controllerDeps = ['main.api.uploadS3', '$window', '$log'];
   var controller = function(uploadS3, $window, $log) {
-    var vm = this;
+    var vm = this; //eslint-disable-line
     vm.inputFiles = [];
     vm.dropFile = [];
     if(!vm.id) {
